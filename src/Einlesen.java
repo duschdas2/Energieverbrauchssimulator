@@ -11,6 +11,7 @@ public class Einlesen {
 	public static double[] GetAll(int size) throws IOException{
 		double [] tmp = new double[1440];
 		for(int i = 1; i<=size;i++){
+			//Pfad muss momentan noch geändert werden
 			tmp = GetData("C:\\Users\\Julian\\OneDrive\\Programmieren\\Java\\Energieverbrauchssimulator\\CSV\\01\\"+i+".csv");
 			for(int b = 0; b<tmp.length;b++) {
 				if(tmp[b] == 1)
