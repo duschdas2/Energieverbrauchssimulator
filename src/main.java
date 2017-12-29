@@ -14,5 +14,4 @@ public class main {
 			System.out.println("Minute: "+i+ " : "+ test[i]);
 		}
 	}
-
 }

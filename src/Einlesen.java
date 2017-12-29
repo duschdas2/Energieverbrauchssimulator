@@ -1,6 +1,5 @@
 import java.io.FileReader;
 import java.io.IOException;
-
 import com.opencsv.CSVReader;
 
 public class Einlesen {
