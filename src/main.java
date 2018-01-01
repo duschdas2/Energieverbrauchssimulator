@@ -1,6 +1,10 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import Haushalt.Haushalt;
+import Haushalt.Person;
+import Haushalt.Personentype;
 /**
  *
  */
@@ -13,5 +17,13 @@ public class main {
 		for(int i = 0;i<test.length;i++) {
 			System.out.println("Minute: "+i+ " : "+ test[i]);
 		}
+		Person person = new Person(15, new Personentype());
+		person.calcTime();
+		System.out.print(person);
+		ArrayList<Person> list = new ArrayList<Person>();
+		list.add(person);
+		Haushalt haushalt = new Haushalt(list);
+		haushalt.calcOccupancy();
+		System.out.print(haushalt);
 	}
 }
