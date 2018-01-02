@@ -1,23 +1,32 @@
-/**
- * Erfasst alle Geräte Daten.
- */
-public class Geräte 
+package GerätePackage;
+
+public abstract class GeräteTyp1 
 {
-	String Name;
-	int Max_Verbrauch;
-	int Durch_Verbrauch;
-	int Standby;
-	int Anlaufzeit;
-	int Auslaufzeit;
-	Gerätetype Gerätetype;
+	double maxVerbrauch;	
+	double standby;
+	double schwankung;
+	double aktuellerVerbrauch;
+	boolean benutzt = false;
 	
-	public Geräte(String Name,int Max_Verbrauch,int Durch_Verbrauch,int Standby, int Anlaufzeit, int Auslaufzeit, int Type){
-		this.Name = Name;
-		this.Max_Verbrauch = Max_Verbrauch;
-		this.Durch_Verbrauch = Durch_Verbrauch;
-		this.Standby = Standby;
-		this.Anlaufzeit = Anlaufzeit;
-		this.Auslaufzeit = Auslaufzeit;
-		Gerätetype = new Gerätetype(Type);
+	public GeräteTyp1(double Max_Verbrauch, double Standby, double Schwankung){
+		this.maxVerbrauch = Max_Verbrauch;
+		this.standby = Standby;
+		this.schwankung = Schwankung;
+	}
+	
+	//Im Fall von Geräte vom Typ 1 ist maxVerbrauch == aktuellerVerbrauch
+	protected double randomisieren(double Aktueller_Verbrauch, double Schwankung){
+		
+		this.aktuellerVerbrauch = Aktueller_Verbrauch;
+		if(Math.random() < 0.5){
+			this.aktuellerVerbrauch += Math.random() * this.schwankung;
+		}else{
+			this.aktuellerVerbrauch -= Math.random() * this.schwankung;
+		}
+		return(this.aktuellerVerbrauch);
+	}
+	
+	public void setBenutzt(boolean Benutzt) {
+		this.benutzt = Benutzt;
 	}
 }
