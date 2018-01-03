@@ -1,5 +1,6 @@
 package GerätePackage;
 
-public abstract class GeräteTyp4 {
+public abstract class GeräteTyp4 
+{
 
 }

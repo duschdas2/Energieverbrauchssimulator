@@ -7,6 +7,9 @@ public abstract class GeräteTyp3
 	double standby;
 	double aktuellerVerbrauch;
 	double schwankung;
+	int betriebsdauer = 0;
+	double onWahrscheinlichkeit;
+	double offWahrscheinlichkeit;
 	boolean benutzt = false;
 	
 	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung){
@@ -35,5 +38,17 @@ public abstract class GeräteTyp3
 	protected double setAktuellerVerbrauch(double Max, double Min){
 		this.aktuellerVerbrauch = Math.random() * (Max - Min) + Min;
 		return(this.aktuellerVerbrauch);
+	}
+	
+	public void setBetriebsdauer(int Betriebs_Dauer){
+		this.betriebsdauer = Betriebs_Dauer;
+	}
+	
+	public void setOffWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
+		this.offWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
+	}
+	
+	public void setOnWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
+		this.onWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
 	}
 }

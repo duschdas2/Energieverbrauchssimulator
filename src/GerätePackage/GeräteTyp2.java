@@ -11,6 +11,9 @@ public abstract class GeräteTyp2
 	double aktuellerVerbrauch;
 	double schwankung;
 	double schwankungsTendenz;
+	int betriebsdauer = 0;
+	double onWahrscheinlichkeit;
+	double offWahrscheinlichkeit;
 	boolean benutzt = false;
 	int modus;	//beginnt mit 0
 	
@@ -42,5 +45,21 @@ public abstract class GeräteTyp2
 	
 	protected void setModus(int Modus){
 		this.modus = Modus;
+	}
+	
+	public void setBenutzt(boolean Benutzt) {
+		this.benutzt = Benutzt;
+	}
+	
+	public void setBetriebsdauer(int Betriebs_Dauer){
+		this.betriebsdauer = Betriebs_Dauer;
+	}
+	
+	public void setOffWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
+		this.offWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
+	}
+	
+	public void setOnWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
+		this.onWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
 	}
 }

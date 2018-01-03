@@ -11,7 +11,7 @@ public class GeräteTestMain {
 		System.out.println("Toaster: "+toaster.randomisieren(toaster.maxVerbrauch, toaster.schwankung));
 		System.out.println("Licht: "+licht.randomisieren(licht.maxVerbrauch, licht.schwankung));
 		
-		pc.setModus(1);
+		pc.setModus(2);
 		System.out.println("PC: "+pc.randomisieren());
 		
 		sbsg.setAktuellerVerbrauch(sbsg.maxVerbrauch, sbsg.minVerbrauch);
