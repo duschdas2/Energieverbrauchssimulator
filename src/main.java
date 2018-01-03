@@ -1,10 +1,9 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import Haushalt.Haushalt;
 import Haushalt.Person;
-import Haushalt.Personentype;
+import Haushalt.Personentyp;
 /**
  *
  */
@@ -24,7 +23,7 @@ public class main {
 			System.out.println(gerätAn[i][0]);
 		}
 		
-		Person person = new Person(15, new Personentype());
+		Person person = new Person(15, new Personentyp());
 		person.calcTime();
 		//System.out.print(person);
 		ArrayList<Person> list = new ArrayList<Person>();

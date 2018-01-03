@@ -8,13 +8,13 @@ import java.util.Random;
 public class Person {
 
 	private int Alter;
-	private Personentype typ;
+	private Personentyp typ;
 	private int[] awayTime;
 	private int[] percentAwayTime = new int[1440];
 	private Random arbeitsFaktor = new Random();
 	
 	
-	public Person(int Alter, Personentype typ){
+	public Person(int Alter, Personentyp typ){
 		this.Alter = Alter;
 		this.typ = typ;
 		awayTime = typ.getAwayTime();
