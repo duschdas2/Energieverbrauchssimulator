@@ -29,7 +29,7 @@ public class Haushalt {
 		for(int j = 0; j < personen.size() ; j++){
 			personen.get(j).calcTime();
 			for(int i = 0; i < 1440 ; i++){
-				if( personen.get(j).getPercentAwayTime(i) == 1)
+				if( personen.get(j).getRealAwayTime(i) == 1)
 					occupancy[i]++;
 			}
 		}
