@@ -15,17 +15,23 @@ import java.io.Reader;
  */
 public class Create_CSV {
 	private static final String STRING_ARRAY_SAMPLE = "C:/Users/Manuel/CSV-Dateien/csv1.csv";
-	public static void Create(/*String [][] data*/) throws IOException{
+	public static void create(/*String [][] data*/) throws IOException{
 		try (
 				Writer writer = Files.newBufferedWriter(Paths.get(STRING_ARRAY_SAMPLE));
 		
 		        CSVWriter csvWriter = new CSVWriter(writer, ';', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 		    ) {
-				String [] [] data = new String [2] [2];
-				data[0][0] = "00";
-				data[0][1] = "01";
-				data[1][0] = "10";
-				data[1][1] = "11";
+				String [] [] data = new String [5] [2];
+				data[0][0] = "TEST1";
+				data[0][1] = "TEST2";
+				data[1][0] = "0";
+				data[1][1] = "0";
+				data[2][0] = "18";
+				data[2][1] = "10";
+				data[3][0] = "30";
+				data[3][1] = "23";
+				data[4][0] = "35";
+				data[4][1] = "29";
 				for (int i = 0; i < data.length; i ++) {
 					String [] tmp = new String [data[i].length];
 					for (int c = 0; c < data[i].length; c++) {
@@ -45,12 +51,13 @@ public class Create_CSV {
 		    }
 	}
 	
-	public static void Read() throws IOException {
+	public static void read() throws IOException {
 		Reader reader = Files.newBufferedReader(Paths.get(STRING_ARRAY_SAMPLE));
 		CSVReader csvReader = new CSVReader(reader, ';');
 		//CSVReaderBuilder reader2 = new CSVReaderBuilder (new FileReader(STRING_ARRAY_SAMPLE));
 	    String [] nextLine;
 	    int i = 0;
+//	    nextLine = csvReader.readNext();
 	    while ((nextLine = csvReader.readNext()) != null) {
 	    	System.out.println("Name : " + nextLine[0]);
             System.out.println("Email : " + nextLine[1]);
@@ -64,7 +71,8 @@ public class Create_CSV {
 	
 	public static void main(String [] args) {
 		try {
-			Create();
+			create();
+//			read();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
