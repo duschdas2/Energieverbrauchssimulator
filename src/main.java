@@ -15,13 +15,6 @@ public class main {
 		int auswertDaten = 10;
 		double [] statAnalysis = new double [1440];
 		double [][] gerätAn = new double [1440][geräte];
-		Wahrscheinlichkeit w1 = new Wahrscheinlichkeit();
-		
-		statAnalysis = Einlesen.GetAll(auswertDaten);
-		for(int i = 0;i<statAnalysis.length;i++) {
-			w1.checkStatus(statAnalysis,gerätAn,auswertDaten,geräte,i);
-			System.out.println(gerätAn[i][0]);
-		}
 		
 		Person person = new Person(15, new Personentyp());
 		person.calcTime();
@@ -31,5 +24,18 @@ public class main {
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
 		//System.out.print(haushalt);
+		
+		Wahrscheinlichkeit w1 = new Wahrscheinlichkeit();
+		statAnalysis = Einlesen.GetAll(auswertDaten);
+		for(int i = 0;i<statAnalysis.length;i++) { //Durchläuft alle TimeSlots
+			for(int geräteListe = 0;geräteListe<geräte;geräteListe++) { //Durchläuft alle Geräte
+			//System.out.println(list.get(0).getPercentAwayTime(i));
+			w1.checkStatus(list,statAnalysis,gerätAn,auswertDaten,"Toaster",geräteListe,i);
+			if(gerätAn[i][0] == 1)
+			{
+				System.out.println("TimeSlot: " + i + " : "+ gerätAn[i][0]);
+			}
+			}
+		}
 	}
 }

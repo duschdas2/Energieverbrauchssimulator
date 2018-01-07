@@ -1,38 +1,88 @@
+import java.util.ArrayList;
+
+import GerätePackage.Toaster;
+import Haushalt.Person;
 
 public class Wahrscheinlichkeit 
 {
-	int AktWahrscheinlichkeit = 0;
-	int x = 90; //Gerätelauf dauer muss von Gerät importiert werden
+	int betriebsDauer = 0;
+	//int x = 90; //Gerätelauf dauer muss von Gerät importiert werden
 	
 	public Wahrscheinlichkeit() {
 		
 	}	
 	
 	//Überpürft die Wahrscheinlichkeit eines bestimmten Zeitslots
-	//Benutzt zusätzlich Nachbarn
-	public void checkStatus(double [] statAnalysis,double[][] gerätAn,int auswertDaten,int geräte, int timeSlot) {
-		for(int i = 0;i<geräte;i++) {
-			if(timeSlot > 0) //Wenn nicht erstes Elelemnt
-			{
-				if(gerätAn[timeSlot-1][i] == 1) {	//Falls Gerät in vorherigen Element an war
-					//Benötigt check auf GeräteTyp und Gerät
-					//Variable je nach dem wie lange das Gerät an
-					AktWahrscheinlichkeit = +75;
+	//Benutzt zusätzlich Vörgänger (momentan für Toaster zu geschnitten zum test)
+	public void checkStatus(ArrayList<Person> pList, double [] statAnalysis,double[][] gerätAn,int auswertDaten,String gerät,int geräte, int timeSlot) {
+		Toaster ts = new Toaster();	
+		double randomNum = Math.random();
+		for(int person = 0; person<pList.size();person++)	//Durchlaufe alle Personen um zu checken ob jemand zu Hause ist
+		{
+			if(pList.get(person).getPercentAwayTime(geräte)== 1) {	//Wenn jemand zu Hause
+				if(timeSlot > 0) {
+					//Nach GeräteTyp filter um betriebsDauer festzustellen !
+					if(gerätAn[timeSlot-1][geräte] == 1 && betriebsDauer < 2 && betriebsDauer >= 0) {
+						ts.setOnWahrscheinlichkeit(1);
+						ts.setOffWahrscheinlichkeit(0);
+						betriebsDauer++;
+						ts.setBenutzt(true);
+					}
+					else if(betriebsDauer == 2) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
+						ts.setOnWahrscheinlichkeit(0.0001);
+						ts.setOffWahrscheinlichkeit(0.9999);
+						betriebsDauer = 0;
+						ts.setBenutzt(false);
+					}
+					else if (gerätAn[timeSlot-1][geräte] == 0 && pList.size() == 1) {	//Wenn Toaster gerade nicht benutzt
+						if(timeSlot >= 390 && timeSlot <= 600) { // Benutzung zwischen 6:30 und 10 Uhr höher
+							//if(statAnalysis[timeSlot] >= geräte) { // In Statistischen Daten mehr als 50% mal ausgeführt, KEINE STAT DATEN VON TOASTER
+								ts.setOnWahrscheinlichkeit(0.0030);
+								ts.setOffWahrscheinlichkeit(0.9970);
+							//}
+							//else {
+							//ts.setOnWahrscheinlichkeit(0.25);
+							//ts.setOffWahrscheinlichkeit(0.75);
+							//}
+						}
+						else if(timeSlot >= 1200 || timeSlot <= 300) { //Benutzung nach 20 Uhr unwarscheinlich
+							ts.setOnWahrscheinlichkeit(0.0001);
+							ts.setOffWahrscheinlichkeit(0.9999);
+						}
+						else { //Benutzung über den Tag eher Unwarscheinlich
+							ts.setOnWahrscheinlichkeit(0.002);
+							ts.setOffWahrscheinlichkeit(0.998);
+						}
+					}
+					else if(pList.size() > 1 && gerätAn[timeSlot-1][geräte] == 0){	//mehr als 1 Person im Haushalt, Toaster evtl. 2 mal laufen lassen
+						if(timeSlot >= 390 && timeSlot <= 600) {
+							ts.setOnWahrscheinlichkeit(0.002*pList.size());
+							ts.setOffWahrscheinlichkeit(1-(0.002*pList.size()));
+						}
+						else {
+							ts.setOnWahrscheinlichkeit(0.0002*pList.size());
+							ts.setOffWahrscheinlichkeit(1-0.0002*pList.size());
+						}
+					}
 				}
-				else if(gerätAn[timeSlot-1][i] == 0) { //Falls Gerät nicht im vorherigen Element an war
-					if(statAnalysis[timeSlot-1] >= (auswertDaten/2)) { //Falls Gerät in statistischen Daten an war
-						AktWahrscheinlichkeit = +75;
-					}
-					else {
-						AktWahrscheinlichkeit = +25;
-					}
+				else if(timeSlot == 0) {
+					ts.setOnWahrscheinlichkeit(0.002);
+					ts.setOffWahrscheinlichkeit(0.998);
 				}
 			}
-			if(AktWahrscheinlichkeit >= 70) {
-				if(Math.random()*x >= 70) {
-					gerätAn[timeSlot][i] = 1;
-				}
+			else { //Keine Veränderung niemand zu Hause!
+				ts.setOnWahrscheinlichkeit(0.0);
+				ts.setOffWahrscheinlichkeit(0.0);
 			}
 		}
+		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!!
+		
+		//System.out.println(ts.getOnWahrscheinlichkeit());
+		//System.out.println(ts.getOffWahrscheinlichkeit());
+		//System.out.println(randomNum);
+		
+		if(ts.getOffWahrscheinlichkeit() <= randomNum && (ts.getOnWahrscheinlichkeit()+ts.getOffWahrscheinlichkeit() != 0)) {
+			gerätAn[timeSlot][geräte] = 1;
+		}		
 	}
 }

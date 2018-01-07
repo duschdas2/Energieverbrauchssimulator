@@ -44,4 +44,20 @@ public abstract class GeräteTyp1
 	public void setOnWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
 		this.onWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
 	}
+
+	public int getBetriebsdauer() {
+		return betriebsdauer;
+	}
+
+	public double getOnWahrscheinlichkeit() {
+		return onWahrscheinlichkeit;
+	}
+
+	public double getOffWahrscheinlichkeit() {
+		return offWahrscheinlichkeit;
+	}
+
+	public boolean isBenutzt() {
+		return benutzt;
+	}
 }
