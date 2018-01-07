@@ -3,30 +3,28 @@
  */
 package Haushalt;
 
-import java.util.Random;
 
 public class Personentyp {
 
+	protected int startzeit;
+	protected int arbeitszeit;
 	protected int[] awayTime = new int[1440]; //Wann am Tag gearbeitet werden soll
-	protected int[] realAwayTime = new int[1440]; //Wann wirklich gearbeitet wird
-	private Random arbeitsFaktor = new Random();
 	
 	public Personentyp() {
 		initializeAwayTime();
-		realAwayTime = awayTime;
 	}
 	
+	public int getStartzeit(){
+		return startzeit;
+	}
 	
 	public int[] getAwayTime(){
 		return awayTime;
 	}
 	
-	public int[] getRealAwayTime(){
-		return realAwayTime;
-	}
 	
-	public int getRealAwayTime(int i){
-		return realAwayTime[i];
+	public int getAwayTime(int i){
+		return awayTime[i];
 	}
 	
 	
@@ -35,20 +33,24 @@ public class Personentyp {
 	 *  1 = daheim, 0 = nicht daheim
 	*/
 	public void initializeAwayTime(){
+		double schwankung = 0;
 		for(int i = 0; i< awayTime.length; i++){
 			awayTime[i] = 1;
 		}
+		/* Anpassung des Arrays mit der Arbeitszeit, in der die Person nicht Zuhause ist
+		 * Inklusive einer "Schwankung", da man nicht immer genau gleich nach Hause kommt durch Verkehr z.B.
+		 * Schwankung zählt immer höher, bis sie maximal eine 0.5% chance wird, dass die Person jetzt daheim ist, anstatt
+		 * die Schleife zu Ende zu laufen
+		 */
+		for(int i = startzeit; i <= arbeitszeit + startzeit; i++){
+			schwankung += 0.005/arbeitszeit;
+			if(schwankung >= Math.random())
+				break;
+			else
+				awayTime[i] = 0;
+		}
+		
 	}
 	
-	//berechnet wannn der Personentyp daheim ist, 1 = daheim, 0 = nicht mit Wahrscheinlichkeit anhand ihrer Arbeitszeit
-	//muss noch stark überarbeitet werden
-	public void calcTime(){
-		for(int i = 0; i< awayTime.length; i++){
-			if(awayTime[i] == 0){
-				if(arbeitsFaktor.nextInt(6)+1 > 5) // 5/7 chance weil 5 Tage die woche arbeitet
-					realAwayTime[i] = 1;
-			}
-		}
-	}
 
 }

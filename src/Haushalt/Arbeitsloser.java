@@ -6,10 +6,6 @@ public class Arbeitsloser extends Personentyp {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void initializeAwayTime(){
-		for(int i = 0; i< awayTime.length; i++){
-			awayTime[i] = 1;
-		}
-	}
+
 
 }

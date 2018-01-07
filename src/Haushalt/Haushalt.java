@@ -27,9 +27,8 @@ public class Haushalt {
 	//berechnet wie viele Personen da sind, 0 = keiner, 1 = einer und so weiter
 	public void calcOccupancy(){
 		for(int j = 0; j < personen.size() ; j++){
-			personen.get(j).calcTime();
 			for(int i = 0; i < 1440 ; i++){
-				if( personen.get(j).getPercentAwayTime(i) == 1)
+				if( personen.get(j).getRealAwayTime(i) == 1)
 					occupancy[i]++;
 			}
 		}
@@ -45,7 +44,11 @@ public class Haushalt {
 	public String toString(){
 		String ausgabe = "";
 		for(int i = 0; i < 1440; i++){
-			ausgabe += "Minute: " + (i+1) + "\t" + occupancy[i] + "\n";
+			ausgabe += "Minute: " + (i+1) + "\t" + occupancy[i] + "\t";
+			for(int j = 0; j < personen.size(); j++){
+				ausgabe += personen.get(j).getRealAwayTime(i) + "\t";
+			}
+			ausgabe += "\n";
 		}
 		return ausgabe;
 	}
