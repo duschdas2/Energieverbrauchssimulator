@@ -40,14 +40,14 @@ public class Wahrscheinlichkeit
 							ts.setOffWahrscheinlichkeit(0.9999);
 						}
 						else { //Benutzung über den Tag eher Unwarscheinlich
-							ts.setOnWahrscheinlichkeit(0.002);
-							ts.setOffWahrscheinlichkeit(0.998);
+							ts.setOnWahrscheinlichkeit(0.0002);
+							ts.setOffWahrscheinlichkeit(0.9998);
 						}
 					}
 					else if(pList.size() > 1 && gerätAn[timeSlot-1][geräte] == 0){	//mehr als 1 Person im Haushalt, Toaster evtl. 2 mal laufen lassen
 						if(timeSlot >= 390 && timeSlot <= 600) {
-							ts.setOnWahrscheinlichkeit(0.003*pList.size());
-							ts.setOffWahrscheinlichkeit(1-(0.003*pList.size()));
+							ts.setOnWahrscheinlichkeit(0.005*pList.size());
+							ts.setOffWahrscheinlichkeit(1-(0.005*pList.size()));
 						}
 						else {
 							ts.setOnWahrscheinlichkeit(0.0002*pList.size());
@@ -56,8 +56,8 @@ public class Wahrscheinlichkeit
 					}
 				}
 				else if(timeSlot == 0) {
-					ts.setOnWahrscheinlichkeit(0.002);
-					ts.setOffWahrscheinlichkeit(0.998);
+					ts.setOnWahrscheinlichkeit(0.0002);
+					ts.setOffWahrscheinlichkeit(0.9998);
 				}
 			}
 			else { //Keine Veränderung niemand zu Hause!
