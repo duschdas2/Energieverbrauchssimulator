@@ -16,8 +16,7 @@ public class main {
 		double [] statAnalysis = new double [1440];
 		double [][] gerätAn = new double [1440][geräte];
 		
-		Person person = new Person(15, new Personentyp());
-		person.calcTime();
+		Person person = new Person(new Personentyp());
 		//System.out.print(person);
 		ArrayList<Person> list = new ArrayList<Person>();
 		list.add(person);
