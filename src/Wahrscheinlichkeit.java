@@ -6,8 +6,6 @@ import Haushalt.Person;
 public class Wahrscheinlichkeit 
 {
 	int betriebsDauer = 0;
-	//int x = 90; //Gerätelauf dauer muss von Gerät importiert werden
-	
 	public Wahrscheinlichkeit() {
 		
 	}	
@@ -22,7 +20,7 @@ public class Wahrscheinlichkeit
 			if(pList.get(person).getPercentAwayTime(geräte)== 1) {	//Wenn jemand zu Hause
 				if(timeSlot > 0) {
 					//Nach GeräteTyp filter um betriebsDauer festzustellen !
-					if(gerätAn[timeSlot-1][geräte] == 1 && betriebsDauer < 2 && betriebsDauer >= 0) {
+					if(gerätAn[timeSlot-1][geräte] == 1 && betriebsDauer < ts.getBetriebsdauer() && betriebsDauer >= 0) {
 						ts.setOnWahrscheinlichkeit(1);
 						ts.setOffWahrscheinlichkeit(0);
 						betriebsDauer++;
