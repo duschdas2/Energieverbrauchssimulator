@@ -14,7 +14,7 @@ import java.io.Reader;
  *
  */
 public class Create_CSV {
-	private static final String STRING_ARRAY_SAMPLE = "C:/Users/Manuel/CSV-Dateien/csv1.csv";
+	private static final String STRING_ARRAY_SAMPLE = "CSV\\Test\\csv1.csv";
 	public static void create(/*String [][] data*/) throws IOException{
 		try (
 				Writer writer = Files.newBufferedWriter(Paths.get(STRING_ARRAY_SAMPLE));

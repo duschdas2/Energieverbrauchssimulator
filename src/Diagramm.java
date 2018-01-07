@@ -15,7 +15,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Diagramm {
 
-	private static final String STRING_ARRAY_SAMPLE1 = "C:/Users/Manuel/CSV-Dateien/csv1.csv";
+	private static final String STRING_ARRAY_SAMPLE1 = "CSV\\Test\\csv1.csv";
 	private static final String STRING_ARRAY_SAMPLE2 = "C:/Users/Manuel/Downloads/UNI KRAM/Kappes/jdemandmodel-master/data/output/1.csv";
 	
 	public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class Diagramm {
 	}
 	
 	public static void test3() throws IOException {
-		Reader reader = Files.newBufferedReader(Paths.get(STRING_ARRAY_SAMPLE2));
+		Reader reader = Files.newBufferedReader(Paths.get(STRING_ARRAY_SAMPLE1));
 		CSVReader csvReader = new CSVReader(reader, ';');
 		String[] header = csvReader.readNext();
 		String [] nextLine;
