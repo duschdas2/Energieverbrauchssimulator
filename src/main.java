@@ -17,9 +17,14 @@ public class main {
 		double [][] gerätAn = new double [1440][geräte];
 		
 		Person person = new Person(new Personentyp());
+		Person person2 = new Person(new Personentyp());
+		Person person3 = new Person(new Personentyp());
+
 		//System.out.print(person);
 		ArrayList<Person> list = new ArrayList<Person>();
 		list.add(person);
+		list.add(person2);
+		list.add(person3);
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
 		//System.out.print(haushalt);
