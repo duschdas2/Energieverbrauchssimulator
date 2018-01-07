@@ -12,7 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.7.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JCommon 1.0.23"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/JFreeChart 1.0.19"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
