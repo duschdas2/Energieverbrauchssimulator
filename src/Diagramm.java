@@ -17,6 +17,8 @@ public class Diagramm {
 
 	private static final String STRING_ARRAY_SAMPLE1 = "CSV\\Test\\csv1.csv";
 	private static final String STRING_ARRAY_SAMPLE2 = "C:/Users/Manuel/Downloads/UNI KRAM/Kappes/jdemandmodel-master/data/output/1.csv";
+	private static final String STRING_ARRAY_SAMPLE3 = "C:/Users/Manue/Downloads/Kappes Projekt/Jdemand/jdemandmodel-master/data/output/1.csv";
+	private static final String STRING_ARRAY_SAMPLE4 = "C:/Users/Manue/Downloads/Kappes Projekt/01/01/2012-06-01.csv";
 	
 	public static void main(String[] args) {
 //		test();
@@ -39,12 +41,12 @@ public class Diagramm {
 		int c = 1;		//Minuten angabe
 		while ((nextLine = csvReader.readNext()) != null) {
 			for (int i = 0; i < header.length; i++) {		//für jede Spalte(Geräte) einmal ausführen
-				dataset.addValue(Integer.valueOf(nextLine[i]), header[i],  Integer.toString(c));
+				dataset.addValue(Double.valueOf(nextLine[i]), header[i],  Integer.toString(c));
 			}
 			c++;		//zählt die Minuten hoch
-//			if (c == 100) {
-//				break;
-//			}
+			if (c == 10000) {
+				break;
+			}
 		}
 		
 		// create a chart...
