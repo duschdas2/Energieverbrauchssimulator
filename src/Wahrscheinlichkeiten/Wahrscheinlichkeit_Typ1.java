@@ -1,3 +1,4 @@
+package Wahrscheinlichkeiten;
 import GerätePackage.Toaster;
 
 public class Wahrscheinlichkeit_Typ1 
@@ -9,12 +10,13 @@ public class Wahrscheinlichkeit_Typ1
 	//STAUBSAUGER benutzen!!
 	//Überpürft die Wahrscheinlichkeit eines bestimmten Zeitslots
 	//Benutzt zusätzlich Vörgänger
-	public void getWahrschToaster(int [] occupancy, double [] statAnalysis,double[][] gerätAn,int auswertDaten,String gerät,int geräte, int timeSlot) {
-		Toaster ts = new Toaster();	
-		//Jahreszeit für (Licht,Computer,Fernseher)
+	//Jahreszeit für (Licht,Computer,Fernseher)
+
+	public void getWahrToaster(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+		Toaster ts = new Toaster();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
-				if(gerätAn[timeSlot-1][geräte] == 1 && betriebsDauer < ts.getBetriebsdauer() && betriebsDauer >= 0) {
+				if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < ts.getBetriebsdauer() && betriebsDauer >= 0) {
 					ts.setOnWahrscheinlichkeit(1);
 					ts.setOffWahrscheinlichkeit(0);
 				}
@@ -24,7 +26,7 @@ public class Wahrscheinlichkeit_Typ1
 					betriebsDauer = 0;
 					ts.setBenutzt(false);
 				}
-				else if (gerätAn[timeSlot-1][geräte] == 0) {	//Wenn Toaster gerade nicht benutzt
+				else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Toaster gerade nicht benutzt
 					if(timeSlot >= 390 && timeSlot <= 600) { // Benutzung zwischen 6:30 und 10 Uhr höher
 							ts.setOnWahrscheinlichkeit(0.005*occupancy[timeSlot]);
 							ts.setOffWahrscheinlichkeit(0.995*occupancy[timeSlot]);
@@ -48,12 +50,12 @@ public class Wahrscheinlichkeit_Typ1
 			ts.setOnWahrscheinlichkeit(0.0);
 			ts.setOffWahrscheinlichkeit(0.0);
 		}
-		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!!
+		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!! (Keine Daten für Toaster)!!
 		
 		if(ts.getOnWahrscheinlichkeit() >=  Math.random() && (ts.getOnWahrscheinlichkeit()+ts.getOffWahrscheinlichkeit() != 0)) {
 			betriebsDauer++;
 			ts.setBenutzt(true);
-			gerätAn[timeSlot][geräte] = 1;
+			gerätAn[timeSlot][aktGerät] = 1;
 		}		
 	}
 }

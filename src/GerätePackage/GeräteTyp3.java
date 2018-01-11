@@ -51,4 +51,12 @@ public abstract class GeräteTyp3
 	public void setOnWahrscheinlichkeit(double On_Wahrscheinlichkeit){
 		this.onWahrscheinlichkeit = On_Wahrscheinlichkeit;		
 	}
+
+	public double getOnWahrscheinlichkeit() {
+		return onWahrscheinlichkeit;
+	}
+
+	public double getOffWahrscheinlichkeit() {
+		return offWahrscheinlichkeit;
+	}
 }
