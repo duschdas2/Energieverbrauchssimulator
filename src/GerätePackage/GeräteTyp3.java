@@ -19,7 +19,7 @@ public abstract class GeräteTyp3
 		this.schwankung = Schwankung;
 	}
 	
-	protected double randomisieren(double Aktueller_Verbrauch, double Schwankung){
+	public double randomisieren(double Aktueller_Verbrauch, double Schwankung){
 		
 		this.aktuellerVerbrauch = Aktueller_Verbrauch;
 		if(Math.random() < 0.5){
@@ -35,7 +35,7 @@ public abstract class GeräteTyp3
 	}
 	
 	//toDo Markov-Kette beifügen
-	protected double setAktuellerVerbrauch(double Max, double Min){
+	public double setAktuellerVerbrauch(double Max, double Min){
 		this.aktuellerVerbrauch = Math.random() * (Max - Min) + Min;
 		return(this.aktuellerVerbrauch);
 	}
@@ -48,7 +48,7 @@ public abstract class GeräteTyp3
 		this.offWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
 	}
 	
-	public void setOnWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
-		this.onWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
+	public void setOnWahrscheinlichkeit(double On_Wahrscheinlichkeit){
+		this.onWahrscheinlichkeit = On_Wahrscheinlichkeit;		
 	}
 }

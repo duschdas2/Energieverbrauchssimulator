@@ -18,7 +18,7 @@ public abstract class GeräteTyp1
 	}
 	
 	//Im Fall von Geräte vom Typ 1 ist maxVerbrauch == aktuellerVerbrauch
-	protected double randomisieren(double Aktueller_Verbrauch, double Schwankung){
+	public double randomisieren(double Aktueller_Verbrauch, double Schwankung){
 		
 		this.aktuellerVerbrauch = Aktueller_Verbrauch;
 		if(Math.random() < 0.5){
@@ -41,8 +41,8 @@ public abstract class GeräteTyp1
 		this.offWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
 	}
 	
-	public void setOnWahrscheinlichkeit(double Off_Wahrscheinlichkeit){
-		this.onWahrscheinlichkeit = Off_Wahrscheinlichkeit;		
+	public void setOnWahrscheinlichkeit(double On_Wahrscheinlichkeit){
+		this.onWahrscheinlichkeit = On_Wahrscheinlichkeit;		
 	}
 
 	public int getBetriebsdauer() {
