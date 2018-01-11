@@ -1,6 +1,8 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import Haushalt.Arbeiter;
 import Haushalt.Haushalt;
 import Haushalt.Person;
 import Haushalt.Personentyp;
@@ -16,9 +18,9 @@ public class main {
 		double [] statAnalysis = new double [1440];
 		double [][] gerätAn = new double [1440][geräte];
 		
-		Person person = new Person(new Personentyp());
-		Person person2 = new Person(new Personentyp());
-		Person person3 = new Person(new Personentyp());
+		Person person = new Person(new Arbeiter());
+		Person person2 = new Person(new Arbeiter());
+		Person person3 = new Person(new Arbeiter());
 
 		//System.out.print(person);
 		ArrayList<Person> list = new ArrayList<Person>();
@@ -29,12 +31,12 @@ public class main {
 		haushalt.calcOccupancy();
 		//System.out.print(haushalt);
 		
-		Wahrscheinlichkeit w1 = new Wahrscheinlichkeit();
+		Wahrscheinlichkeit_Typ1 w1 = new Wahrscheinlichkeit_Typ1();
 		statAnalysis = Einlesen.GetAll(auswertDaten);
 		for(int i = 0;i<statAnalysis.length;i++) { //Durchläuft alle TimeSlots
 			for(int geräteListe = 0;geräteListe<geräte;geräteListe++) { //Durchläuft alle Geräte
 			//System.out.println(list.get(0).getPercentAwayTime(i));
-			w1.checkStatus(list,statAnalysis,gerätAn,auswertDaten,"Toaster",geräteListe,i);
+			w1.getWahrschToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,auswertDaten,"Toaster",geräteListe,i);
 			if(gerätAn[i][0] == 1)
 			{
 				System.out.println("TimeSlot: " + i + " : "+ gerätAn[i][0]);
