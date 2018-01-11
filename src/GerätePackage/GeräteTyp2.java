@@ -39,12 +39,13 @@ public abstract class GeräteTyp2
 		this.aktuellerVerbrauch = (double) this.verbrauchsWerte.get(modus);
 		this.schwankung = (double) this.schwankungsWerte.get(modus);
 		
-		if(Math.random() < this.schwankungsTendenz) {	//toDo: Glockenkurve
-			aktuellerVerbrauch += Math.random() * schwankung;
+		double tmp = this.aktuellerVerbrauch;	//tmp damit aktuellerVerbrauch hier nicht verändert wird
+		if(Math.random() < this.schwankungsTendenz) {
+			tmp += Math.random() * this.schwankung;
 		}else{
-			aktuellerVerbrauch -= Math.random() * schwankung;
+			tmp -= Math.random() * this.schwankung;
 		}
-		return(aktuellerVerbrauch);
+		return(tmp);
 	}
 	
 	public void setModus(int Modus){
@@ -53,6 +54,10 @@ public abstract class GeräteTyp2
 	
 	public void setBenutzt(boolean Benutzt) {
 		this.benutzt = Benutzt;
+	}
+	
+	public boolean getBenutzt() {
+		return benutzt;
 	}
 	
 	public void setBetriebsdauer(int Betriebs_Dauer){
