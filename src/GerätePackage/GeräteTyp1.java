@@ -21,12 +21,14 @@ public abstract class GeräteTyp1
 	public double randomisieren(double Aktueller_Verbrauch, double Schwankung){
 		
 		this.aktuellerVerbrauch = Aktueller_Verbrauch;
+		
+		double tmp = this.aktuellerVerbrauch;	//tmp damit aktuellerVerbrauch hier nicht verändert wird
 		if(Math.random() < 0.5){
-			this.aktuellerVerbrauch += Math.random() * this.schwankung;
+			tmp += Math.random() * this.schwankung;
 		}else{
-			this.aktuellerVerbrauch -= Math.random() * this.schwankung;
+			tmp -= Math.random() * this.schwankung;
 		}
-		return(this.aktuellerVerbrauch);
+		return(tmp);
 	}
 	
 	public void setBenutzt(boolean Benutzt) {
@@ -57,7 +59,7 @@ public abstract class GeräteTyp1
 		return offWahrscheinlichkeit;
 	}
 
-	public boolean isBenutzt() {
+	public boolean getBenutzt() {
 		return benutzt;
 	}
 }

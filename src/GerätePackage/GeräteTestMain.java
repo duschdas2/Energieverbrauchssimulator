@@ -14,9 +14,18 @@ public class GeräteTestMain {
 		pc.setModus(2);
 		System.out.println("PC: "+pc.randomisieren());
 		
-		sbsg.setAktuellerVerbrauch(sbsg.maxVerbrauch, sbsg.minVerbrauch);
-		System.out.println("Staubsauger: "+sbsg.randomisieren(sbsg.aktuellerVerbrauch, sbsg.schwankung));
-
+		for(int i = 1; i < 100; i++){
+			sbsg.modusDauer++;
+			double wahrCheck = sbsg.änderungsWahrscheinlichkeit;
+			
+			sbsg.modifyÄnderWahrsch(sbsg.modusDauer, sbsg.änderungsWahrscheinlichkeit);	//wahrscheinlichkeit wird mit betriebsdauer erhöht
+			
+			//aktuellerVerbrauch wird geändert wenn änderungsWahrscheinlichkeit hoch genug ist (höher als Math.random())
+			sbsg.setAktuellerVerbrauch(sbsg.maxVerbrauch, sbsg.minVerbrauch, sbsg.änderungsWahrscheinlichkeit);	
+			
+			System.out.println("Staubsauger: "+sbsg.randomisieren(sbsg.aktuellerVerbrauch, sbsg.schwankung)
+					+"	Änderungswahrscheinlichkeit: "+ sbsg.änderungsWahrscheinlichkeit);
+		}
 		
 	}
 

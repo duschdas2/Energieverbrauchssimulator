@@ -10,33 +10,38 @@ public abstract class GeräteTyp3
 	int betriebsdauer = 0;
 	double onWahrscheinlichkeit;
 	double offWahrscheinlichkeit;
+	double änderungsWahrscheinlichkeit;		//Wahrscheinlichkeit, dass sich der Stromverbrauch ändert
+	final double constÄnderWahrsch;			//kann und soll nicht geändert werden
+	int modusDauer = 0;						//Dauer mit gleichbleibendem Verbrauch (ohne Berücksichtigung von Schwankungen)
 	boolean benutzt = false;
 	
-	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung){
+	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung, double Änderungs_Wahrscheinlichkeit, double Const_Änder_Wahrsch){
 		this.maxVerbrauch = Max_Verbrauch;
 		this.minVerbrauch = Min_Verbrauch;
 		this.standby = Standby;
 		this.schwankung = Schwankung;
+		this.änderungsWahrscheinlichkeit = Änderungs_Wahrscheinlichkeit;
+		this.constÄnderWahrsch = Const_Änder_Wahrsch;
 	}
 	
 	public double randomisieren(double Aktueller_Verbrauch, double Schwankung){
-		
 		this.aktuellerVerbrauch = Aktueller_Verbrauch;
+		
+		double tmp = this.aktuellerVerbrauch; //tmp damit aktuellerVerbrauch hier nicht verändert wird
 		if(Math.random() < 0.5){
-			this.aktuellerVerbrauch += Math.random() * schwankung;
+			tmp += Math.random() * this.schwankung;
 		}else{
-			this.aktuellerVerbrauch -= Math.random() * schwankung;
+			tmp -= Math.random() * this.schwankung;
 		}
-		return(this.aktuellerVerbrauch);
+		return(tmp);
 	}
 	
-	public void setBenutzt(boolean Benutzt) {
-		this.benutzt = Benutzt;
-	}
-	
-	//toDo Markov-Kette beifügen
-	public double setAktuellerVerbrauch(double Max, double Min){
-		this.aktuellerVerbrauch = Math.random() * (Max - Min) + Min;
+	public double setAktuellerVerbrauch(double Max, double Min, double Änderungs_Wahrscheinlichkeit){
+		if(Math.random() < Änderungs_Wahrscheinlichkeit){
+			this.aktuellerVerbrauch = Math.random() * (Max - Min) + Min;
+			this.änderungsWahrscheinlichkeit = this.constÄnderWahrsch;
+			this.modusDauer = 0;
+		}
 		return(this.aktuellerVerbrauch);
 	}
 	
@@ -51,12 +56,28 @@ public abstract class GeräteTyp3
 	public void setOnWahrscheinlichkeit(double On_Wahrscheinlichkeit){
 		this.onWahrscheinlichkeit = On_Wahrscheinlichkeit;		
 	}
-
-	public double getOnWahrscheinlichkeit() {
-		return onWahrscheinlichkeit;
+	
+	public double getÄnderungsWahrscheinlichkeit() {
+		return änderungsWahrscheinlichkeit;
 	}
 
-	public double getOffWahrscheinlichkeit() {
-		return offWahrscheinlichkeit;
+	public void setÄnderungsWahrscheinlichkeit(double änderungsWahrscheinlichkeit) {
+		this.änderungsWahrscheinlichkeit = änderungsWahrscheinlichkeit;
+	}
+	
+	public int getModusDauer() {
+		return modusDauer;
+	}
+
+	public void setModusDauer(int modusDauer) {
+		this.modusDauer = modusDauer;
+	}
+	
+	public void setBenutzt(boolean Benutzt) {
+		this.benutzt = Benutzt;
+	}
+	
+	public boolean getBenutzt() {
+		return benutzt;
 	}
 }
