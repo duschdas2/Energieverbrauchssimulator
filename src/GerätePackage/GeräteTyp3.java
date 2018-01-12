@@ -81,11 +81,4 @@ public abstract class GeräteTyp3
 		return benutzt;
 	}
 
-	public double getOnWahrscheinlichkeit() {
-		return onWahrscheinlichkeit;
-	}
-
-	public double getOffWahrscheinlichkeit() {
-		return offWahrscheinlichkeit;
-	}
 }
