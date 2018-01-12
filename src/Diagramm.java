@@ -21,17 +21,20 @@ public class Diagramm {
 	private static final String STRING_ARRAY_SAMPLE4 = "C:/Users/Manue/Downloads/Kappes Projekt/01/01/2012-06-01.csv";
 	
 	public static void main(String[] args) {
-//		test();
-//		test2();
 		try {
-			test3();
+			erzeuge(STRING_ARRAY_SAMPLE1);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void test3() throws IOException {
-		Reader reader = Files.newBufferedReader(Paths.get(STRING_ARRAY_SAMPLE1));
+	/**
+	 * Erzeugt ein Linien Diagramm aus der übergebenden CSV_Datei
+	 * @param s
+	 * @throws IOException
+	 */
+	public static void erzeuge(String s) throws IOException {
+		Reader reader = Files.newBufferedReader(Paths.get(s));
 		CSVReader csvReader = new CSVReader(reader, ';');
 		String[] header = csvReader.readNext();
 		String [] nextLine;
@@ -50,55 +53,11 @@ public class Diagramm {
 		}
 		
 		// Erstellt den Graphen
-		JFreeChart chart = ChartFactory.createLineChart("Test Household", "Time in minutes", "Value", dataset, PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart chart = ChartFactory.createLineChart("Household", "Time in minutes", "Value", dataset, PlotOrientation.VERTICAL, true, true, false);
 		
 		// Erstellt das Frame zum abbilden des Graphen
 		ChartFrame frame = new ChartFrame("Chart", chart);
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	public static void test2 () {
-		// create a dataset...
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-	    dataset.addValue( 15 , "schools" , "1970" );
-	    dataset.addValue( 30 , "schools" , "1980" );
-	    dataset.addValue( 60 , "schools" ,  "1990" );
-	    dataset.addValue( 120 , "schools" , "2000" );
-	    dataset.addValue( 240 , "TEST" , "1980" );
-	    dataset.addValue( 0 , "TEST" ,  "1990" );
-	    dataset.addValue( 120 , "TEST" , "2000" );
-	    dataset.addValue( 300 , "TEST" , "2014" );
-		
-		// create a chart...
-		JFreeChart chart = ChartFactory.createLineChart("Numer of Schools vs years", "Years", "Number of Schools", dataset, PlotOrientation.VERTICAL, true, true, false);
-		
-		// create and display a frame...
-		ChartFrame frame = new ChartFrame("Chart", chart);
-		frame.pack();
-		frame.setVisible(true);
-	}
-	
-	public static void test () {
-		// create a dataset...
-		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Category 1", 43.2);
-		data.setValue("Category 2", 27.9);
-		data.setValue("Category 3", 79.5);
-		
-		// create a chart...
-		JFreeChart chart = ChartFactory.createPieChart(
-		"Sample Pie Chart",
-		data,
-		true, // legend?
-		true, // tooltips?
-		false // URLs?
-		);
-		
-		// create and display a frame...
-		ChartFrame frame = new ChartFrame("Chart", chart);
-		frame.pack();
-		frame.setVisible(true);
-	}
-
 }

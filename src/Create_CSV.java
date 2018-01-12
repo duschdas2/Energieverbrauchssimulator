@@ -1,12 +1,10 @@
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import com.opencsv.CSVReaderBuilder;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.FileReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.io.IOException;
-import java.io.Reader;
 
 /**
  * Klasse die CSV-Dateien schreibt
@@ -15,11 +13,18 @@ import java.io.Reader;
  */
 public class Create_CSV {
 	
-	private static final String STRING_ARRAY_SAMPLE = "CSV\\Test\\csv1.csv";
+	private static final String PATH = "CSV\\Test\\";
 	
-	public static void create(String [][] data) throws IOException{
+	/**
+	 * Erstellt eine CSV_Datei aus dem übergebenden Daten
+	 * @param data
+	 * @return
+	 * @throws IOException
+	 */
+	public static String create(String [][] data) throws IOException{
+		String path = date_time();
 		try (
-				Writer writer = Files.newBufferedWriter(Paths.get(STRING_ARRAY_SAMPLE));
+				Writer writer = Files.newBufferedWriter(Paths.get(path));
 		
 		        CSVWriter csvWriter = new CSVWriter(writer, ';', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 		    ) {
@@ -33,10 +38,26 @@ public class Create_CSV {
 					csvWriter.writeNext(tmp);
 				}
 		    }
+		return path;
+	}
+	
+	/**
+	 * Gibt der zu erstellenden CSV_Datei das aktuelle Datum und Uhrzeit als Name
+	 * @return
+	 */
+	private static String date_time() {
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter df;
+		df = DateTimeFormatter.ISO_DATE_TIME;
+		df = DateTimeFormatter.ofPattern("dd.MM.yyyy_kk.mm");
+		String s = PATH;
+		s = s.concat(now.format(df).concat(".csv"));
+		return s;
 	}
 	
 	public static void main(String [] args) {
 		try {
+			System.out.println(date_time());
 			String [] [] data = new String [5] [3];
 			data[0][0] = "TEST1";
 			data[0][1] = "TEST2";
