@@ -2,14 +2,14 @@ package GerätePackage;
 
 public abstract class GeräteTyp1 
 {
-	double maxVerbrauch;	
-	double standby;
-	double schwankung;
-	double aktuellerVerbrauch;
-	int betriebsdauer = 0;
-	double onWahrscheinlichkeit;
-	double offWahrscheinlichkeit;
-	boolean benutzt = false;
+	protected double maxVerbrauch;	
+	protected double standby;
+	protected double schwankung;
+	protected double aktuellerVerbrauch;
+	protected  int betriebsdauer = 0;
+	protected double onWahrscheinlichkeit;
+	protected double offWahrscheinlichkeit;
+	protected  boolean benutzt = false;
 	
 	public GeräteTyp1(double Max_Verbrauch, double Standby, double Schwankung){
 		this.maxVerbrauch = Max_Verbrauch;
@@ -18,11 +18,9 @@ public abstract class GeräteTyp1
 	}
 	
 	//Im Fall von Geräte vom Typ 1 ist maxVerbrauch == aktuellerVerbrauch
-	public double randomisieren(double Aktueller_Verbrauch, double Schwankung){
+	public double randomisieren(){
 		
-		this.aktuellerVerbrauch = Aktueller_Verbrauch;
-		
-		double tmp = this.aktuellerVerbrauch;	//tmp damit aktuellerVerbrauch hier nicht verändert wird
+		double tmp = this.maxVerbrauch;	//tmp damit aktuellerVerbrauch hier nicht verändert wird
 		if(Math.random() < 0.5){
 			tmp += Math.random() * this.schwankung;
 		}else{
@@ -31,6 +29,14 @@ public abstract class GeräteTyp1
 		return(tmp);
 	}
 	
+	public double getStandby() {
+		return standby;
+	}
+
+	public void setStandby(double standby) {
+		this.standby = standby;
+	}
+
 	public void setBenutzt(boolean Benutzt) {
 		this.benutzt = Benutzt;
 	}

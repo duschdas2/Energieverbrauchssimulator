@@ -5,19 +5,19 @@ import java.util.List;
 
 public abstract class GeräteTyp2 
 {
-	double maxVerbrauch;
-	double minVerbrauch;
-	double startVerbrauch;	//durchschnitt von den ersten sekunden des verbrauchs (oder erste minute)
-	double endVerbrauch;	//durchschnitt von den letzten sekunden des Verbrauchs	(oder letzte minute)
-	double standby;
-	double aktuellerVerbrauch;
-	double schwankung;
-	double schwankungsTendenz;
-	int betriebsdauer = 0;
-	double onWahrscheinlichkeit;
-	double offWahrscheinlichkeit;
-	boolean benutzt = false;
-	int modus = 0;	//beginnt mit 0
+	protected double maxVerbrauch;
+	protected double minVerbrauch;
+	protected double startVerbrauch;	//durchschnitt von den ersten sekunden des verbrauchs (oder erste minute)
+	protected double endVerbrauch;	//durchschnitt von den letzten sekunden des Verbrauchs	(oder letzte minute)
+	protected double standby;
+	protected double aktuellerVerbrauch;
+	protected double schwankung;
+	protected double schwankungsTendenz;
+	protected  int betriebsdauer = 0;
+	protected double onWahrscheinlichkeit;
+	protected double offWahrscheinlichkeit;
+	protected  boolean benutzt = false;
+	protected int modus = 0;	//beginnt mit 0
 	
 	//Werte mit den gleichen Indizes der folgenden Listen sind Paare!
 	List verbrauchsWerte = new ArrayList<Double>();
@@ -48,6 +48,14 @@ public abstract class GeräteTyp2
 		return(tmp);
 	}
 	
+	public double getStandby() {
+		return standby;
+	}
+
+	public void setStandby(double standby) {
+		this.standby = standby;
+	}
+
 	public void setModus(int Modus){
 		this.modus = Modus;
 	}

@@ -8,22 +8,21 @@ public class GeräteTestMain {
 		Staubsauger sbsg = new Staubsauger();
 		PC pc = new PC();
 		
-		System.out.println("Toaster: "+toaster.randomisieren(toaster.maxVerbrauch, toaster.schwankung));
-		System.out.println("Licht: "+licht.randomisieren(licht.maxVerbrauch, licht.schwankung));
+		System.out.println("Toaster: "+toaster.randomisieren());
+		System.out.println("Licht: "+licht.randomisieren());
 		
 		pc.setModus(2);
 		System.out.println("PC: "+pc.randomisieren());
 		
 		for(int i = 1; i < 100; i++){
 			sbsg.modusDauer++;
-			double wahrCheck = sbsg.änderungsWahrscheinlichkeit;
 			
-			sbsg.modifyÄnderWahrsch(sbsg.modusDauer, sbsg.änderungsWahrscheinlichkeit);	//wahrscheinlichkeit wird mit betriebsdauer erhöht
+			sbsg.modifyÄnderWahrsch(sbsg.modusDauer);	//wahrscheinlichkeit wird mit betriebsdauer erhöht
 			
 			//aktuellerVerbrauch wird geändert wenn änderungsWahrscheinlichkeit hoch genug ist (höher als Math.random())
-			sbsg.setAktuellerVerbrauch(sbsg.maxVerbrauch, sbsg.minVerbrauch, sbsg.änderungsWahrscheinlichkeit);	
+			sbsg.setAktuellerVerbrauch();	
 			
-			System.out.println("Staubsauger: "+sbsg.randomisieren(sbsg.aktuellerVerbrauch, sbsg.schwankung)
+			System.out.println("Staubsauger: "+sbsg.randomisieren()
 					+"	Änderungswahrscheinlichkeit: "+ sbsg.änderungsWahrscheinlichkeit);
 		}
 		
