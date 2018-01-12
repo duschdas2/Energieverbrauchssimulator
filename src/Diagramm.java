@@ -36,7 +36,7 @@ public class Diagramm {
 		String[] header = csvReader.readNext();
 		String [] nextLine;
 		
-		// create a dataset...
+		// Erstellt die Datensätze für den Graphen aus dem Array
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 		int c = 1;		//Minuten angabe
 		while ((nextLine = csvReader.readNext()) != null) {
@@ -49,10 +49,10 @@ public class Diagramm {
 			}
 		}
 		
-		// create a chart...
+		// Erstellt den Graphen
 		JFreeChart chart = ChartFactory.createLineChart("Test Household", "Time in minutes", "Value", dataset, PlotOrientation.VERTICAL, true, true, false);
 		
-		// create and display a frame...
+		// Erstellt das Frame zum abbilden des Graphen
 		ChartFrame frame = new ChartFrame("Chart", chart);
 		frame.pack();
 		frame.setVisible(true);
