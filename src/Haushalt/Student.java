@@ -3,8 +3,8 @@ package Haushalt;
 public class Student extends Personentyp {
 
 	public Student() {
-		arbeitszeit = 480;
-		startzeit = 660;
+		arbeitszeit = 411; //Studienzeit pro woche laut spiegel
+		startzeit = 600;
 		initializeAwayTime();
 	}
 	

@@ -3,7 +3,7 @@ package Haushalt;
 public class Kind extends Personentyp {
 
 	public Kind() {
-		arbeitszeit = 420;
+		arbeitszeit = 462; //Schulzeit pro Woche laut Unicef Umfrage
 		startzeit = 420;
 		initializeAwayTime();
 	}
