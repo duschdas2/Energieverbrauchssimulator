@@ -12,16 +12,19 @@ public abstract class GeräteTyp3
 	protected double offWahrscheinlichkeit;
 	protected double änderungsWahrscheinlichkeit;		//Wahrscheinlichkeit, dass sich der Stromverbrauch ändert
 	protected final double constÄnderWahrsch;			//kann und soll nicht geändert werden
+	protected double backToNormalUseProb;				//um schneller/langsamer in den ursprünglichen Verbrauch zurückzukehren
 	protected int modusDauer = 0;						//Dauer mit gleichbleibendem Verbrauch (ohne Berücksichtigung von Schwankungen)
+	protected int modusWechselCounter = 0;
 	protected boolean benutzt = false;
 	
-	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung, double Änderungs_Wahrscheinlichkeit, double Const_Änder_Wahrsch){
+	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung, double Änderungs_Wahrscheinlichkeit, double Const_Änder_Wahrsch, double Back_To_Normal_Use_Prob){
 		this.maxVerbrauch = Max_Verbrauch;
 		this.minVerbrauch = Min_Verbrauch;
 		this.standby = Standby;
 		this.schwankung = Schwankung;
 		this.änderungsWahrscheinlichkeit = Änderungs_Wahrscheinlichkeit;
 		this.constÄnderWahrsch = Const_Änder_Wahrsch;
+		this.backToNormalUseProb = Back_To_Normal_Use_Prob;
 	}
 	
 	public double randomisieren(){
@@ -37,8 +40,14 @@ public abstract class GeräteTyp3
 	
 	public double setAktuellerVerbrauch(){
 		if(Math.random() < this.änderungsWahrscheinlichkeit){
-			this.aktuellerVerbrauch = Math.random() * (this.maxVerbrauch - this.minVerbrauch) + this.minVerbrauch;
-			this.änderungsWahrscheinlichkeit = this.constÄnderWahrsch;
+			if(this.modusWechselCounter%2 == 1){
+				this.aktuellerVerbrauch = this.maxVerbrauch;
+				this.änderungsWahrscheinlichkeit = this.constÄnderWahrsch;
+			}else{
+				this.aktuellerVerbrauch = Math.random() * (this.maxVerbrauch - this.minVerbrauch) + this.minVerbrauch;
+				this.änderungsWahrscheinlichkeit = this.constÄnderWahrsch * this.backToNormalUseProb;
+			}
+			this.modusWechselCounter++;
 			this.modusDauer = 0;
 		}
 		return(this.aktuellerVerbrauch);
