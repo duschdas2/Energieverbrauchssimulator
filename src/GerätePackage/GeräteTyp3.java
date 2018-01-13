@@ -87,4 +87,12 @@ public abstract class GeräteTyp3
 	public boolean getBenutzt() {
 		return benutzt;
 	}
+
+	public double getOnWahrscheinlichkeit() {
+		return onWahrscheinlichkeit;
+	}
+
+	public double getOffWahrscheinlichkeit() {
+		return offWahrscheinlichkeit;
+	}
 }

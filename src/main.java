@@ -29,12 +29,14 @@ public class main {
 		
 		Wahrscheinlichkeit_Typ1 w1 = new Wahrscheinlichkeit_Typ1();
 		Wahrscheinlichkeit_Typ3 w2 = new Wahrscheinlichkeit_Typ3();
-		getStatData(statAnalysis,geräte);
+		//getStatData(statAnalysis,geräte);
 		
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
 			//w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-			w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+			w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+
+			//w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 			if(gerätAn[tSlot][aktGerät] == 1)
 			{
 				System.out.println("TimeSlot: " + tSlot + " : "+ gerätAn[tSlot][aktGerät]);
