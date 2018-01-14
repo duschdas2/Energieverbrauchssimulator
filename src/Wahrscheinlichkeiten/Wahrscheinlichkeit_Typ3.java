@@ -4,15 +4,16 @@ import GerätePackage.Staubsauger;
 public class Wahrscheinlichkeit_Typ3 {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
+	private double randomDauer = Math.random()*45;
 
 	public void getWahrStaubsauger(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Staubsauger sb = new Staubsauger();
 		
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
-				if(anzahlAn < Math.random()*5)
+				if(anzahlAn < Math.random()*3)
 					{
-					if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= Math.random()*45) {
+					if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= randomDauer) {
 						sb.setOnWahrscheinlichkeit(0.5*occupancy[timeSlot]);
 						sb.setOffWahrscheinlichkeit(0.5*occupancy[timeSlot]);
 					}
@@ -57,6 +58,10 @@ public class Wahrscheinlichkeit_Typ3 {
 		}
 		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!! (Keine Daten für Staubsauger)!!
 		
+		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= randomDauer) {
+			gerätAn[timeSlot][aktGerät] = 1;
+			betriebsDauer++;
+		}
 		if(sb.getOnWahrscheinlichkeit() >=  Math.random() && (sb.getOnWahrscheinlichkeit()+sb.getOffWahrscheinlichkeit() != 0)) {
 			sb.setBenutzt(true);
 			gerätAn[timeSlot][aktGerät] = 1;
@@ -67,6 +72,7 @@ public class Wahrscheinlichkeit_Typ3 {
 			}
 			else {
 				betriebsDauer = 0;
+				randomDauer = Math.random()*45;
 			}
 		}		
 	}

@@ -35,7 +35,7 @@ public class main {
 		
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
-			w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+			//w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 			//w1.reset();
 			//w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 			//w1.reset();
@@ -46,7 +46,7 @@ public class main {
 			}
 			}
 		}
-		Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
+		//Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {
