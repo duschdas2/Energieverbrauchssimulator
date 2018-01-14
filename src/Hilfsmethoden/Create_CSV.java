@@ -55,29 +55,4 @@ public class Create_CSV {
 		s = s.concat(now.format(df).concat(".csv"));
 		return s;
 	}
-	
-	public static void main(String [] args) {
-		try {
-			//System.out.println(date_time());
-			String [] [] data = new String [5] [3];
-			data[0][0] = "TEST1";
-			data[0][1] = "TEST2";
-			data[0][2] = "TEST3";
-			data[1][0] = "0";
-			data[1][1] = "0";
-			data[1][2] = "0";
-			data[2][0] = "18";
-			data[2][1] = "10";
-			data[2][2] = "21";
-			data[3][0] = "30";
-			data[3][1] = "23";
-			data[3][2] = "28";
-			data[4][0] = "35";
-			data[4][1] = "29";
-			data[4][2] = "33";
-			create(data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

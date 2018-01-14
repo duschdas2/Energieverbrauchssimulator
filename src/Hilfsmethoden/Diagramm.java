@@ -48,9 +48,6 @@ public class Diagramm {
 				dataset.addValue(Double.valueOf(nextLine[i]), header[i],  Integer.toString(c));
 			}
 			c++;		//zählt die Minuten hoch
-			if (c == 10000) {
-				break;
-			}
 		}
 		
 		// Erstellt den Graphen

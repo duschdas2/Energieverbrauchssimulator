@@ -99,11 +99,9 @@ public class Ausgabe {
 				case "wasserkocher" :
 					Wasserkocher wk = new Wasserkocher();
 					if (gerätAn[c][i] == 0) {
-						System.out.println(wk.getStandby());
 						gerätAn[c][i] = wk.getStandby();	 	
 					}
 					else {
-						System.out.println(Math.round(100.0 * wk.randomisieren()) / 100.0);
 						gerätAn[c][i] *= Math.round(100.0 * wk.randomisieren()) / 100.0;	
 					}
 					break;
@@ -131,7 +129,6 @@ public class Ausgabe {
 					if (gerätAn[c][i] == 0) {
 						ssg.setModusDauer(0);
 						ssg.setAktuellerVerbrauch(ssg.getMaxVerbrauch());
-						gerätAn[c][i] = 0;
 					}
 					else {
 						ssg.setModusDauer(ssg.getModusDauer() +1);
