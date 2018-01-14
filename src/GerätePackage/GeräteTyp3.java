@@ -53,6 +53,12 @@ public abstract class GeräteTyp3
 		return(this.aktuellerVerbrauch);
 	}
 	
+	//die änderungsWahrscheinlichkeit ändert sich mit der Betriebsdauer
+	//sie steigt, bis eine Änderung eintritt und wird dann zurückgesetzt
+	public void modifyÄnderWahrsch(int Modus_Dauer){	
+		this.änderungsWahrscheinlichkeit += Modus_Dauer * this.constÄnderWahrsch;
+	}
+	
 	public double getStandby() {
 		return standby;
 	}
