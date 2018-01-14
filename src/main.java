@@ -46,6 +46,7 @@ public class main {
 			}
 			}
 		}
+		Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {
