@@ -6,11 +6,14 @@ package Haushalt;
 
 public class Personentyp {
 
-	protected int startzeit;
-	protected int arbeitszeit;
-	protected int[] awayTime = new int[1440]; //Wann am Tag gearbeitet werden soll
+	private int startzeit;
+	private int arbeitszeit;
+	private int[] awayTime = new int[1440]; //Wann am Tag gearbeitet werden soll
+	private String typ;
 	
-	public Personentyp() {
+	public Personentyp(String typ) {
+		this.typ = typ;
+		chooseTyp(typ);
 		initializeAwayTime();
 	}
 	
@@ -50,6 +53,25 @@ public class Personentyp {
 				awayTime[i] = 0;
 		}
 		
+	}
+	
+	public void chooseTyp(String typ){
+		switch(typ){
+		case "Arbeiter":if(0.11 <= Math.random())
+							arbeitszeit = 492; //Arbeitszeit nach destatis 2016, 41 stunden woche aufgeteilt auf 5 arbeitstage
+						else
+							arbeitszeit = 576; //Nach destatis, 11% aller Arbeiter arbeiten 48 stunden in der woche
+						startzeit = 420;
+						break;
+		case "Kind":	arbeitszeit = 462; //Schulzeit pro Woche laut Unicef Umfrage
+						startzeit = 420;
+						break;
+		case "Student":	arbeitszeit = 411; //Studienzeit pro woche laut spiegel
+						startzeit = 600;
+						break;
+		default:		System.out.println("Error: Falsche Typeneingabe");
+						break;
+		}
 	}
 	
 
