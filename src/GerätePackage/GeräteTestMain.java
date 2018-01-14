@@ -17,7 +17,7 @@ public class GeräteTestMain {
 		for(int i = 1; i < 100; i++){
 			sbsg.modusDauer++;
 			
-			sbsg.modifyÄnderWahrsch(sbsg.modusDauer);	//wahrscheinlichkeit wird mit betriebsdauer erhöht
+			sbsg.modifyÄnderWahrsch();	//wahrscheinlichkeit wird mit betriebsdauer erhöht
 			
 			//aktuellerVerbrauch wird geändert wenn änderungsWahrscheinlichkeit hoch genug ist (höher als Math.random())
 			sbsg.setAktuellerVerbrauch();	

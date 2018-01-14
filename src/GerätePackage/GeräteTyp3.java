@@ -52,11 +52,11 @@ public abstract class GeräteTyp3
 		}
 		return(this.aktuellerVerbrauch);
 	}
-	
+
 	//die änderungsWahrscheinlichkeit ändert sich mit der Betriebsdauer
 	//sie steigt, bis eine Änderung eintritt und wird dann zurückgesetzt
-	public void modifyÄnderWahrsch(int Modus_Dauer){	
-		this.änderungsWahrscheinlichkeit += Modus_Dauer * this.constÄnderWahrsch;
+	public void modifyÄnderWahrsch(){	
+		this.änderungsWahrscheinlichkeit += this.modusDauer * this.constÄnderWahrsch;
 	}
 	
 	public double getStandby() {
@@ -109,5 +109,21 @@ public abstract class GeräteTyp3
 
 	public double getOffWahrscheinlichkeit() {
 		return offWahrscheinlichkeit;
+	}
+	
+	public double getMaxVerbrauch() {
+		return maxVerbrauch;
+	}
+
+	public void setMaxVerbrauch(double maxVerbrauch) {
+		this.maxVerbrauch = maxVerbrauch;
+	}
+
+	public double getAktuellerVerbrauch() {
+		return aktuellerVerbrauch;
+	}
+
+	public void setAktuellerVerbrauch(double aktuellerVerbrauch) {
+		this.aktuellerVerbrauch = aktuellerVerbrauch;
 	}
 }
