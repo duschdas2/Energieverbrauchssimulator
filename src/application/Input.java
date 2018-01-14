@@ -107,10 +107,10 @@ public class Input extends Application {
 		if(checkToaster.isSelected() == true) {
 			geräte.add("toaster");
 		}
-		if(checkStaubsauger.isSelected() == true) {
+		if(checkWasserkocher.isSelected() == true) {
 			geräte.add("wasserkocher");
 		}
-		if(checkWasserkocher.isSelected() == true) {
+		if(checkStaubsauger.isSelected() == true) {
 			geräte.add("staubsauger");
 		}
 		if(choicePersTyp1.isDisabled() == false) {
@@ -130,7 +130,7 @@ public class Input extends Application {
 		}
 		double [][] gerätAn = new double [1440][geräte.size()];
 		double [][] statAnalysis = new double [1440][geräte.size()];
-		//getStatData(statAnalysis,geräte);
+		getStatData(statAnalysis,geräte);
 		erstelle(w1,w2,w3,gerätAn,statAnalysis);
 	}
 	public void erstelle(Wahrscheinlichkeit_Typ1 w1,Wahrscheinlichkeit_Typ2 w2, Wahrscheinlichkeit_Typ3 w3,double [][] gerätAn,double[][]statAnalysis) {
@@ -193,6 +193,7 @@ public class Input extends Application {
 			    public void handle(ActionEvent e) {
 			    	try {
 						bearbeite();
+						primaryStage.close();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
