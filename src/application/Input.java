@@ -71,8 +71,7 @@ public class Input extends Application {
     	choicePersTyp2.setDisable(true);
     	choicePersTyp3.setDisable(true);
     	choicePersTyp4.setDisable(true);
-		slider.valueProperty().addListener(new ChangeListener() {
-			public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+		slider.valueProperty().addListener((observable, oldValue, newValue) -> { {
                 lblCountSlider.textProperty().setValue(
                         String.valueOf((int) slider.getValue()));
                 if(slider.getValue() == 1) {
