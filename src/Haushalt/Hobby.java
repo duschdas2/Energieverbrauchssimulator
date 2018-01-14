@@ -11,9 +11,7 @@ public class Hobby {
 	Random hobbyRnd = new Random();
 	
 	public Hobby() {
-		
 		setData();
-		System.out.println(chance);
 	}
 
 	//hobby wird zufällig ausgewählt, 50% garkein hobby und danach verschiedene hobbies mit verschiedenen zeiten

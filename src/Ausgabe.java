@@ -11,10 +11,6 @@ public class Ausgabe {
 	private static double [][] gerätAn;
 	static ArrayList <String> names;
 	
-	public static void main(String [] args) {
-		
-	}
-		
 	/**
 	 * Erstellt das Array für die CSV-Datei
 	 * @param occupancy
@@ -74,6 +70,7 @@ public class Ausgabe {
 		for (int i = 0; i < gerätAn.length; i++) {			//Reihe des Arrays
 			for (int c = 0; c < gerätAn[0].length; c++) {	//Spalte des Arrays
 				gesamtLast[i] += gerätAn[i][c];			//Die GesamtLast einer Reihe wird um den Verbrauch jedes Gerätes dieser Minute erhöht
+				gesamtLast[i] = Math.round(100.0 * gesamtLast[i]) / 100.0;
 			}
 		}
 	}
@@ -89,7 +86,7 @@ public class Ausgabe {
 			String s = names.get(i);
 			for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 				switch (s){
-				case "Toaster" :
+				case "toaster" :
 					Toaster ts = new Toaster();
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = ts.getStandby();	 	//Wenn das Gerät nicht aktiv genutzt wird, wird der Standbyverbrauch genommen
@@ -98,17 +95,19 @@ public class Ausgabe {
 						gerätAn[c][i] *= Math.round(100.0 * ts.randomisieren()) / 100.0;	//Ist das Gerät aktiv genutzt, berechne den aktuellen Verbrauch. Mit nur 2 Nachkommastellen
 					}
 					break;
-				case "Wasserkocher" :
+				case "wasserkocher" :
 					Wasserkocher wk = new Wasserkocher();
 					if (gerätAn[c][i] == 0) {
+						System.out.println(wk.getStandby());
 						gerätAn[c][i] = wk.getStandby();	 	
 					}
 					else {
+						System.out.println(Math.round(100.0 * wk.randomisieren()) / 100.0);
 						gerätAn[c][i] *= Math.round(100.0 * wk.randomisieren()) / 100.0;	
 					}
 					break;
-				case "DeckenLampe" :
-					Wasserkocher dl = new Wasserkocher();
+				case "deckenlampe" :
+					DeckenLampe dl = new DeckenLampe();
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = dl.getStandby();	 	
 					}
@@ -116,7 +115,7 @@ public class Ausgabe {
 						gerätAn[c][i] *= Math.round(100.0 * dl.randomisieren()) / 100.0;	
 					}
 					break;
-				case "PC":
+				case "pc":
 					PC pc = new PC();
 					//Hier noch den Modus vom pc setzen
 					if (gerätAn[c][i] == 0) {
@@ -126,26 +125,26 @@ public class Ausgabe {
 						gerätAn[c][i] *= pc.randomisieren();
 					}
 					break;
-				case "Staubsauger":
+				case "staubsauger":
 					Staubsauger ssg = new Staubsauger();
 					//woher soll ich den aktuellen verbrauch bekommen?
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = ssg.getStandby(); //macht das hier Sinn, weil der Staubsauger nur im Gebrauch angeschlossen ist
 					}
 					else {
-						gerätAn[c][i] *= ssg.randomisieren();
+						gerätAn[c][i] *= Math.round(100.0 * ssg.randomisieren()) / 100.0;
 					}
 					break;
-				case "Kühlschrank":
+				case "kühlschrank":
 					//Kühlschrakn erstellen
 					break;
-				case "Licht":
+				case "licht":
 					Licht l = new Licht();
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = l.getStandby(); //hat licht einen Standby verbrauch?
 					}
 					else {
-						gerätAn[c][i] *= l.randomisieren();
+						gerätAn[c][i] *= Math.round(100.0 * l.randomisieren()) / 100.0;
 					}
 					break;
 				default:
