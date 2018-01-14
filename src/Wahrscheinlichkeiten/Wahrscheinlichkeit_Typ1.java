@@ -75,8 +75,8 @@ public class Wahrscheinlichkeit_Typ1
 		}
 		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0) {	//Wert verändern
 			if(anzahlAn < tmp) {
-				wk.setOnWahrscheinlichkeit(wk.getOnWahrscheinlichkeit()+0.02);
-				wk.setOffWahrscheinlichkeit(wk.getOffWahrscheinlichkeit()+0.02);
+				wk.setOnWahrscheinlichkeit(wk.getOnWahrscheinlichkeit()+0.04);
+				wk.setOffWahrscheinlichkeit(wk.getOffWahrscheinlichkeit()+0.04);
 			}
 		}
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < wk.getBetriebsdauer()-1 && occupancy[timeSlot] != 0) {

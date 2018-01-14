@@ -10,7 +10,7 @@
 
 <Pane fx:id="anchorFenster" minHeight="385.0" minWidth="400.0" prefHeight="385.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea editable="false" layoutX="20.0" layoutY="14.0" prefHeight="134.0" prefWidth="362.0" text="Hallo" />
+      <TextArea editable="false" layoutX="20.0" layoutY="14.0" prefHeight="134.0" prefWidth="362.0" text="Willkomen!&#10;&#10;Bitte füllen Sie die Gewünschten Daten aus und drücken Sie auf Start. &#10;Es wird eine CSV Datei generiert und auf Wunsch direkt ein Diagramm mit den simulierten Daten erstellt.&#10;CSV Speicherort: /CSV/Test" wrapText="true" />
       <Label layoutX="215.0" layoutY="162.0" prefHeight="17.0" prefWidth="45.0" text="Geräte:" />
       <CheckBox fx:id="checkToaster" layoutX="213.0" layoutY="192.0" mnemonicParsing="false" text="Toaster" />
       <CheckBox fx:id="checkStaubsauger" layoutX="213.0" layoutY="216.0" mnemonicParsing="false" text="Staubsauger" />
