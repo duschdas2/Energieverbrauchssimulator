@@ -11,10 +11,6 @@ public class Ausgabe {
 	private static double [][] gerätAn;
 	static ArrayList <String> names;
 	
-	public static void main(String [] args) {
-		
-	}
-		
 	/**
 	 * Erstellt das Array für die CSV-Datei
 	 * @param occupancy
@@ -74,6 +70,7 @@ public class Ausgabe {
 		for (int i = 0; i < gerätAn.length; i++) {			//Reihe des Arrays
 			for (int c = 0; c < gerätAn[0].length; c++) {	//Spalte des Arrays
 				gesamtLast[i] += gerätAn[i][c];			//Die GesamtLast einer Reihe wird um den Verbrauch jedes Gerätes dieser Minute erhöht
+				gesamtLast[i] = Math.round(100.0 * gesamtLast[i]) / 100.0;
 			}
 		}
 	}
@@ -135,7 +132,7 @@ public class Ausgabe {
 						gerätAn[c][i] = ssg.getStandby(); //macht das hier Sinn, weil der Staubsauger nur im Gebrauch angeschlossen ist
 					}
 					else {
-						gerätAn[c][i] *= ssg.randomisieren();
+						gerätAn[c][i] *= Math.round(100.0 * ssg.randomisieren()) / 100.0;
 					}
 					break;
 				case "kühlschrank":
@@ -147,7 +144,7 @@ public class Ausgabe {
 						gerätAn[c][i] = l.getStandby(); //hat licht einen Standby verbrauch?
 					}
 					else {
-						gerätAn[c][i] *= l.randomisieren();
+						gerätAn[c][i] *= Math.round(100.0 * l.randomisieren()) / 100.0;
 					}
 					break;
 				default:
