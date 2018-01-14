@@ -98,6 +98,24 @@ public class Ausgabe {
 						gerätAn[c][i] *= Math.round(100.0 * ts.randomisieren()) / 100.0;	//Ist das Gerät aktiv genutzt, berechne den aktuellen Verbrauch. Mit nur 2 Nachkommastellen
 					}
 					break;
+				case "Wasserkocher" :
+					Wasserkocher wk = new Wasserkocher();
+					if (gerätAn[c][i] == 0) {
+						gerätAn[c][i] = wk.getStandby();	 	
+					}
+					else {
+						gerätAn[c][i] *= Math.round(100.0 * wk.randomisieren()) / 100.0;	
+					}
+					break;
+				case "DeckenLampe" :
+					Wasserkocher dl = new Wasserkocher();
+					if (gerätAn[c][i] == 0) {
+						gerätAn[c][i] = dl.getStandby();	 	
+					}
+					else {
+						gerätAn[c][i] *= Math.round(100.0 * dl.randomisieren()) / 100.0;	
+					}
+					break;
 				case "PC":
 					PC pc = new PC();
 					//Hier noch den Modus vom pc setzen
@@ -117,6 +135,7 @@ public class Ausgabe {
 					else {
 						gerätAn[c][i] *= ssg.randomisieren();
 					}
+					break;
 				case "Kühlschrank":
 					//Kühlschrakn erstellen
 					break;
