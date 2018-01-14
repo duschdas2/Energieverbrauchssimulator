@@ -62,6 +62,11 @@ public class Input extends Application {
 		choicePersTyp4.setValue("Arbeitslos");
 		slider.setMin(1);
 		slider.setMax(4);
+		slider.setShowTickMarks(true);
+		slider.setMajorTickUnit(1);
+		slider.setMinorTickCount(0);
+		slider.setBlockIncrement(10);
+		slider.setSnapToTicks(true);
 		lblCountSlider.setText("1");
 		choicePersTyp1.setDisable(false);
     	choicePersTyp2.setDisable(true);
