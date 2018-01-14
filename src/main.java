@@ -13,8 +13,8 @@ public class main {
 
 	public static void main(String[] args) throws IOException {
 		ArrayList <String> geräte = new ArrayList<String>();
-		//geräte.add("wasserkocher");
-		//geräte.add("toaster");
+		geräte.add("toaster");
+		geräte.add("wasserkocher");
 		geräte.add("staubsauger");
 		double [][] gerätAn = new double [1440][geräte.size()];
 		double [][] statAnalysis = new double [1440][geräte.size()];
@@ -35,18 +35,30 @@ public class main {
 		
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
-			//w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-			//w1.reset();
-			//w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-			//w1.reset();
-			w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-			if(gerätAn[tSlot][aktGerät] == 1)
-			{
-				System.out.println("TimeSlot: " + tSlot + " " + geräte.get(aktGerät) + " : "+ gerätAn[tSlot][aktGerät]);
-			}
+				if(aktGerät == 0) {
+					w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					if(tSlot == statAnalysis.length-1)
+					{
+						w1.reset();
+					}
+				}
+				if(aktGerät == 1) {
+					w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					if(tSlot == statAnalysis.length-1)
+					{
+						w1.reset();
+					}
+				}
+				if(aktGerät == 2) {
+					w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(gerätAn[tSlot][aktGerät] == 1)
+				{
+					System.out.println("TimeSlot: " + tSlot + " " + geräte.get(aktGerät) + " : "+ gerätAn[tSlot][aktGerät]);
+				}
 			}
 		}
-		//Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
+		Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {

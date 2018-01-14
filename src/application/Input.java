@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 
 public class Input extends Application {
 	
-	@FXML private AnchorPane anchorFenster;
+	@FXML private Pane anchorFenster;
 	@FXML private CheckBox checkToaster;
 	@FXML private CheckBox checkStaubsauger;
 	@FXML private CheckBox checkWasserkocher;

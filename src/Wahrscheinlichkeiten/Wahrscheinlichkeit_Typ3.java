@@ -4,7 +4,7 @@ import GerätePackage.Staubsauger;
 public class Wahrscheinlichkeit_Typ3 {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
-	private double randomDauer = 5+Math.random()*40;
+	private double randomDauer = Math.random()*40;
 
 	public void getWahrStaubsauger(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Staubsauger sb = new Staubsauger();
@@ -42,11 +42,11 @@ public class Wahrscheinlichkeit_Typ3 {
 				sb.setOffWahrscheinlichkeit(0.9999*occupancy[timeSlot]);
 			}
 		}
-		else { //Keine Veränderung niemand zu Hause!
+		else if(occupancy[timeSlot] == 0){ //Keine Veränderung niemand zu Hause!
 			sb.setOnWahrscheinlichkeit(0.0);
 			sb.setOffWahrscheinlichkeit(0.0);
 		}
-		if(timeSlot > 100 && betriebsDauer == 0 && anzahlAn == 0) {
+		/*if(timeSlot > 100 && betriebsDauer == 0 && anzahlAn == 0) {
 			for(int i = 100; i>0 ;i--)
 			{
 				if(gerätAn[timeSlot-i][aktGerät] == 1)
@@ -55,25 +55,26 @@ public class Wahrscheinlichkeit_Typ3 {
 					sb.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]);
 				}
 			}
-		}
+		}*/
 		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!! (Keine Daten für Staubsauger)!!
 		
-		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= randomDauer) {
+		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= randomDauer && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;
 		}
-		if(sb.getOnWahrscheinlichkeit() >=  Math.random() && (sb.getOnWahrscheinlichkeit()+sb.getOffWahrscheinlichkeit() != 0)) {
+		if(sb.getOnWahrscheinlichkeit() >=  Math.random() && (sb.getOnWahrscheinlichkeit()+sb.getOffWahrscheinlichkeit() != 0) && occupancy[timeSlot] != 0) {
 			sb.setBenutzt(true);
 			gerätAn[timeSlot][aktGerät] = 1;
 			anzahlAn++;
-			if(gerätAn[timeSlot-1][aktGerät] == 1) {
-				anzahlAn--;
-				betriebsDauer++;
-			}
-			else {
-				betriebsDauer = 0;
-				randomDauer = 5+Math.random()*40;
-			}
+			betriebsDauer = 0;
+			//if(gerätAn[timeSlot-1][aktGerät] == 1) {
+			//	//anzahlAn--;
+			//	betriebsDauer++;
+			//}
+			//else {
+			//	betriebsDauer = 0;
+				randomDauer = Math.random()*40;
+			//}
 		}		
 	}
 }

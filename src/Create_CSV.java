@@ -31,10 +31,10 @@ public class Create_CSV {
 				for (int i = 0; i < data.length; i ++) {
 					String [] tmp = new String [data[i].length];
 					for (int c = 0; c < data[i].length; c++) {
-						System.out.print(data[i][c] + ", ");
+						//System.out.print(data[i][c] + ", ");
 						tmp[c] = data[i][c];
 					}
-					System.out.println();
+					//System.out.println();
 					csvWriter.writeNext(tmp);
 				}
 		    }
@@ -57,7 +57,7 @@ public class Create_CSV {
 	
 	public static void main(String [] args) {
 		try {
-			System.out.println(date_time());
+			//System.out.println(date_time());
 			String [] [] data = new String [5] [3];
 			data[0][0] = "TEST1";
 			data[0][1] = "TEST2";
