@@ -36,14 +36,14 @@ public class main {
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
 			//w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+			//w1.reset();
 			w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-
+			//w1.reset();
 			//w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-			//System.out.println(tSlot + ": "+statAnalysis[tSlot][aktGerät]);
-			//if(gerätAn[tSlot][aktGerät] == 1)
-			//{
-			//	System.out.println("TimeSlot: " + tSlot + " : "+ gerätAn[tSlot][aktGerät]);
-			//}
+			if(gerätAn[tSlot][aktGerät] == 1)
+			{
+				System.out.println("TimeSlot: " + tSlot + " : "+ gerätAn[tSlot][aktGerät]);
+			}
 			}
 		}
 	}

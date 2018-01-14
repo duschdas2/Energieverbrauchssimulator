@@ -5,9 +5,8 @@ import GerätePackage.Wasserkocher;
 public class Wahrscheinlichkeit_Typ1 
 {
 	int betriebsDauer = 0;
-	private int anzahlAn = 0;
+	int anzahlAn = 0;
 	double tmp = Math.random()*5;
-	int tmpVar = 0;
 
 	public Wahrscheinlichkeit_Typ1() {
 		
@@ -18,6 +17,11 @@ public class Wahrscheinlichkeit_Typ1
 	
 	//Abstand verbessern
 
+	public void reset() {
+		betriebsDauer = 0;
+		anzahlAn = 0;
+		tmp = Math.random()*5;
+	}
 	public void getWahrWasserKocher(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Wasserkocher wk = new Wasserkocher();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
@@ -48,7 +52,14 @@ public class Wahrscheinlichkeit_Typ1
 				wk.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]);
 			}
 		}
-		if (occupancy[timeSlot] == 0 && occupancy[timeSlot-1] == 0 && occupancy[timeSlot+1] == 0){ //Keine Veränderung niemand zu Hause!
+		if (timeSlot > 0 && occupancy[timeSlot] == 0 && occupancy[timeSlot-1] == 0 && occupancy[timeSlot+1] == 0){ //Keine Veränderung niemand zu Hause!
+			if(anzahlAn < tmp) {
+				wk.setOnWahrscheinlichkeit(0.0);
+				wk.setOffWahrscheinlichkeit(0.0);
+			}
+		}
+		else if(occupancy[timeSlot] == 0)
+		{
 			if(anzahlAn < tmp) {
 				wk.setOnWahrscheinlichkeit(0.0);
 				wk.setOffWahrscheinlichkeit(0.0);
@@ -71,10 +82,10 @@ public class Wahrscheinlichkeit_Typ1
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < wk.getBetriebsdauer()-1) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;
-			System.out.println("TimeSlot: " + timeSlot);
+			//System.out.println("TimeSlot: " + timeSlot);
 		}
 		else if(wk.getOnWahrscheinlichkeit() >=  Math.random() && (wk.getOnWahrscheinlichkeit()+wk.getOffWahrscheinlichkeit() != 0)) {
-			wk.setBenutzt(true);
+			//wk.setBenutzt(true);
 			gerätAn[timeSlot][aktGerät] = 1;
 			//if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < wk.getBetriebsdauer()) {
 			//	betriebsDauer++;
@@ -83,15 +94,15 @@ public class Wahrscheinlichkeit_Typ1
 			//{
 				betriebsDauer = 0;
 				anzahlAn++;
-				wk.setBenutzt(false);
+				//wk.setBenutzt(false);
 			//}
 			if(anzahlAn > tmp) //bearbeiten !!!
 			{
 				//anzahlAn--;
 			}
-			System.out.println("TimeSlot: " + timeSlot);
-			System.out.println("AnzahlAn: " + anzahlAn + " , tmp: " +tmp);
-			System.out.println(betriebsDauer);
+			//System.out.println("TimeSlot: " + timeSlot);
+			//System.out.println("AnzahlAn: " + anzahlAn + " , tmp: " +tmp);
+			//System.out.println(betriebsDauer);
 		}		
 	}
 	
@@ -133,24 +144,17 @@ public class Wahrscheinlichkeit_Typ1
 			ts.setOnWahrscheinlichkeit(0.0);
 			ts.setOffWahrscheinlichkeit(0.0);
 		}
+		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < ts.getBetriebsdauer()-1) {
+			gerätAn[timeSlot][aktGerät] = 1;
+			betriebsDauer++;
+		}
 		
 		if(ts.getOnWahrscheinlichkeit() >=  Math.random() && (ts.getOnWahrscheinlichkeit()+ts.getOffWahrscheinlichkeit() != 0)) {
 			ts.setBenutzt(true);
 			gerätAn[timeSlot][aktGerät] = 1;
-			if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < ts.getBetriebsdauer()) {
-				betriebsDauer++;
-			}
-			else
-			{
-				betriebsDauer = 0;
-				anzahlAn++;
-				ts.setBenutzt(false);
-			}
-			if(anzahlAn >= tmp)
-			{
-				anzahlAn--;
-			}
-			System.out.println("TimeSlot: " + timeSlot);
+			betriebsDauer = 0;
+			anzahlAn++;
+			ts.setBenutzt(false);
 		}		
 	}
 }
