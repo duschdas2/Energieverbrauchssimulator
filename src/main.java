@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import Haushalt.Arbeiter;
+import Haushalt.Arbeitsloser;
 import Haushalt.Haushalt;
 import Haushalt.Person;
 import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ1;
@@ -12,8 +13,9 @@ public class main {
 
 	public static void main(String[] args) throws IOException {
 		ArrayList <String> geräte = new ArrayList<String>();
-		geräte.add("Toaster");
-		geräte.add("Staubsauger");
+		geräte.add("wasserkocher");
+		//geräte.add("Toaster");
+		//geräte.add("Staubsauger");
 		double [][] gerätAn = new double [1440][geräte.size()];
 		double [][] statAnalysis = new double [1440][geräte.size()];
 		ArrayList<Person> list = new ArrayList<Person>();
@@ -29,7 +31,7 @@ public class main {
 		
 		Wahrscheinlichkeit_Typ1 w1 = new Wahrscheinlichkeit_Typ1();
 		Wahrscheinlichkeit_Typ3 w2 = new Wahrscheinlichkeit_Typ3();
-		//getStatData(statAnalysis,geräte);
+		getStatData(statAnalysis,geräte);
 		
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
@@ -37,23 +39,24 @@ public class main {
 			w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 
 			//w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-			if(gerätAn[tSlot][aktGerät] == 1)
-			{
-				System.out.println("TimeSlot: " + tSlot + " : "+ gerätAn[tSlot][aktGerät]);
-			}
+			//System.out.println(tSlot + ": "+statAnalysis[tSlot][aktGerät]);
+			//if(gerätAn[tSlot][aktGerät] == 1)
+			//{
+			//	System.out.println("TimeSlot: " + tSlot + " : "+ gerätAn[tSlot][aktGerät]);
+			//}
 			}
 		}
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {
-		int auswertDaten = 10;
+		int auswertDaten = 24;
 		double[] tmpData = new double[1440];
 		for(int i = 0; i<geräte.size();i++) {
-			if(geräte.get(i) == "kühlschrank") {
+			if(geräte.get(i) == "wasserkocher") {
 				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			}
 			for(int j = 0; j<1440;j++) {
-				statAnalysis[j][i] = tmpData[i];
+				statAnalysis[j][i] = tmpData[j];
 			}
 		}
 	}
