@@ -14,8 +14,8 @@ public class main {
 	public static void main(String[] args) throws IOException {
 		ArrayList <String> geräte = new ArrayList<String>();
 		geräte.add("wasserkocher");
-		//geräte.add("Toaster");
-		//geräte.add("Staubsauger");
+		//geräte.add("toaster");
+		//geräte.add("staubsauger");
 		double [][] gerätAn = new double [1440][geräte.size()];
 		double [][] statAnalysis = new double [1440][geräte.size()];
 		ArrayList<Person> list = new ArrayList<Person>();
