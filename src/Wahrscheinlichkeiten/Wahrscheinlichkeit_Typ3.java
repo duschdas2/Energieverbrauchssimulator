@@ -1,0 +1,73 @@
+package Wahrscheinlichkeiten;
+
+import GerätePackage.Staubsauger;
+public class Wahrscheinlichkeit_Typ3 {
+	private int betriebsDauer = 0;
+	private int anzahlAn = 0;
+
+	public void getWahrStaubsauger(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+		Staubsauger sb = new Staubsauger();
+		
+		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
+			if(timeSlot > 0) {	//Falls nicht erster Eintrag
+				if(anzahlAn < Math.random()*5)
+					{
+					if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= Math.random()*45) {
+						sb.setOnWahrscheinlichkeit(0.5*occupancy[timeSlot]);
+						sb.setOffWahrscheinlichkeit(0.5*occupancy[timeSlot]);
+					}
+					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Staubsauger gerade nicht benutzt
+						if(timeSlot >= 900 && timeSlot <= 1140 || timeSlot >= 540 && timeSlot <= 720) { // Benutzung zwischen 15-19 Uhr und 9-12 Uhr höher (evtl Random mit einbinden)
+								sb.setOnWahrscheinlichkeit(0.002*occupancy[timeSlot]);
+								sb.setOffWahrscheinlichkeit(0.998*occupancy[timeSlot]);
+						}
+						else if(timeSlot >= 1200 || timeSlot <= 330) { //Benutzung nach 20 Uhr unwarscheinlich
+							sb.setOnWahrscheinlichkeit(0.0001);
+							sb.setOffWahrscheinlichkeit(0.9999);
+						}
+						else { //Benutzung über den Tag eher Unwarscheinlich
+							sb.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
+							sb.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]);
+						}
+					}	
+				}
+				else if(timeSlot == 0) {
+					sb.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
+					sb.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]);
+				}
+			}
+			else {
+				sb.setOnWahrscheinlichkeit(0.0001*occupancy[timeSlot]);
+				sb.setOffWahrscheinlichkeit(0.9999*occupancy[timeSlot]);
+			}
+		}
+		else { //Keine Veränderung niemand zu Hause!
+			sb.setOnWahrscheinlichkeit(0.0);
+			sb.setOffWahrscheinlichkeit(0.0);
+		}
+		if(timeSlot > 100 && betriebsDauer == 0 && anzahlAn == 0) {
+			for(int i = 100; i>0 ;i--)
+			{
+				if(gerätAn[timeSlot-i][aktGerät] == 1)
+				{
+					sb.setOnWahrscheinlichkeit(0.00001*occupancy[timeSlot]);
+					sb.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]);
+				}
+			}
+		}
+		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!! (Keine Daten für Staubsauger)!!
+		
+		if(sb.getOnWahrscheinlichkeit() >=  Math.random() && (sb.getOnWahrscheinlichkeit()+sb.getOffWahrscheinlichkeit() != 0)) {
+			sb.setBenutzt(true);
+			gerätAn[timeSlot][aktGerät] = 1;
+			anzahlAn++;
+			if(gerätAn[timeSlot-1][aktGerät] == 1) {
+				anzahlAn--;
+				betriebsDauer++;
+			}
+			else {
+				betriebsDauer = 0;
+			}
+		}		
+	}
+}
