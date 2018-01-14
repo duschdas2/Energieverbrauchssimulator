@@ -25,7 +25,7 @@ public class Haushalt {
 	
 	
 	//berechnet wie viele Personen da sind, 0 = keiner, 1 = einer und so weiter
-	//erstellt jedes mal ein neues Array
+	//erstellt jedes mal ein array mit anderen werten für jede person und gesamt
 	public void calcOccupancy(){
 		for(int j = 0; j < personen.size() ; j++){
 			personen.get(j).initializeAwayTime();

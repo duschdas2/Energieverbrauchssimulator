@@ -10,6 +10,7 @@ public class Personentyp {
 	private int arbeitszeit;
 	private int[] awayTime = new int[1440]; //Wann am Tag gearbeitet werden soll
 	private String typ;
+	private boolean isAway = false;
 	
 	public Personentyp(String typ) {
 		this.typ = typ;
@@ -36,25 +37,40 @@ public class Personentyp {
 	 *  1 = daheim, 0 = nicht daheim
 	*/
 	public void initializeAwayTime(){
-		double schwankung = 0;
+		double schwankungWeg = 0, schwankungDaheim = 0.005;
+		int lateness = 0;
 		for(int i = 0; i< awayTime.length; i++){
 			awayTime[i] = 1;
 		}
 		/* Anpassung des Arrays mit der Arbeitszeit, in der die Person nicht Zuhause ist
-		 * Inklusive einer "Schwankung", da man nicht immer genau gleich nach Hause kommt durch Verkehr z.B.
+		 * Inklusive einer "Schwankung", da man nicht immer genau gleich nach Hause kommt durch Verkehr z.B. oder losgeht
 		 * Schwankung zählt immer höher, bis sie maximal eine 0.5% chance wird, dass die Person jetzt daheim ist, anstatt
 		 * die Schleife zu Ende zu laufen
 		 */
 		for(int i = startzeit; i <= arbeitszeit + startzeit; i++){
-			schwankung += 0.005/arbeitszeit;
-			if(schwankung >= Math.random())
-				break;
-			else
-				awayTime[i] = 0;
+			if(isAway == false){
+				if(schwankungDaheim <= Math.random()){
+					lateness++;
+					schwankungDaheim += 0.004;
+				}
+				else
+					isAway = true;
+			}
+			else{
+				schwankungWeg += 0.0004/(arbeitszeit - lateness);
+				if(schwankungWeg >= Math.random())
+					break;
+				else
+					awayTime[i] = 0;
+			}
 		}
+		isAway = false;
+		
+		
 		
 	}
 	
+	//Setzt die Arbeitszeit und Zeit ab wann gearbeitet wird auf die entsprechenden Werte
 	public void chooseTyp(String typ){
 		switch(typ){
 		case "Arbeiter":if(0.11 <= Math.random())
@@ -69,6 +85,7 @@ public class Personentyp {
 		case "Student":	arbeitszeit = 411; //Studienzeit pro woche laut spiegel
 						startzeit = 600;
 						break;
+		case "Arbeitslos": break;
 		default:		System.out.println("Error: Falsche Typeneingabe");
 						break;
 		}

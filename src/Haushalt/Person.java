@@ -8,6 +8,7 @@ public class Person {
 	private Personentyp typ;
 	private int[] realAwayTime;
 	private Hobby hobby = new Hobby();
+	private boolean isAway = false;
 	
 	
 	public Person(Personentyp typ){
@@ -16,12 +17,32 @@ public class Person {
 		useHobby();
 	}
 	
+	
+	//Berechnung wie lange die Person bei ihrem Hobby ist
+	//dabei gibt es eine Schwankung wann sie losgehen und wann sie wiederkommen
 	public void useHobby(){
 		if(hobby.getChance() <= Math.random()){
 			if(realAwayTime[hobby.getStartzeit()] == 1){
+				double schwankungDaheim = 0.05, schwankungWeg = 0;
+				int lateness = 0;
 				for(int i = hobby.getStartzeit(); i <= hobby.getStartzeit() + hobby.getHobbydauer(); i++){
-						realAwayTime[i] = 0;
+					if(isAway == false){
+						if(schwankungDaheim <= Math.random()){
+							lateness++;
+							schwankungDaheim += 0.05;
+						}
+						else
+							isAway = true;
+					}
+					else{
+						schwankungWeg += 0.00002/(hobby.getHobbydauer() - lateness);
+						if(schwankungWeg >= Math.random())
+							break;
+						else
+							realAwayTime[i] = 0;
+					}
 				}
+				isAway = false;
 			}
 		}
 	}
