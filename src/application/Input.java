@@ -50,7 +50,7 @@ public class Input extends Application {
 	private boolean diagramm = false;
 
 	@FXML public void initialize() {
-		ObservableList<String> personenTypen = FXCollections.observableArrayList("Arbeitslos","Arbeiter","Kinder","Student");
+		ObservableList<String> personenTypen = FXCollections.observableArrayList("Arbeitslos","Arbeiter","Kind","Student");
 		choicePersTyp1.setItems(personenTypen);
 		choicePersTyp1.setValue("Arbeitslos");
 		choicePersTyp2.setItems(personenTypen);
@@ -188,6 +188,7 @@ public class Input extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			primaryStage.setResizable(false);
 			initialize();
 			btnStart.setOnAction(new EventHandler<ActionEvent>() {
 			    public void handle(ActionEvent e) {
