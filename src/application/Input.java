@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import Haushalt.Haushalt;
 import Haushalt.Person;
+import Haushalt.Personentyp;
 import Hilfsmethoden.Ausgabe;
 import Hilfsmethoden.Einlesen;
 import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ1;
@@ -45,8 +46,6 @@ public class Input extends Application {
 	@FXML private Button btnStart;
 	
 	private ArrayList <String> geräte = new ArrayList<String>();
-	private double [][] gerätAn = new double [1440][geräte.size()];
-	private double [][] statAnalysis = new double [1440][geräte.size()];
 	private ArrayList<Person> list = new ArrayList<Person>();
 	private boolean diagramm = false;
 
@@ -109,49 +108,51 @@ public class Input extends Application {
 			geräte.add("toaster");
 		}
 		if(checkStaubsauger.isSelected() == true) {
-			geräte.add("staubsauger");
-		}
-		if(checkWasserkocher.isSelected() == true) {
 			geräte.add("wasserkocher");
 		}
+		if(checkWasserkocher.isSelected() == true) {
+			geräte.add("staubsauger");
+		}
 		if(choicePersTyp1.isDisabled() == false) {
-			//list.add(new Person(choicePersTyp1.getValue());
+			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
 		if(choicePersTyp2.isDisabled() == false) {
-			//list.add(new Person(choicePersTyp1.getValue());
+			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
 		if(choicePersTyp3.isDisabled() == false) {
-			//list.add(new Person(choicePersTyp1.getValue());
+			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
 		if(choicePersTyp4.isDisabled() == false) {
-			//list.add(new Person(choicePersTyp1.getValue());
+			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
 		if(checkDiagramm.isSelected() == true) {
 			diagramm = true;
 		}
-		getStatData(statAnalysis,geräte);
-		erstelle(w1,w2,w3);
+		double [][] gerätAn = new double [1440][geräte.size()];
+		double [][] statAnalysis = new double [1440][geräte.size()];
+		//getStatData(statAnalysis,geräte);
+		erstelle(w1,w2,w3,gerätAn,statAnalysis);
 	}
-	public void erstelle(Wahrscheinlichkeit_Typ1 w1,Wahrscheinlichkeit_Typ2 w2, Wahrscheinlichkeit_Typ3 w3) {
+	public void erstelle(Wahrscheinlichkeit_Typ1 w1,Wahrscheinlichkeit_Typ2 w2, Wahrscheinlichkeit_Typ3 w3,double [][] gerätAn,double[][]statAnalysis) {
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
-				if(aktGerät == 0) {
+				if(geräte.get(aktGerät) == "toaster") {
 					w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 					if(tSlot == statAnalysis.length-1)
 					{
 						w1.reset();
 					}
 				}
-				if(aktGerät == 1) {
+				if(geräte.get(aktGerät) == "wasserkocher") {
 					w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 					if(tSlot == statAnalysis.length-1)
 					{
 						w1.reset();
 					}
 				}
-				if(aktGerät == 2) {
+				if(geräte.get(aktGerät) == "staubsauger") {
 					w3.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(gerätAn[tSlot][aktGerät] == 1)
@@ -160,7 +161,7 @@ public class Input extends Application {
 				}
 			}
 		}
-		if(diagramm = true) {
+		if(diagramm == true) {
 			Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
 		}
 	}
@@ -192,7 +193,6 @@ public class Input extends Application {
 			    public void handle(ActionEvent e) {
 			    	try {
 						bearbeite();
-						primaryStage.close();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
