@@ -127,11 +127,15 @@ public class Ausgabe {
 					break;
 				case "staubsauger":
 					Staubsauger ssg = new Staubsauger();
-					//woher soll ich den aktuellen verbrauch bekommen?
 					if (gerätAn[c][i] == 0) {
-						gerätAn[c][i] = ssg.getStandby(); //macht das hier Sinn, weil der Staubsauger nur im Gebrauch angeschlossen ist
+						ssg.setModusDauer(0);
+						ssg.setAktuellerVerbrauch(ssg.getMaxVerbrauch());
+						gerätAn[c][i] = 0;
 					}
 					else {
+						ssg.setModusDauer(ssg.getModusDauer() +1);
+						ssg.modifyÄnderWahrsch();
+						ssg.setAktuellerVerbrauch();
 						gerätAn[c][i] *= Math.round(100.0 * ssg.randomisieren()) / 100.0;
 					}
 					break;

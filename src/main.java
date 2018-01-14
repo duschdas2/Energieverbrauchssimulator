@@ -42,7 +42,7 @@ public class main {
 			w2.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 			if(gerätAn[tSlot][aktGerät] == 1)
 			{
-				System.out.println("TimeSlot: " + tSlot + " : "+ gerätAn[tSlot][aktGerät]);
+				System.out.println("TimeSlot: " + tSlot + " " + geräte.get(aktGerät) + " : "+ gerätAn[tSlot][aktGerät]);
 			}
 			}
 		}
