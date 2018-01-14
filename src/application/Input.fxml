@@ -18,7 +18,7 @@
       <Slider fx:id="slider" layoutX="20.0" layoutY="185.0" />
       <Label layoutX="20.0" layoutY="162.0" prefHeight="17.0" prefWidth="119.0" text="Personen Anzahl:" />
       <Label fx:id="lblCountSlider" layoutX="125.0" layoutY="201.0" />
-      <ChoiceBox fx:id="choiceBox1" layoutX="20.0" layoutY="220.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choicePersTyp1" layoutX="20.0" layoutY="220.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choicePersTyp2" layoutX="20.0" layoutY="255.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choicePersTyp3" layoutX="20.0" layoutY="290.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choicePersTyp4" layoutX="20.0" layoutY="325.0" prefWidth="150.0" />
