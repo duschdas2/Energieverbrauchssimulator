@@ -30,6 +30,7 @@ public class Person {
 		
 	}
 	
+	//erstellt eine neues array mit anderen arbeitszeiten/hobbyzeiten
 	public void initializeAwayTime(){
 		typ.initializeAwayTime();
 		realAwayTime = typ.getAwayTime();
