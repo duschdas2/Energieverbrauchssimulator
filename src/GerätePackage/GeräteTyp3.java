@@ -14,10 +14,12 @@ public abstract class GeräteTyp3
 	protected final double constÄnderWahrsch;			//kann und soll nicht geändert werden
 	protected double backToNormalUseProb;				//um schneller/langsamer in den ursprünglichen Verbrauch zurückzukehren
 	protected int modusDauer = 0;						//Dauer mit gleichbleibendem Verbrauch (ohne Berücksichtigung von Schwankungen)
-	protected int modusWechselCounter = 0;
+	protected int modusWechselCounter = 0;				//zählt wie oft sich der Verbrauch bei einer Nutzung geändert hat
 	protected boolean benutzt = false;
 	
-	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung, double Änderungs_Wahrscheinlichkeit, double Const_Änder_Wahrsch, double Back_To_Normal_Use_Prob){
+	public GeräteTyp3(double Max_Verbrauch, double Min_Verbrauch, double Standby, double Schwankung, 
+			double Änderungs_Wahrscheinlichkeit, double Const_Änder_Wahrsch, double Back_To_Normal_Use_Prob){
+		
 		this.maxVerbrauch = Max_Verbrauch;
 		this.minVerbrauch = Min_Verbrauch;
 		this.standby = Standby;
@@ -39,11 +41,15 @@ public abstract class GeräteTyp3
 	}
 	
 	public double setAktuellerVerbrauch(){
+		
 		if(Math.random() < this.änderungsWahrscheinlichkeit){
-			if(this.modusWechselCounter%2 == 1){
+			
+			if(this.modusWechselCounter%2 == 1){	//prüft, ob er sich in einem niedriegeren Vernrauchsmodus befindet
+				//wenn ja, wird der verbrauch wieder auf den standardverbrauch (maxVerbrauch) gesetzt
 				this.aktuellerVerbrauch = this.maxVerbrauch;
 				this.änderungsWahrscheinlichkeit = this.constÄnderWahrsch;
 			}else{
+				//wenn nein, wird der verbrauch auf einen wert zwischen 110 und 690 gesetzt
 				this.aktuellerVerbrauch = Math.random() * (this.maxVerbrauch - this.minVerbrauch) + this.minVerbrauch;
 				this.änderungsWahrscheinlichkeit = this.constÄnderWahrsch * this.backToNormalUseProb;
 			}
