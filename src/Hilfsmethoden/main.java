@@ -60,11 +60,18 @@ public class main {
 		Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
 		*/
 		double[] tmpData = new double[1440];
-		tmpData = Eco.GetAll(1, "wasserkocher");
+		double[] tmpDataWass = new double[1440];
+		String[][] tmpData2 = new String[1440][2];
+		tmpData = Eco.GetAll(1, "kühlschrank");
+		tmpDataWass = Eco.GetAll(1, "wasserkocher");
 		for(int i = 0; i<tmpData.length;i++)
 		{
-			System.out.println(tmpData[i]);
+			tmpData2[i][0] = String.valueOf(tmpData[i]);
+			tmpData2[i][1] = String.valueOf(tmpDataWass[i]);
+			//System.out.println(tmpData[i]);
 		}
+		String csv = Create_CSV.create(tmpData2);
+		Diagramm.erzeuge(csv);
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {

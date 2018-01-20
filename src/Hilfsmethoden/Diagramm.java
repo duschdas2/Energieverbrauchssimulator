@@ -20,10 +20,11 @@ public class Diagramm {
 	private static final String STRING_ARRAY_SAMPLE2 = "C:/Users/Manuel/Downloads/UNI KRAM/Kappes/jdemandmodel-master/data/output/1.csv";
 	private static final String STRING_ARRAY_SAMPLE3 = "C:/Users/Manue/Downloads/Kappes Projekt/Jdemand/jdemandmodel-master/data/output/1.csv";
 	private static final String STRING_ARRAY_SAMPLE4 = "C:/Users/Manue/Downloads/Kappes Projekt/01/01/2012-06-01.csv";
+	private static final String STRING_ARRAY_SAMPLE5 = "CSV\\Test\\1.csv";
 	
 	public static void main(String[] args) {
 		try {
-			erzeuge(STRING_ARRAY_SAMPLE1);
+			erzeuge(STRING_ARRAY_SAMPLE5);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
