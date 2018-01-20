@@ -24,5 +24,6 @@
       <ChoiceBox fx:id="choicePersTyp4" layoutX="20.0" layoutY="325.0" prefWidth="150.0" />
       <CheckBox fx:id="checkDiagramm" layoutX="215.0" layoutY="294.0" mnemonicParsing="false" text="Diagramm generieren" />
       <Button fx:id="btnStart" layoutX="261.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Start" />
+      <CheckBox fx:id="checkKühlschrank" layoutX="213.0" layoutY="264.0" mnemonicParsing="false" text="Kühlschrank" />
    </children>
 </Pane>
