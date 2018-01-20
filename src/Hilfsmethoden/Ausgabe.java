@@ -82,6 +82,7 @@ public class Ausgabe {
 	 * @param names
 	 */
 	private static void geraete() {
+		Kühlschrank kühl = new Kühlschrank();
 		//Immer wieder neu den aktuellen Verbrauch des Geräts berechnen 
 		for (int i = 0; i < names.size(); i++) {	//Spalte des Arrays
 			String s = names.get(i);
@@ -138,8 +139,10 @@ public class Ausgabe {
 					}
 					break;
 				case "kühlschrank":
-					Kühlschrank kühl = new Kühlschrank();
-					gerätAn[c][i] *= Math.round(100.0 * kühl.getAktuellerVerbrauch()) / 100.0;
+					
+					kühl.setBetriebsdauer(kühl.getBetriebsdauer()+1);
+					gerätAn[c][i] = Math.round(100.0 * kühl.setAktuellerVerbrauch()) / 100.0;
+					System.out.println(kühl.getBetriebsdauer());
 					break;
 				case "licht":
 					Licht l = new Licht();

@@ -7,6 +7,6 @@ public class Wahrscheinlichkeit_Typ4 {
 
 	public void getWahrKühlschrank(int timeSlot,double[][] gerätAn,int aktGerät) {
 		ks.setBetriebsdauer(timeSlot);
-		gerätAn[timeSlot][aktGerät] = ks.getAktuellerVerbrauch();
+		gerätAn[timeSlot][aktGerät] = ks.setAktuellerVerbrauch();
 	}
 }

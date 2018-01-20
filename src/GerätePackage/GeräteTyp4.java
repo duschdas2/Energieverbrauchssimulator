@@ -32,6 +32,10 @@ public abstract class GeräteTyp4
 		this.betriebsdauer = Betriebs_Dauer;
 	}
 	
+	public int getBetriebsdauer(){
+		return(this.betriebsdauer);
+	}
+	
 	public void setBenutzt(boolean Benutzt) {
 		this.benutzt = Benutzt;
 	}
