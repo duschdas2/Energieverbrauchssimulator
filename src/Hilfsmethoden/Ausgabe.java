@@ -142,7 +142,7 @@ public class Ausgabe {
 					
 					kühl.setBetriebsdauer(kühl.getBetriebsdauer()+1);
 					gerätAn[c][i] = Math.round(100.0 * kühl.setAktuellerVerbrauch()) / 100.0;
-					System.out.println(kühl.getBetriebsdauer());
+					
 					break;
 				case "licht":
 					Licht l = new Licht();
