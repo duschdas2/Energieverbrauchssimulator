@@ -1,8 +1,6 @@
 package Hilfsmethoden;
 import java.io.IOException;
 import java.util.ArrayList;
-import Haushalt.Arbeiter;
-import Haushalt.Arbeitsloser;
 import Haushalt.Haushalt;
 import Haushalt.Person;
 import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ1;
@@ -13,7 +11,7 @@ import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ3;
 public class main {
 
 	public static void main(String[] args) throws IOException {
-		ArrayList <String> geräte = new ArrayList<String>();
+		/*ArrayList <String> geräte = new ArrayList<String>();
 		geräte.add("toaster");
 		geräte.add("wasserkocher");
 		geräte.add("staubsauger");
@@ -60,6 +58,13 @@ public class main {
 			}
 		}
 		Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
+		*/
+		double[] tmpData = new double[1440];
+		tmpData = Eco.GetAll(1, "wasserkocher");
+		for(int i = 0; i<tmpData.length;i++)
+		{
+			System.out.println(tmpData[i]);
+		}
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {

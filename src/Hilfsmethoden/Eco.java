@@ -1,27 +1,19 @@
 package Hilfsmethoden;
+
 import java.io.FileReader;
 import java.io.IOException;
+
 import com.opencsv.CSVReader;
 
-public class Einlesen {
-	
-	//Liest eine bestimmte Anzahl der Geräte ein und ermittelt die häufigkeit der Benutzungen pro Minute
+public class Eco {
 	public static double[] GetAll(int size,String gerät) throws IOException{
 		double [] tmp = new double[1440];
 		double [] mean = new double[1440];
 		for(int i = 1; i<=size;i++){
 			tmp = GetData("CSV\\01\\"+gerät+"\\"+i+".csv");
-			for(int b = 0; b<tmp.length;b++) {
-				if(tmp[b] == 1)
-				{
-					mean[b] = mean[b]+1;
-				}
-			}
 		}
-		return mean;	
+		return tmp;
 	}
-	
-	//List die Datei ein und speichert sie im Array data
 	public static double [] GetData(String path) throws IOException {
 		double [] data = new double[86400];
 		CSVReader reader = new CSVReader(new FileReader(path));
@@ -29,7 +21,7 @@ public class Einlesen {
 	    int i = 0;
 	    while ((nextLine = reader.readNext()) != null) {
 	    	if(Double.parseDouble(nextLine[0]) != 0 && Double.parseDouble(nextLine[0]) != -1) {
-	    		data[i] = data[i]+1;
+	    		data[i] = Double.parseDouble(nextLine[0]);
 	    	}
 	        i++;
 	    }
@@ -46,11 +38,11 @@ public class Einlesen {
 			if(i % 60 == 0 && i > 0) {
 				for(int counter = 60; counter > 0;counter --) {
 					if(data[i-counter] != 0 && data[i-counter] != -1){
-						real[pos] = real[pos]+1;
-						break;
+						real[pos] = real[pos]+data[i-counter];
 					}
 				}
-				pos = pos+1;
+				real[pos] = real[pos]/60;
+			pos = pos+1;
 			}
 		}
 		return real;
