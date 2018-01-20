@@ -7,8 +7,8 @@ public abstract class GeräteTyp2
 {
 	protected double maxVerbrauch;
 	protected double minVerbrauch;
-	protected double startVerbrauch;	//durchschnitt von den ersten sekunden des verbrauchs (oder erste minute)
-	protected double endVerbrauch;	//durchschnitt von den letzten sekunden des Verbrauchs	(oder letzte minute)
+	protected double startVerbrauch;	//durchschnitt von den ersten sekunden des verbrauchs (oder erste minuten)
+	protected double endVerbrauch;	//durchschnitt von den letzten sekunden des Verbrauchs	(oder letzte minuten)
 	protected double standby;
 	protected double aktuellerVerbrauch;
 	protected double schwankung;
@@ -21,17 +21,16 @@ public abstract class GeräteTyp2
 	
 	//Werte mit den gleichen Indizes der folgenden Listen sind Paare!
 	List verbrauchsWerte = new ArrayList<Double>();
-	List schwankungsWerte = new ArrayList<Double>();	
+	List schwankungsWerte = new ArrayList<Double>();
+	List modiDauer = new ArrayList<Integer>();
 		
-	public GeräteTyp2(double Max_Verbrauch, double Min_Verbrauch, double Start_Verbrauch, double End_Verbrauch, double Standby, double Schwankung, double Schwankungs_Tendenz){
+	public GeräteTyp2(double Max_Verbrauch, double Min_Verbrauch, double Start_Verbrauch, double End_Verbrauch, double Standby){
 		
 		this.maxVerbrauch = Max_Verbrauch;
 		this.minVerbrauch = Min_Verbrauch;
 		this.startVerbrauch = Start_Verbrauch;
 		this.endVerbrauch = End_Verbrauch;
 		this.standby = Standby;
-		this.schwankung = Schwankung;
-		this.schwankungsTendenz = Schwankungs_Tendenz;
 	}
 	
 	public double randomisieren(){

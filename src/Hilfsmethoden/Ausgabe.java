@@ -138,7 +138,8 @@ public class Ausgabe {
 					}
 					break;
 				case "kühlschrank":
-					//Kühlschrakn erstellen
+					Kühlschrank kühl = new Kühlschrank();
+					gerätAn[c][i] *= Math.round(100.0 * kühl.getAktuellerVerbrauch()) / 100.0;
 					break;
 				case "licht":
 					Licht l = new Licht();
