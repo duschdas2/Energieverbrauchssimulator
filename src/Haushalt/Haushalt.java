@@ -23,6 +23,17 @@ public class Haushalt {
 		return occupancy;
 	}
 	
+	//Methode zum errechnen wie viele personen vom eingegebenen typ daheim sind zu einem bestimmten zeitpunkt
+	public int countHome(String typ, int timeslot){
+		int count = 0;
+		for(int i = 0; i < personen.size(); i++){
+			if(personen.get(i).getPersonentyp().getTyp().equals(typ) && personen.get(i).getRealAwayTime(timeslot) == 1){
+				count++;
+			}
+		}
+		return count;
+	}
+	
 	
 	//berechnet wie viele Personen da sind, 0 = keiner, 1 = einer und so weiter
 	//erstellt jedes mal ein array mit anderen werten für jede person und gesamt

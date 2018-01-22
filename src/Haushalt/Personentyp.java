@@ -31,14 +31,22 @@ public class Personentyp {
 		return awayTime[i];
 	}
 	
+	public String getTyp(){
+		return typ;
+	}
+	
 	
 	/*fügt die arbeitszeiten in das array rein und berechnet daran die chance , dass die person daheim ist
 	 *  es müssen noch richtige werte hinzugefügt werden
 	 *  1 = daheim, 0 = nicht daheim
 	*/
 	public void initializeAwayTime(){
-		double schwankungWeg = 0, schwankungDaheim = 0.005;
+		double schwankungWeg = 0, schwankungDaheim;
 		int lateness = 0;
+		if(typ.equals("Student"))
+			schwankungDaheim = 0.001;
+		else
+			schwankungDaheim = 0.004;
 		for(int i = 0; i< awayTime.length; i++){
 			awayTime[i] = 1;
 		}
@@ -51,7 +59,7 @@ public class Personentyp {
 			if(isAway == false){
 				if(schwankungDaheim <= Math.random()){
 					lateness++;
-					schwankungDaheim += 0.004;
+					schwankungDaheim = schwankungDaheim * 2;
 				}
 				else
 					isAway = true;
@@ -66,24 +74,25 @@ public class Personentyp {
 		}
 		isAway = false;
 		
-		
-		
 	}
 	
+	
 	//Setzt die Arbeitszeit und Zeit ab wann gearbeitet wird auf die entsprechenden Werte
+	//zu jeder arbeitszeit wird eine wegzeit von 30 minuten hinzugefügt
+	//startzeit ist nach meinen alten schulzeiten gerichtet und arbeitszeiten bei meiner arbeit
 	public void chooseTyp(String typ){
 		switch(typ){
 		case "Arbeiter":if(0.11 <= Math.random())
-							arbeitszeit = 492; //Arbeitszeit nach destatis 2016, 41 stunden woche aufgeteilt auf 5 arbeitstage
+							arbeitszeit = 522; //Arbeitszeit nach destatis 2016, 41 stunden woche aufgeteilt auf 5 arbeitstage
 						else
-							arbeitszeit = 576; //Nach destatis, 11% aller Arbeiter arbeiten 48 stunden in der woche
-						startzeit = 420;
+							arbeitszeit = 606; //Nach destatis, 11% aller Arbeiter arbeiten 48 stunden in der woche
+						startzeit = 450;
 						break;
-		case "Kind":	arbeitszeit = 462; //Schulzeit pro Woche laut Unicef Umfrage
-						startzeit = 420;
+		case "Kind":	arbeitszeit = 492; //Schulzeit pro Woche laut Unicef Umfrage
+						startzeit = 450;
 						break;
-		case "Student":	arbeitszeit = 411; //Studienzeit pro woche laut spiegel
-						startzeit = 600;
+		case "Student":	arbeitszeit = 441; //Studienzeit pro woche laut spiegel
+						startzeit = 510;
 						break;
 		case "Arbeitslos": break;
 		default:		System.out.println("Error: Falsche Typeneingabe");
