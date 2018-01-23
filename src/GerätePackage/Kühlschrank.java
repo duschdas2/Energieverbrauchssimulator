@@ -5,8 +5,6 @@ public class Kühlschrank extends GeräteTyp4{
 	public Kühlschrank() {
 		super(83.0, 0.1, 0.6, 0.3);
 		
-		//Kühlschrank beginnt entweder mit etwa 90 min "kompressor aus" 
-		//oder mit etwa 30 min "kompressor an"
 		if(Math.random() < 0.75){	//kompressor ist zu 75% der zeit aus (90 min aus, 30 min an)
 			this.modus = 0;	//aus
 		}else{
@@ -20,7 +18,6 @@ public class Kühlschrank extends GeräteTyp4{
 		this.maxModusDauer.add(30);
 	}
 	
-	//bisher nur für den Kühlschrank
 		public double setAktuellerVerbrauch(){
 			
 			if(this.modus == 0){	//kompressor aus
@@ -34,7 +31,7 @@ public class Kühlschrank extends GeräteTyp4{
 				
 				this.aktuellerVerbrauch = this.modusVerbrauch.get(this.modus);
 				
-				if(this.modusDauer > this.maxModusDauer.get(modus)-Math.random()*5){
+				if(this.modusDauer > this.maxModusDauer.get(modus)-(Math.random()*(20-5)+5)){
 					this.modus = 1;
 					this.modusDauer = 0;
 				}
@@ -65,7 +62,7 @@ public class Kühlschrank extends GeräteTyp4{
 					this.aktuellerVerbrauch -= Math.random() * (this.maxSchwankung - this.minSchwankung) + this.minSchwankung;
 				}
 				
-				if(this.modusDauer > this.maxModusDauer.get(modus)+Math.random()*5){
+				if(this.modusDauer > this.maxModusDauer.get(modus)+(Math.random()*(10-2)+2)){
 					this.modus = 0;
 					this.modusDauer = 0;
 				}
