@@ -48,9 +48,9 @@ public class Ausgabe {
 		}
 		
 		for (int i = 0; i < ausgabe.length-1; i++) {					//Reihe
-			for (int c = 0; c < ausgabe[0].length; c++) {			//Spalte
+			for (int c = 0; c < ausgabe[0].length; c++) {				//Spalte
 				if (c == 0) {
-					ausgabe[i+1][c] = String.valueOf(occupancy[i]);	//Schreibt die aktuelle Occupancy für die Minute i in die erste Spalte des ausgabe Array
+					ausgabe[i+1][c] = String.valueOf(occupancy[i]);		//Schreibt die aktuelle Occupancy für die Minute i in die erste Spalte des ausgabe Array
 				}
 				else if (c == 1) {
 					ausgabe[i+1][c] = String.valueOf(gesamtLast[i]);	//Schreibt die aktuelle GesamtLast für die Minute i in die zweite Spalte des ausgabe Array
@@ -70,7 +70,7 @@ public class Ausgabe {
 	private static void gesamt() {
 		for (int i = 0; i < gerätAn.length; i++) {			//Reihe des Arrays
 			for (int c = 0; c < gerätAn[0].length; c++) {	//Spalte des Arrays
-				gesamtLast[i] += gerätAn[i][c];			//Die GesamtLast einer Reihe wird um den Verbrauch jedes Gerätes dieser Minute erhöht
+				gesamtLast[i] += gerätAn[i][c];				//Die GesamtLast einer Reihe wird um den Verbrauch jedes Gerätes dieser Minute erhöht
 				gesamtLast[i] = Math.round(100.0 * gesamtLast[i]) / 100.0;
 			}
 		}

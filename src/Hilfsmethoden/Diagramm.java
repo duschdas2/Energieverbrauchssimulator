@@ -44,18 +44,22 @@ public class Diagramm {
 		// Erstellt die Datensätze für den Graphen aus dem Array
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
 		int c = 1;		//Minuten angabe
-		while ((nextLine = csvReader.readNext()) != null) {
+		while ((nextLine = csvReader.readNext()) != null) {	//für jede Zeile ausführen
 			for (int i = 0; i < header.length; i++) {		//für jede Spalte(Geräte) einmal ausführen
-				dataset.addValue(Double.valueOf(nextLine[i]), header[i],  Integer.toString(c));
+				if (i == 0) {
+					dataset.addValue(Double.valueOf(nextLine[i]) *10, header[i],  Integer.toString(c));
+				}else {
+					dataset.addValue(Double.valueOf(nextLine[i]), header[i],  Integer.toString(c));
+				}
 			}
 			c++;		//zählt die Minuten hoch
 		}
 		
 		// Erstellt den Graphen
-		JFreeChart chart = ChartFactory.createLineChart("Household", "Time in minutes", "Value", dataset, PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart chart = ChartFactory.createLineChart("Haushalt", "Zeit in Minuten", "Watt", dataset, PlotOrientation.VERTICAL, true, true, false);
 		
 		// Erstellt das Frame zum abbilden des Graphen
-		ChartFrame frame = new ChartFrame("Chart", chart);
+		ChartFrame frame = new ChartFrame("Diagramm", chart);
 		frame.pack();
 		frame.setVisible(true);
 	}
