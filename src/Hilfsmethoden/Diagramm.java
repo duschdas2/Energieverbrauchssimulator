@@ -46,7 +46,7 @@ public class Diagramm {
 		int c = 1;		//Minuten angabe
 		while ((nextLine = csvReader.readNext()) != null) {	//für jede Zeile ausführen
 			for (int i = 0; i < header.length; i++) {		//für jede Spalte(Geräte) einmal ausführen
-				if (i == 0) {
+				if (i == 0) {								//Die Occupancy wird aus anschaulichen Gründen mal 10 genommen
 					dataset.addValue(Double.valueOf(nextLine[i]) *10, header[i],  Integer.toString(c));
 				}else {
 					dataset.addValue(Double.valueOf(nextLine[i]), header[i],  Integer.toString(c));
