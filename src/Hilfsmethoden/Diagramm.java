@@ -1,4 +1,6 @@
 package Hilfsmethoden;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -6,9 +8,16 @@ import java.nio.file.Paths;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.TickUnitSource;
+import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.XYDataset;
 
 import com.opencsv.CSVReader;
 
@@ -24,7 +33,7 @@ public class Diagramm {
 	
 	public static void main(String[] args) {
 		try {
-			erzeuge(STRING_ARRAY_SAMPLE5);
+			erzeuge(STRING_ARRAY_SAMPLE2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -56,11 +65,48 @@ public class Diagramm {
 		}
 		
 		// Erstellt den Graphen
-		JFreeChart chart = ChartFactory.createLineChart("Haushalt", "Zeit in Minuten", "Watt", dataset, PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart chart = ChartFactory.createLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", dataset, PlotOrientation.VERTICAL, true, true, false);
+		Plot plot = chart.getPlot();
+		plot.setBackgroundPaint(Color.black);
 		
 		// Erstellt das Frame zum abbilden des Graphen
 		ChartFrame frame = new ChartFrame("Diagramm", chart);
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+//	public static void erzeuge2(String s) {
+//		JFreeChart xylineChart = ChartFactory.createXYLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", erstelleDataset(), PlotOrientation.VERTICAL, true, true, false);
+//		XYPlot plot = xylineChart.getXYPlot();
+//		plot.setBackgroundPaint(Color.black);
+//	    ChartPanel chartPanel = new ChartPanel( xylineChart );
+//	    chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+//		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+//	    renderer.setSeriesPaint( 0 , Color.RED );
+//	    renderer.setSeriesPaint( 1 , Color.GREEN );
+//	    renderer.setSeriesPaint( 2 , Color.YELLOW );
+//	    renderer.setSeriesStroke( 0 , new BasicStroke( 2.0f ) );
+//	    renderer.setSeriesStroke( 1 , new BasicStroke( 2.0f ) );
+//	    renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
+//	    plot.setRenderer( renderer ); 
+//	    setContentPane( chartPanel ); 
+//	}
+//	
+//	private static XYDataset erstelleDataset() {
+//		Reader reader = Files.newBufferedReader(Paths.get(s));
+//		CSVReader csvReader = new CSVReader(reader, ';');
+//		String[] header = csvReader.readNext();
+//		String [] nextLine;
+//		http://www.codejava.net/java-se/graphics/using-jfreechart-to-draw-xy-line-chart-with-xydataset
+//		XYSeriesCollection dataset = new XYSeriesCollection();
+//		for (int i = 0; i < header.length; i++){
+//			dataset.addSeries(erstelleSerie(i, header[i]));
+//		}
+//	}
+//	
+//	private static XYSeries erstelleSerie(int stelle, String name) {
+//		XYSeries series = new XYSeries(name);
+//		Wahrscheinlich müssen alle benötigten Dinge um die CSV auszulesen global für die Klasse werden
+//		Dann einfach eine While Schleife die die neue Reihe liest und dann nur die Stelle i der Reihe in die Serie einfügen mit dem Zähler von 1 bis 1440
+//	}
 }
