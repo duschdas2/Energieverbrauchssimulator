@@ -41,6 +41,9 @@ public class Input extends Application {
 	@FXML private CheckBox checkWasserkocher;
 	@FXML private CheckBox checkDiagramm;
 	@FXML private CheckBox checkKühlschrank;
+	@FXML private CheckBox checkPlasmaFernseher;
+	@FXML private CheckBox checkLCDFernseher;
+	@FXML private CheckBox checkMikrowelle;
 	@FXML private Slider slider;
 	@FXML private Label lblCountSlider;
 	@FXML private ChoiceBox<String> choicePersTyp1;
@@ -120,6 +123,15 @@ public class Input extends Application {
 		if(checkKühlschrank.isSelected() == true) {
 			geräte.add("kühlschrank");
 		}
+//		if(checkPlasmaFernseher.isSelected() == true) {
+//			geräte.add("plasmaFernseher");
+//		}
+//		if(checkLCDFernseher.isSelected() == true) {
+//			geräte.add("lcdFernseher");
+//		}
+//		if(checkMikrowelle.isSelected() == true) {
+//			geräte.add("mikrowelle");
+//		}
 		if(choicePersTyp1.isDisabled() == false) {
 			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
@@ -193,7 +205,7 @@ public class Input extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Input.fxml"));
 			loader.setController(this);
 			root = loader.load();
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,400,425);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Energieverbrauchssimulator");
