@@ -106,6 +106,15 @@ public class Ausgabe {
 						gerätAn[c][i] *= Math.round(100.0 * wk.randomisieren()) / 100.0;	
 					}
 					break;
+				case "mikrowelle" :
+					Mikrowelle mw = new Mikrowelle();
+					if (gerätAn[c][i] == 0) {
+						gerätAn[c][i] = mw.getStandby();	 	
+					}
+					else {
+						gerätAn[c][i] *= Math.round(100.0 * mw.randomisieren()) / 100.0;	
+					}
+					break;
 				case "deckenlampe" :
 					DeckenLampe dl = new DeckenLampe();
 					if (gerätAn[c][i] == 0) {
@@ -136,6 +145,32 @@ public class Ausgabe {
 						ssg.modifyÄnderWahrsch();
 						ssg.setAktuellerVerbrauch();
 						gerätAn[c][i] *= Math.round(100.0 * ssg.randomisieren()) / 100.0;
+					}
+					break;
+				case "lcdFernseher":
+					Staubsauger lcdF = new Staubsauger();
+					if (gerätAn[c][i] == 0) {
+						lcdF.setModusDauer(0);
+						lcdF.setAktuellerVerbrauch(lcdF.getMaxVerbrauch());
+					}
+					else {
+						lcdF.setModusDauer(lcdF.getModusDauer() +1);
+						lcdF.modifyÄnderWahrsch();
+						lcdF.setAktuellerVerbrauch();
+						gerätAn[c][i] *= Math.round(100.0 * lcdF.randomisieren()) / 100.0;
+					}
+					break;
+				case "plasmaFernseher":
+					Staubsauger pF = new Staubsauger();
+					if (gerätAn[c][i] == 0) {
+						pF.setModusDauer(0);
+						pF.setAktuellerVerbrauch(pF.getMaxVerbrauch());
+					}
+					else {
+						pF.setModusDauer(pF.getModusDauer() +1);
+						pF.modifyÄnderWahrsch();
+						pF.setAktuellerVerbrauch();
+						gerätAn[c][i] *= Math.round(100.0 * pF.randomisieren()) / 100.0;
 					}
 					break;
 				case "kühlschrank":
