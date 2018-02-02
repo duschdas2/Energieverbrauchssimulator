@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import Haushalt.Haushalt;
 import Haushalt.Person;
-import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ1;
-import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ3;
 /**
  *
  */
@@ -63,7 +61,7 @@ public class main {
 		double[] tmpDataWass = new double[1440];
 		String[][] tmpData2 = new String[1440][2];
 		tmpData = Eco.GetAll(1, "kühlschrank");
-		tmpDataWass = Eco.GetAll(1, "wasserkocher");
+		//tmpDataWass = Eco.GetAll(1, "wasserkocher");
 		for(int i = 0; i<tmpData.length;i++)
 		{
 			tmpData2[i][0] = String.valueOf(tmpData[i]);
