@@ -8,4 +8,8 @@ public class Mikrowelle extends GeräteTyp1{
 		super(1430, 0.6, 15);
 	}
 
+	public int getBetriebsdauer() {
+		return betriebsdauer;
+	}
+
 }

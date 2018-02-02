@@ -8,4 +8,8 @@ public class Toaster extends GeräteTyp1{
 		super(825, 0.1, 4.0);
 	}
 
+	public int getBetriebsdauer() {
+		return betriebsdauer;
+	}
+
 }

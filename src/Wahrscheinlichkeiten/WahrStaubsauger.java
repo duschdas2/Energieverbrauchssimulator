@@ -1,11 +1,13 @@
 package Wahrscheinlichkeiten;
 
 import GerätePackage.Staubsauger;
-public class Wahrscheinlichkeit_Typ3 {
+
+public class WahrStaubsauger {
+	
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
 	private double randomDauer = 5+Math.random()*40;
-
+	
 	public void getWahrStaubsauger(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Staubsauger sb = new Staubsauger();
 		

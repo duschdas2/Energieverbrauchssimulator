@@ -2,20 +2,18 @@ package application;
 	
 import java.io.IOException;
 import java.util.ArrayList;
-
 import GerätePackage.Kühlschrank;
 import Haushalt.Haushalt;
 import Haushalt.Person;
 import Haushalt.Personentyp;
 import Hilfsmethoden.Ausgabe;
 import Hilfsmethoden.Einlesen;
-import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ1;
-import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ2;
-import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ3;
-import Wahrscheinlichkeiten.Wahrscheinlichkeit_Typ4;
+import Wahrscheinlichkeiten.WahrKühlschrank;
+import Wahrscheinlichkeiten.WahrMikrowelle;
+import Wahrscheinlichkeiten.WahrStaubsauger;
+import Wahrscheinlichkeiten.WahrToaster;
+import Wahrscheinlichkeiten.WahrWasserKocher;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +27,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class Input extends Application {
@@ -105,12 +101,7 @@ public class Input extends Application {
             }
 		});
 	}
-	public void bearbeite() throws IOException {
-		Wahrscheinlichkeit_Typ1 w1 = new Wahrscheinlichkeit_Typ1();
-		Wahrscheinlichkeit_Typ2 w2 = new Wahrscheinlichkeit_Typ2();
-		Wahrscheinlichkeit_Typ3 w3 = new Wahrscheinlichkeit_Typ3();
-		Wahrscheinlichkeit_Typ4 w4 = new Wahrscheinlichkeit_Typ4();
-		
+	public void bearbeite() throws IOException {	
 		if(checkToaster.isSelected() == true) {
 			geräte.add("toaster");
 		}
@@ -129,9 +120,9 @@ public class Input extends Application {
 //		if(checkLCDFernseher.isSelected() == true) {
 //			geräte.add("lcdFernseher");
 //		}
-//		if(checkMikrowelle.isSelected() == true) {
-//			geräte.add("mikrowelle");
-//		}
+		if(checkMikrowelle.isSelected() == true) {
+			geräte.add("mikrowelle");
+		}
 		if(choicePersTyp1.isDisabled() == false) {
 			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
@@ -150,32 +141,34 @@ public class Input extends Application {
 		double [][] gerätAn = new double [1440][geräte.size()];
 		double [][] statAnalysis = new double [1440][geräte.size()];
 		getStatData(statAnalysis,geräte);
-		erstelle(w1,w2,w3,w4,gerätAn,statAnalysis);
+		erstelle(gerätAn,statAnalysis);
 	}
-	public void erstelle(Wahrscheinlichkeit_Typ1 w1,Wahrscheinlichkeit_Typ2 w2, Wahrscheinlichkeit_Typ3 w3,Wahrscheinlichkeit_Typ4 w4,double [][] gerätAn,double[][]statAnalysis) {
+	public void erstelle(double [][] gerätAn,double[][]statAnalysis) {
+		Kühlschrank ks = new Kühlschrank();
+		WahrWasserKocher wahrWk = new WahrWasserKocher();	//verbessern !!!
+		WahrMikrowelle wahrMw = new WahrMikrowelle();
+		WahrToaster wahrTs = new WahrToaster();
+		WahrKühlschrank wahrKs = new WahrKühlschrank();
+		WahrStaubsauger wahrSs = new WahrStaubsauger();
+		
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
 				if(geräte.get(aktGerät) == "toaster") {
-					w1.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-					if(tSlot == statAnalysis.length-1)
-					{
-						w1.reset();
-					}
+					wahrTs.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "wasserkocher") {
-					w1.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
-					if(tSlot == statAnalysis.length-1)
-					{
-						w1.reset();
-					}
+					wahrWk.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(geräte.get(aktGerät) == "mikrowelle") {
+					wahrMw.getWahrMikrowelle(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "staubsauger") {
-					w3.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrSs.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "kühlschrank") {
-					w4.getWahrKühlschrank(tSlot,gerätAn,aktGerät);
+					wahrKs.getWahrKühlschrank(tSlot,gerätAn,aktGerät,ks);
 				}
 			}
 		}
