@@ -14,15 +14,14 @@ public class WahrMikrowelle {
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
 				if(anzahlAn < tmp) {
 					if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < mw.getBetriebsdauer()) {
-						System.out.println("test");
 						mw.setOnWahrscheinlichkeit(1);
 						mw.setOffWahrscheinlichkeit(0);
 					}
-					else if(betriebsDauer == 3) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
+					else if(betriebsDauer == 2) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
 						mw.setOnWahrscheinlichkeit(0.00005*occupancy[timeSlot]);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind
 						mw.setOffWahrscheinlichkeit(0.999995*occupancy[timeSlot]);
 					}
-					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Toaster gerade nicht benutzt
+					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Mikrowelle gerade nicht benutzt
 						if(timeSlot >= 660 && timeSlot <= 780) { // Benutzung zwischen 11 und 13 Uhr höher
 								mw.setOnWahrscheinlichkeit(0.001*occupancy[timeSlot]);
 								mw.setOffWahrscheinlichkeit(0.999*occupancy[timeSlot]);

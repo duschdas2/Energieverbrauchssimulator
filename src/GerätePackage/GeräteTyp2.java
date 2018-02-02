@@ -93,4 +93,24 @@ public abstract class GeräteTyp2
 	public void setEndVerbrauch(double endVerbrauch) {
 		this.endVerbrauch = endVerbrauch;
 	}
+
+	public double getOnWahrscheinlichkeit() {
+		return onWahrscheinlichkeit;
+	}
+
+	public double getOffWahrscheinlichkeit() {
+		return offWahrscheinlichkeit;
+	}
+
+	public List getModiDauer() {
+		return modiDauer;
+	}
+
+	public void setModiDauer(List modiDauer) {
+		this.modiDauer = modiDauer;
+	}
+
+	public int getBetriebsdauer() {
+		return betriebsdauer;
+	}
 }

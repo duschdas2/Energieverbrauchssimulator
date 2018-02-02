@@ -8,10 +8,15 @@ import Haushalt.Person;
 import Haushalt.Personentyp;
 import Hilfsmethoden.Ausgabe;
 import Hilfsmethoden.Einlesen;
+import Wahrscheinlichkeiten.WahrDeckenLampe;
+import Wahrscheinlichkeiten.WahrFernseher;
+import Wahrscheinlichkeiten.WahrKaffeeMaschine;
 import Wahrscheinlichkeiten.WahrKühlschrank;
 import Wahrscheinlichkeiten.WahrMikrowelle;
 import Wahrscheinlichkeiten.WahrStaubsauger;
 import Wahrscheinlichkeiten.WahrToaster;
+import Wahrscheinlichkeiten.WahrTrockner;
+import Wahrscheinlichkeiten.WahrWaschmaschine;
 import Wahrscheinlichkeiten.WahrWasserKocher;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -40,6 +45,11 @@ public class Input extends Application {
 	@FXML private CheckBox checkPlasmaFernseher;
 	@FXML private CheckBox checkLCDFernseher;
 	@FXML private CheckBox checkMikrowelle;
+	@FXML private CheckBox checkKaffeemaschine;
+	@FXML private CheckBox checkWaschmaschine;
+	@FXML private CheckBox checkTrockner;
+	@FXML private CheckBox checkPc;
+	@FXML private CheckBox checkDeckenLampe;
 	@FXML private Slider slider;
 	@FXML private Label lblCountSlider;
 	@FXML private ChoiceBox<String> choicePersTyp1;
@@ -114,14 +124,26 @@ public class Input extends Application {
 		if(checkKühlschrank.isSelected() == true) {
 			geräte.add("kühlschrank");
 		}
-//		if(checkPlasmaFernseher.isSelected() == true) {
-//			geräte.add("plasmaFernseher");
-//		}
-//		if(checkLCDFernseher.isSelected() == true) {
-//			geräte.add("lcdFernseher");
-//		}
+		if(checkPlasmaFernseher.isSelected() == true) {
+			geräte.add("plasmaFernseher");
+		}
+		if(checkLCDFernseher.isSelected() == true) {
+			geräte.add("lcdFernseher");
+		}
 		if(checkMikrowelle.isSelected() == true) {
 			geräte.add("mikrowelle");
+		}
+		if(checkKaffeemaschine.isSelected() == true) {
+			geräte.add("kaffeemaschine");
+		}
+		if(checkWaschmaschine.isSelected() == true) {
+			geräte.add("waschmaschine");
+		}
+		if(checkTrockner.isSelected() == true) {
+			geräte.add("trockner");
+		}
+		if(checkDeckenLampe.isSelected() == true) {
+			geräte.add("deckenlampe");
 		}
 		if(choicePersTyp1.isDisabled() == false) {
 			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
@@ -150,9 +172,16 @@ public class Input extends Application {
 		WahrToaster wahrTs = new WahrToaster();
 		WahrKühlschrank wahrKs = new WahrKühlschrank();
 		WahrStaubsauger wahrSs = new WahrStaubsauger();
-		
+		WahrKaffeeMaschine wahrKm = new WahrKaffeeMaschine();
+		WahrFernseher wahrFs = new WahrFernseher();
+		WahrFernseher wahrFs2 = new WahrFernseher();
+		WahrWaschmaschine wahrWm = new WahrWaschmaschine();
+		WahrTrockner wahrTo = new WahrTrockner();
+		WahrDeckenLampe wahrDl = new WahrDeckenLampe();
+
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
+		int waschMaAn = 0;
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
 				if(geräte.get(aktGerät) == "toaster") {
@@ -169,6 +198,28 @@ public class Input extends Application {
 				}
 				if(geräte.get(aktGerät) == "kühlschrank") {
 					wahrKs.getWahrKühlschrank(tSlot,gerätAn,aktGerät,ks);
+				}
+				if(geräte.get(aktGerät) == "kaffeemaschine") {
+					wahrKm.getWahrKaffeemaschine(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(geräte.get(aktGerät) == "lcdFernseher") {
+					wahrFs.sucheKind(haushalt.getPersonen());
+					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(geräte.get(aktGerät) == "plasmaFernseher") {
+					wahrFs2.sucheKind(haushalt.getPersonen());
+					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(geräte.get(aktGerät) == "waschmaschine") {
+					waschMaAn = wahrWm.getWahrWaschmaschine(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(geräte.get(aktGerät) == "trockner") {
+					if(waschMaAn != 0) {
+						wahrTo.getWahrTrockner(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,waschMaAn);
+					}
+				}
+				if(geräte.get(aktGerät) == "deckenlampe") {
+					wahrDl.getWahrDeckenLampe(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 			}
 		}
@@ -198,7 +249,7 @@ public class Input extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Input.fxml"));
 			loader.setController(this);
 			root = loader.load();
-			Scene scene = new Scene(root,400,425);
+			Scene scene = new Scene(root,522,425);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Energieverbrauchssimulator");

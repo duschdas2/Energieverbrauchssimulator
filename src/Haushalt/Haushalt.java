@@ -66,4 +66,8 @@ public class Haushalt {
 		return ausgabe;
 	}
 
+	public ArrayList<Person> getPersonen() {
+		return personen;
+	}
+
 }
