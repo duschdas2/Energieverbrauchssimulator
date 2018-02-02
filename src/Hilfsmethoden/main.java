@@ -60,12 +60,11 @@ public class main {
 		double[] tmpData = new double[1440];
 		double[] tmpDataWass = new double[1440];
 		String[][] tmpData2 = new String[1440][1];
-		tmpData = Eco.GetAll(1, "kühlschrank");
+		tmpData = Eco.GetAll(7, "kühlschrank");
 		//tmpDataWass = Eco.GetAll(1, "wasserkocher");
 		for(int i = 0; i<tmpData.length;i++)
 		{
 			tmpData2[i][0] = String.valueOf(tmpData[i]);
-			System.out.println(tmpData2[i][0]);
 			//tmpData2[i][1] = String.valueOf(tmpDataWass[i]);
 			//System.out.println(tmpData[i]);
 		}
