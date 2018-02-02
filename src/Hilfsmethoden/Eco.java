@@ -29,7 +29,7 @@ public class Eco {
 	    return tmp;
 	}
 	
-	//Überprüft Minuten genau ob ein Gerät lief, wenn ja dann +1
+	//
 	public static double [] SortData(double [] data)
 	{
 		double [] real = new double[1440];

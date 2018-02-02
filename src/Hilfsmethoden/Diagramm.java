@@ -74,6 +74,33 @@ public class Diagramm {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	// Für Eco datenset Ausgabe
+	public static void erzeugeEco(String s) throws IOException {
+		Reader reader = Files.newBufferedReader(Paths.get(s));
+		CSVReader csvReader = new CSVReader(reader, ';');
+		String[] header = csvReader.readNext();
+		String [] nextLine;
+		
+		// Erstellt die Datensätze für den Graphen aus dem Array
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+		int c = 1;		//Minuten angabe
+		while ((nextLine = csvReader.readNext()) != null) {	//für jede Zeile ausführen
+			for (int i = 0; i < header.length; i++) {		//für jede Spalte(Geräte) einmal ausführen
+				dataset.addValue(Double.valueOf(nextLine[i]), header[i],  Integer.toString(c));
+			}
+			c++;		//zählt die Minuten hoch
+		}
+		
+		// Erstellt den Graphen
+		JFreeChart chart = ChartFactory.createLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", dataset, PlotOrientation.VERTICAL, true, true, false);
+		Plot plot = chart.getPlot();
+		plot.setBackgroundPaint(Color.black);
+		
+		// Erstellt das Frame zum abbilden des Graphen
+		ChartFrame frame = new ChartFrame("Diagramm", chart);
+		frame.pack();
+		frame.setVisible(true);
+	}
 	
 //	public static void erzeuge2(String s) {
 //		JFreeChart xylineChart = ChartFactory.createXYLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", erstelleDataset(), PlotOrientation.VERTICAL, true, true, false);
