@@ -10,7 +10,7 @@ public class Trockner extends GeräteTyp2 {
 		// alle Modi für den Durchlauf in zeitlich chronologischer Reihenfolge
 		
 		this.verbrauchsWerte.add(1990.0); // Modus 0: Start (ersten 2 min) schleudern + erhitzen
-		this.schwankungsWerte.add(10);
+		this.schwankungsWerte.add(10.0);
 		this.modiDauer.add(2);
 
 		this.verbrauchsWerte.add(2660.0); // Modus 1: schnelleres schleudern und/oder erhöhte temperatur
