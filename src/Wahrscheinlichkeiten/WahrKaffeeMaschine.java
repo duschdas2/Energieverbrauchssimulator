@@ -1,11 +1,26 @@
 package Wahrscheinlichkeiten;
 
+import java.util.ArrayList;
+
 import GerätePackage.Kaffeemaschine;
+import Haushalt.Person;
 
 public class WahrKaffeeMaschine {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
 	private double tmp = Math.random()*5;
+	private int [] occupancy;
+
+	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {
+		this.occupancy = occupancy;
+		for(int a = 0; a <1440;a++) {
+			for(int i = 0; i<personen.size();i++) {
+				if(personen.get(i).getPersonentyp().getTyp() == "Kind") {				
+					occupancy[a] --;
+				}
+			}
+		}
+	}
 	
 	public void getWahrKaffeemaschine(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Kaffeemaschine kM = new Kaffeemaschine();

@@ -1,6 +1,9 @@
 package Wahrscheinlichkeiten;
 
+import java.util.ArrayList;
+
 import GerätePackage.Waschmaschine;
+import Haushalt.Person;
 
 public class WahrWaschmaschine {
 	private int betriebsDauer = 0;
@@ -8,6 +11,18 @@ public class WahrWaschmaschine {
 	private double tmp = Math.random()*1;
 	private int temp = 0;
 	private double rndm = 32+Math.random()*5;
+	private int [] occupancy;
+	
+	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {
+		this.occupancy = occupancy;
+		for(int a = 0; a <1440;a++) {
+			for(int i = 0; i<personen.size();i++) {
+				if(personen.get(i).getPersonentyp().getTyp() == "Kind") {				
+					occupancy[a] --;
+				}
+			}
+		}
+	}
 	
 	public int getWahrWaschmaschine(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Waschmaschine wM = new Waschmaschine();

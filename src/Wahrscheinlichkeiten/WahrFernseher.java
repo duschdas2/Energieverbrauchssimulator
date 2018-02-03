@@ -15,9 +15,11 @@ public class WahrFernseher {
 	private boolean hatKind = false;
 	
 	public void sucheKind(ArrayList<Person> personen) {
-		if(personen.get(0).getPersonentyp().getTyp() == "Kind") {
-			hatKind = true;
-			tmp = tmp+2;
+		for(int i = 0;i<personen.size();i++) {
+			if(personen.get(0).getPersonentyp().getTyp() == "Kind") {
+				hatKind = true;
+				tmp = tmp+2;
+			}
 		}
 	}
 	//nicht 100% fertig

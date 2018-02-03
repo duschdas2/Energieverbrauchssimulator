@@ -205,6 +205,7 @@ public class Input extends Application {
 					wahrKs.getWahrKühlschrank(tSlot,gerätAn,aktGerät,ks);
 				}
 				if(geräte.get(aktGerät) == "kaffeemaschine") {
+					wahrKm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
 					wahrKm.getWahrKaffeemaschine(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "lcdFernseher") {
@@ -216,6 +217,7 @@ public class Input extends Application {
 					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "waschmaschine") {
+					wahrWm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
 					waschMaAn = wahrWm.getWahrWaschmaschine(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "trockner") {
@@ -251,6 +253,7 @@ public class Input extends Application {
 			}
 		}
 	}
+	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Pane root = new Pane();
@@ -265,7 +268,8 @@ public class Input extends Application {
 			primaryStage.setResizable(false);
 			initialize();
 			btnStart.setOnAction(new EventHandler<ActionEvent>() {
-			    public void handle(ActionEvent e) {
+			    @Override
+				public void handle(ActionEvent e) {
 			    	try {
 						bearbeite();
 						primaryStage.close();
