@@ -171,7 +171,6 @@ public class Ausgabe {
 					else {
 						for (int t2 = 0; t2 < wm.getModiDauer().size(); t2++) {
 							for (int dauer = 0; dauer < (int) wm.getModiDauer().get(t2); dauer++) {
-								System.out.println("WM " + t2 + " " + dauer);
 								gerätAn[c][i] *= Math.round(100.0 * wm.randomisieren()) / 100.0;
 								c++;
 							}
@@ -190,7 +189,6 @@ public class Ausgabe {
 					else {
 						for (int t2 = 0; t2 < tr.getModiDauer().size(); t2++) {
 							for (int dauer = 0; dauer < (int) tr.getModiDauer().get(t2); dauer++) {
-								System.out.println("TR " + t2 + " " + dauer);
 								gerätAn[c][i] *= Math.round(100.0 * tr.randomisieren()) / 100.0;
 								c++;
 							}
