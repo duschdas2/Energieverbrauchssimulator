@@ -13,6 +13,7 @@ import Wahrscheinlichkeiten.WahrFernseher;
 import Wahrscheinlichkeiten.WahrKaffeeMaschine;
 import Wahrscheinlichkeiten.WahrKühlschrank;
 import Wahrscheinlichkeiten.WahrMikrowelle;
+import Wahrscheinlichkeiten.WahrPc;
 import Wahrscheinlichkeiten.WahrStaubsauger;
 import Wahrscheinlichkeiten.WahrToaster;
 import Wahrscheinlichkeiten.WahrTrockner;
@@ -145,6 +146,9 @@ public class Input extends Application {
 		if(checkDeckenLampe.isSelected() == true) {
 			geräte.add("deckenlampe");
 		}
+		if(checkPc.isSelected() == true) {
+			geräte.add("pc");
+		}
 		if(choicePersTyp1.isDisabled() == false) {
 			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
@@ -178,6 +182,7 @@ public class Input extends Application {
 		WahrWaschmaschine wahrWm = new WahrWaschmaschine();
 		WahrTrockner wahrTo = new WahrTrockner();
 		WahrDeckenLampe wahrDl = new WahrDeckenLampe();
+		WahrPc wahrPc = new WahrPc();
 
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
@@ -220,6 +225,9 @@ public class Input extends Application {
 				}
 				if(geräte.get(aktGerät) == "deckenlampe") {
 					wahrDl.getWahrDeckenLampe(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+				}
+				if(geräte.get(aktGerät) == "pc") {
+					wahrPc.getWahrPc(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 			}
 		}
