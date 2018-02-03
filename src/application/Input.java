@@ -195,10 +195,12 @@ public class Input extends Application {
 					wahrTs.getWahrToaster(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "wasserkocher") {
-					wahrWk.getWahrWasserKocher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrWk.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
+					wahrWk.getWahrWasserKocher(statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "mikrowelle") {
-					wahrMw.getWahrMikrowelle(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrMw.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
+					wahrMw.getWahrMikrowelle(statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "staubsauger") {
 					wahrSs.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
