@@ -9,7 +9,7 @@ public class Waschmaschine extends GeräteTyp2{
 		//alle Modi für das Express-Programm in zeitlich chronologischer Reihenfolge
 		
 		this.verbrauchsWerte.add(50.0);		//Modus 0: Start (ersten 2 min) langsames wirbeln und wasser ziehen
-		this.schwankungsWerte.add(5);
+		this.schwankungsWerte.add(5.0);
 		this.modiDauer.add(2);
 		
 		this.verbrauchsWerte.add(70.0);		//Modus 1: nach Start (wieder 2 min) langsames wirbeln und wasser ziehen
