@@ -18,17 +18,13 @@ public class WahrPc {
 						pC.setOffWahrscheinlichkeit(0);
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Mikrowelle gerade nicht benutzt
-						if(timeSlot >= 1021 && timeSlot <= 119) { // Benutzung zwischen 11 und 13 Uhr am höchsten
+						if(timeSlot >= 1080 && timeSlot <= 1440) { // Benutzung zwischen 18 und 24 Uhr am höchsten
 								pC.setOnWahrscheinlichkeit(0.003*occupancy[timeSlot]);
 								pC.setOffWahrscheinlichkeit(0.999*occupancy[timeSlot]);
 						}
-						else if(timeSlot >= 600 && timeSlot <= 1020) { // Benutzung zwischen 10 und 17 Uhr höher
+						else if(timeSlot >= 840 && timeSlot <= 1079) { // Benutzung zwischen 14 und 18 Uhr höher
 							pC.setOnWahrscheinlichkeit(0.002*occupancy[timeSlot]);
 							pC.setOffWahrscheinlichkeit(0.999*occupancy[timeSlot]);
-						}
-						else if(timeSlot >= 120 || timeSlot <= 480) { //Benutzung zwischen 2 und 8 Uhr unwarscheinlich
-							pC.setOnWahrscheinlichkeit(0.0001);
-							pC.setOffWahrscheinlichkeit(0.9999);
 						}
 						else { //Benutzung über den Tag eher Unwarscheinlich
 							pC.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
