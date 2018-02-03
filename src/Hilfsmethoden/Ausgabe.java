@@ -134,11 +134,23 @@ public class Ausgabe {
 			case "pc":
 				PC pc = new PC();
 				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
-					//Hier noch den Modus vom pc setzen
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = pc.getStandby();
 					}
 					else {
+						double rnd = Math.random() *4;
+						if (rnd >=0 && rnd <1) {
+							pc.setModus(0);
+						}
+						else if (rnd >=1 && rnd <2) {
+							pc.setModus(1);
+						}
+						else if (rnd >=2 && rnd <3) {
+							pc.setModus(2);
+						}
+						else if (rnd >=3 && rnd <=4) {
+							pc.setModus(3);
+						}
 						gerätAn[c][i] *= Math.round(100.0 * pc.randomisieren()) / 100.0;
 					}
 				}
