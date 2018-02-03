@@ -18,7 +18,6 @@ public class WahrKaffeeMaschine {
 						kM.setOffWahrscheinlichkeit(0);
 					}
 					else if(betriebsDauer == 1 && gerätAn[timeSlot-1][aktGerät] == 1) { //Gerät war bereits benutzt 
-						System.out.println("test");
 						kM.setOnWahrscheinlichkeit(0.03*occupancy[timeSlot]);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind
 						kM.setOffWahrscheinlichkeit(0.97*occupancy[timeSlot]);
 					}

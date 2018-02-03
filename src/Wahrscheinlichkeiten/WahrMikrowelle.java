@@ -55,13 +55,13 @@ public class WahrMikrowelle {
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < mw.getBetriebsdauer()-1 && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;
-			System.out.println("TimeSlot: " + timeSlot);
+			//System.out.println("TimeSlot: " + timeSlot);
 		}
 		else if(mw.getOnWahrscheinlichkeit() >=  Math.random() && (mw.getOnWahrscheinlichkeit()+mw.getOffWahrscheinlichkeit() != 0) && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer = 0;
 			anzahlAn++;
-			System.out.println("TimeSlot: " + timeSlot);
+			//System.out.println("TimeSlot: " + timeSlot);
 		}		
 	}
 }
