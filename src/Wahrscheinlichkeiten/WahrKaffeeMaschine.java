@@ -9,20 +9,22 @@ public class WahrKaffeeMaschine {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
 	private double tmp = Math.random()*5;
-	private int [] occupancy;
+	private int [] occupancy = new int[1440];
 
 	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {
-		this.occupancy = occupancy;
+		for(int i = 0;i<occupancy.length;i++) {
+			this.occupancy[i] = occupancy[i];
+		}
 		for(int a = 0; a <1440;a++) {
 			for(int i = 0; i<personen.size();i++) {
 				if(personen.get(i).getPersonentyp().getTyp() == "Kind") {				
-					occupancy[a] --;
+					this.occupancy[a] --;
 				}
 			}
 		}
 	}
 	
-	public void getWahrKaffeemaschine(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public void getWahrKaffeemaschine(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
 		Kaffeemaschine kM = new Kaffeemaschine();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag

@@ -206,7 +206,7 @@ public class Input extends Application {
 				}
 				if(geräte.get(aktGerät) == "kaffeemaschine") {
 					wahrKm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
-					wahrKm.getWahrKaffeemaschine(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrKm.getWahrKaffeemaschine(statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "lcdFernseher") {
 					wahrFs.sucheKind(haushalt.getPersonen());
@@ -218,7 +218,7 @@ public class Input extends Application {
 				}
 				if(geräte.get(aktGerät) == "waschmaschine") {
 					wahrWm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
-					waschMaAn = wahrWm.getWahrWaschmaschine(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					waschMaAn = wahrWm.getWahrWaschmaschine(statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "trockner") {
 					if(waschMaAn != 0) {
