@@ -214,7 +214,7 @@ public class Ausgabe {
 				}
 				break;
 			case "lcdFernseher":
-				Staubsauger lcdF = new Staubsauger();
+				LCDFernseher lcdF = new LCDFernseher();
 				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						lcdF.setModusDauer(0);
@@ -229,7 +229,7 @@ public class Ausgabe {
 				}
 				break;
 			case "plasmaFernseher":
-				Staubsauger pF = new Staubsauger();
+				Plasmafernseher pF = new Plasmafernseher();
 				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						pF.setModusDauer(0);

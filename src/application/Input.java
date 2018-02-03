@@ -187,6 +187,8 @@ public class Input extends Application {
 		Haushalt haushalt = new Haushalt(list);
 		haushalt.calcOccupancy();
 		int waschMaAn = 0;
+		boolean firstRun = true;
+		
 		for(int tSlot = 0;tSlot < statAnalysis.length;tSlot++) { 			//Durchläuft alle TimeSlots
 			for(int aktGerät = 0;aktGerät < geräte.size();aktGerät++) { 	//Durchläuft alle Geräte
 				if(geräte.get(aktGerät) == "toaster") {
@@ -209,12 +211,16 @@ public class Input extends Application {
 					wahrKm.getWahrKaffeemaschine(statAnalysis,gerätAn,aktGerät,tSlot);
 				}
 				if(geräte.get(aktGerät) == "lcdFernseher") {
-					wahrFs.sucheKind(haushalt.getPersonen());
-					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					if(firstRun == true) {
+						wahrFs.sucheKind(haushalt.getPersonen());
+					}
+					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen());
 				}
 				if(geräte.get(aktGerät) == "plasmaFernseher") {
-					wahrFs2.sucheKind(haushalt.getPersonen());
-					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					if(firstRun == true) {
+						wahrFs2.sucheKind(haushalt.getPersonen());
+					}
+					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen());
 				}
 				if(geräte.get(aktGerät) == "waschmaschine") {
 					wahrWm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
@@ -231,6 +237,7 @@ public class Input extends Application {
 				if(geräte.get(aktGerät) == "pc") {
 					wahrPc.getWahrPc(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
 				}
+				firstRun = false;
 			}
 		}
 		if(diagramm == true) {

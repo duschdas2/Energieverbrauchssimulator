@@ -11,19 +11,22 @@ public class WahrFernseher {
 	private int anzahlAn = 0;
 	private double tmp = Math.random()*3;
 	private int rndm = Math.random() < 0.5 ? -1 : 1;
-	private double maxZeit = 15+(Math.random()*(rndm*5));
+	private double maxZeit = Math.floor((Math.random() * 150) + 15);
 	private boolean hatKind = false;
+	private int anzKind = 0;
 	
 	public void sucheKind(ArrayList<Person> personen) {
 		for(int i = 0;i<personen.size();i++) {
 			if(personen.get(0).getPersonentyp().getTyp() == "Kind") {
 				hatKind = true;
+				anzKind++;
 				tmp = tmp+2;
+				maxZeit = maxZeit+4*anzKind;
 			}
 		}
 	}
 	//nicht 100% fertig
-	public void getWahrFernseher(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public void getWahrFernseher(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,ArrayList<Person> personen) {
 		LCDFernseher lF = new LCDFernseher();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -31,10 +34,6 @@ public class WahrFernseher {
 					if(gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < maxZeit) {
 						lF.setOnWahrscheinlichkeit(1);
 						lF.setOffWahrscheinlichkeit(0);
-					}
-					else if(betriebsDauer == maxZeit) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
-						lF.setOnWahrscheinlichkeit(0.00005*occupancy[timeSlot]);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind
-						lF.setOffWahrscheinlichkeit(0.999995*occupancy[timeSlot]);
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Fernseher gerade nicht benutzt
 						if(hatKind == true) {
@@ -56,6 +55,10 @@ public class WahrFernseher {
 							lF.setOffWahrscheinlichkeit(0.9999*occupancy[timeSlot]);
 						}
 					}
+					else if(betriebsDauer == maxZeit) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
+						lF.setOnWahrscheinlichkeit(0.00005*occupancy[timeSlot]);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind
+						lF.setOffWahrscheinlichkeit(0.999995*occupancy[timeSlot]);
+					}
 				}
 			}
 			else if(timeSlot == 0 && anzahlAn < tmp) {
@@ -68,6 +71,13 @@ public class WahrFernseher {
 				lF.setOnWahrscheinlichkeit(0.0);
 				lF.setOffWahrscheinlichkeit(0.0);
 			}
+		}
+		if(personen.contains("Kind"))
+		{
+			for(int i = 0;i<personen.size();i++) {
+			}
+			lF.setOnWahrscheinlichkeit(lF.getOnWahrscheinlichkeit()+0.01*anzKind);
+			lF.setOffWahrscheinlichkeit(1-lF.getOffWahrscheinlichkeit()+0.01*anzKind);
 		}
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < maxZeit && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
