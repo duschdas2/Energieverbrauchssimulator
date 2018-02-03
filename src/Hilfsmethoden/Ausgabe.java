@@ -77,6 +77,26 @@ public class Ausgabe {
 	}
 	
 	/**
+	 * Bestimmt zufällig den Modus des PCs
+	 * @param pc
+	 */
+	private static void pcModus(PC pc) {
+		double rnd = Math.random() *4;
+		if (rnd >=0 && rnd <1) {
+			pc.setModus(0);
+		}
+		else if (rnd >=1 && rnd <2) {
+			pc.setModus(1);
+		}
+		else if (rnd >=2 && rnd <3) {
+			pc.setModus(2);
+		}
+		else if (rnd >=3 && rnd <=4) {
+			pc.setModus(3);
+		}
+	}
+	
+	/**
 	 * Überschreibt das geräteAn Array mit den Verbrauchswerten der Geräte
 	 * @param geräteAn
 	 * @param names
@@ -140,26 +160,14 @@ public class Ausgabe {
 						laufen = false;
 					}
 					else if (laufen == false){
-						double rnd = Math.random() *4;
-						if (rnd >=0 && rnd <1) {
-							pc.setModus(0);
-							laufen = true;
-						}
-						else if (rnd >=1 && rnd <2) {
-							pc.setModus(1);
-							laufen = true;
-						}
-						else if (rnd >=2 && rnd <3) {
-							pc.setModus(2);
-							laufen = true;
-						}
-						else if (rnd >=3 && rnd <=4) {
-							pc.setModus(3);
-							laufen = true;
-						}
+						pcModus(pc);
+						laufen = true;
 					}
 					else {
 						gerätAn[c][i] *= Math.round(100.0 * pc.randomisieren()) / 100.0;
+					}
+					if (laufen == true && c % 20 == 0 && Math.random() > 0.5) {
+						pcModus(pc);
 					}
 				}
 				break;
