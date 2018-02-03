@@ -109,6 +109,8 @@ public class Diagramm {
 //	    ChartPanel chartPanel = new ChartPanel( xylineChart );
 //	    chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
 //		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+//		Für XYSeries: http://www.codejava.net/java-se/graphics/using-jfreechart-to-draw-xy-line-chart-with-xydataset
+//		Für die Ticks: https://sites.google.com/site/drjohnbmatthews/jfreechartdemo
 //	    renderer.setSeriesPaint( 0 , Color.RED );
 //	    renderer.setSeriesPaint( 1 , Color.GREEN );
 //	    renderer.setSeriesPaint( 2 , Color.YELLOW );

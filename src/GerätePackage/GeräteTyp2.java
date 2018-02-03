@@ -59,6 +59,10 @@ public abstract class GeräteTyp2
 		this.modus = Modus;
 	}
 	
+	public int getModus() {
+		return modus;
+	}
+
 	public void setBenutzt(boolean Benutzt) {
 		this.benutzt = Benutzt;
 	}
@@ -112,5 +116,13 @@ public abstract class GeräteTyp2
 
 	public int getBetriebsdauer() {
 		return betriebsdauer;
+	}
+
+	public List getVerbrauchsWerte() {
+		return verbrauchsWerte;
+	}
+
+	public List getSchwankungsWerte() {
+		return schwankungsWerte;
 	}
 }

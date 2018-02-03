@@ -86,56 +86,84 @@ public class Ausgabe {
 		//Immer wieder neu den aktuellen Verbrauch des Geräts berechnen 
 		for (int i = 0; i < names.size(); i++) {	//Spalte des Arrays
 			String s = names.get(i);
-			for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
-				switch (s){
-				case "toaster" :
-					Toaster ts = new Toaster();
+			switch (s){
+			case "toaster" :
+				Toaster ts = new Toaster();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = ts.getStandby();	 	//Wenn das Gerät nicht aktiv genutzt wird, wird der Standbyverbrauch genommen
 					}
 					else {
 						gerätAn[c][i] *= Math.round(100.0 * ts.randomisieren()) / 100.0;	//Ist das Gerät aktiv genutzt, berechne den aktuellen Verbrauch. Mit nur 2 Nachkommastellen
 					}
-					break;
-				case "wasserkocher" :
-					Wasserkocher wk = new Wasserkocher();
+				}
+				break;
+			case "wasserkocher" :
+				Wasserkocher wk = new Wasserkocher();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = wk.getStandby();	 	
 					}
 					else {
 						gerätAn[c][i] *= Math.round(100.0 * wk.randomisieren()) / 100.0;	
 					}
-					break;
-				case "mikrowelle" :
-					Mikrowelle mw = new Mikrowelle();
+				}
+				break;
+			case "mikrowelle" :
+				Mikrowelle mw = new Mikrowelle();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = mw.getStandby();	 	
 					}
 					else {
 						gerätAn[c][i] *= Math.round(100.0 * mw.randomisieren()) / 100.0;	
 					}
-					break;
-				case "deckenlampe" :
-					DeckenLampe dl = new DeckenLampe();
+				}
+				break;
+			case "deckenlampe" :
+				DeckenLampe dl = new DeckenLampe();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = dl.getStandby();	 	
 					}
 					else {
 						gerätAn[c][i] *= Math.round(100.0 * dl.randomisieren()) / 100.0;	
 					}
-					break;
-				case "pc":
-					PC pc = new PC();
+				}
+				break;
+			case "pc":
+				PC pc = new PC();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					//Hier noch den Modus vom pc setzen
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = pc.getStandby();
 					}
 					else {
-						gerätAn[c][i] *= pc.randomisieren();
+						gerätAn[c][i] *= Math.round(100.0 * pc.randomisieren()) / 100.0;
 					}
-					break;
-				case "staubsauger":
-					Staubsauger ssg = new Staubsauger();
+				}
+				break;
+			case "waschmaschine":
+				Waschmaschine wm = new Waschmaschine();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
+					if (gerätAn[c][i] == 0) {
+						gerätAn[c][i] = wm.getStandby();
+					}
+					else {
+						for (int t2 = 0; t2 < wm.getModiDauer().size(); t2++) {
+							for (int dauer = 0; dauer < (int) wm.getModiDauer().get(t2); dauer++) {
+								gerätAn[c][i] *= Math.round(100.0 * wm.randomisieren()) / 100.0;
+								c++;
+							}
+							wm.setModus(wm.getModus() +1);
+						}
+						wm.setModus(0);
+					}
+				}
+				break;
+			case "staubsauger":
+				Staubsauger ssg = new Staubsauger();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						ssg.setModusDauer(0);
 						ssg.setAktuellerVerbrauch(ssg.getMaxVerbrauch());
@@ -146,9 +174,11 @@ public class Ausgabe {
 						ssg.setAktuellerVerbrauch();
 						gerätAn[c][i] *= Math.round(100.0 * ssg.randomisieren()) / 100.0;
 					}
-					break;
-				case "lcdFernseher":
-					Staubsauger lcdF = new Staubsauger();
+				}
+				break;
+			case "lcdFernseher":
+				Staubsauger lcdF = new Staubsauger();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						lcdF.setModusDauer(0);
 						lcdF.setAktuellerVerbrauch(lcdF.getMaxVerbrauch());
@@ -159,9 +189,11 @@ public class Ausgabe {
 						lcdF.setAktuellerVerbrauch();
 						gerätAn[c][i] *= Math.round(100.0 * lcdF.randomisieren()) / 100.0;
 					}
-					break;
-				case "plasmaFernseher":
-					Staubsauger pF = new Staubsauger();
+				}
+				break;
+			case "plasmaFernseher":
+				Staubsauger pF = new Staubsauger();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						pF.setModusDauer(0);
 						pF.setAktuellerVerbrauch(pF.getMaxVerbrauch());
@@ -172,25 +204,27 @@ public class Ausgabe {
 						pF.setAktuellerVerbrauch();
 						gerätAn[c][i] *= Math.round(100.0 * pF.randomisieren()) / 100.0;
 					}
-					break;
-				case "kühlschrank":
-					
+				}
+				break;
+			case "kühlschrank":
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					gerätAn[c][i] = Math.round(100.0 * kühl.setAktuellerVerbrauch()) / 100.0;
 					kühl.setBetriebsdauer(kühl.getBetriebsdauer()+1);
-					
-					break;
-				case "licht":
-					Licht l = new Licht();
+				}
+				break;
+			case "licht":
+				Licht l = new Licht();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						gerätAn[c][i] = l.getStandby(); //hat licht einen Standby verbrauch?
 					}
 					else {
 						gerätAn[c][i] *= Math.round(100.0 * l.randomisieren()) / 100.0;
 					}
-					break;
-				default:
-					break;
-			}
+				}
+				break;
+			default:
+				break;
 			}
 		}
 	}
