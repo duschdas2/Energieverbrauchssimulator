@@ -246,7 +246,7 @@ public class Ausgabe {
 				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						lcdF.setModusDauer(0);
-						lcdF.setAktuellerVerbrauch(lcdF.getMaxVerbrauch());
+						gerätAn[c][i] = lcdF.getStandby();
 					}
 					else {
 						lcdF.setModusDauer(lcdF.getModusDauer() +1);
@@ -261,7 +261,7 @@ public class Ausgabe {
 				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
 					if (gerätAn[c][i] == 0) {
 						pF.setModusDauer(0);
-						pF.setAktuellerVerbrauch(pF.getMaxVerbrauch());
+						gerätAn[c][i] = pF.getStandby();
 					}
 					else {
 						pF.setModusDauer(pF.getModusDauer() +1);
