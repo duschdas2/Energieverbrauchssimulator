@@ -10,7 +10,7 @@ public class WahrWaschmaschine {
 	private int anzahlAn = 0;
 	private double tmp = Math.random()*1;
 	private int temp = 0;
-	private double rndm = 32+Math.random()*5;
+	private double rndm = 32;
 	private int [] occupancy;
 	
 	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {

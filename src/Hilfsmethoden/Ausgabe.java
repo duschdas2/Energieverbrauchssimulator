@@ -152,12 +152,32 @@ public class Ausgabe {
 					else {
 						for (int t2 = 0; t2 < wm.getModiDauer().size(); t2++) {
 							for (int dauer = 0; dauer < (int) wm.getModiDauer().get(t2); dauer++) {
+								System.out.println("WM " + t2 + " " + dauer);
 								gerätAn[c][i] *= Math.round(100.0 * wm.randomisieren()) / 100.0;
 								c++;
 							}
 							wm.setModus(wm.getModus() +1);
 						}
 						wm.setModus(0);
+					}
+				}
+				break;
+			case "trockner":
+				Trockner tr = new Trockner();
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
+					if (gerätAn[c][i] == 0) {
+						gerätAn[c][i] = tr.getStandby();
+					}
+					else {
+						for (int t2 = 0; t2 < tr.getModiDauer().size(); t2++) {
+							for (int dauer = 0; dauer < (int) tr.getModiDauer().get(t2); dauer++) {
+								System.out.println("TR " + t2 + " " + dauer);
+								gerätAn[c][i] *= Math.round(100.0 * tr.randomisieren()) / 100.0;
+								c++;
+							}
+							tr.setModus(tr.getModus() +1);
+						}
+						tr.setModus(0);
 					}
 				}
 				break;

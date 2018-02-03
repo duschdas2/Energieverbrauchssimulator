@@ -7,13 +7,13 @@ public class WahrTrockner {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
 	private double tmp = Math.random()*1;
-	private double rndm = 32+Math.random()*5;
+	private double rndm = 73;
 	
 	public void getWahrTrockner(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,int timeSlotWashMa) {
 		Trockner tO = new Trockner();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot == timeSlotWashMa) {
-				if(timeSlotWashMa <= 1200 && timeSlotWashMa >= 420) {
+				if(timeSlotWashMa <= 1200 && timeSlotWashMa >= 420 && betriebsDauer < rndm) {
 					tO.setOnWahrscheinlichkeit(1.0);
 					tO.setOffWahrscheinlichkeit(0.0);
 				}
