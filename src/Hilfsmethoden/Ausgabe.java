@@ -143,6 +143,25 @@ public class Ausgabe {
 					}
 				}
 				break;
+			case "kaffeemaschine":
+				Kaffeemaschine kf = new Kaffeemaschine();
+				boolean läuft = false;
+				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
+					if (gerätAn[c][i] == 0) {
+						gerätAn[c][i] = kf.getStandby();
+						kf.setModus(0);
+						läuft = false;
+					}
+					else if (gerätAn[c][i] == 1 && läuft == false){
+						gerätAn[c][i] *= Math.round(100.0 * kf.randomisieren()) / 100.0;
+						kf.setModus(kf.getModus() +1);
+						läuft = true;
+					}
+					else {
+						gerätAn[c][i] *= Math.round(100.0 * kf.randomisieren()) / 100.0;
+					}
+				}
+				break;
 			case "waschmaschine":
 				Waschmaschine wm = new Waschmaschine();
 				for (int c = 0; c < 1440; c++) { 		//Reihe des Arrays
