@@ -31,7 +31,7 @@ public class Ausgabe {
 		fuelle();
 		try {
 			String csv = Create_CSV.create(ausgabe);
-			Diagramm.erzeuge(csv);
+			Diagramm.erzeuge2(csv);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

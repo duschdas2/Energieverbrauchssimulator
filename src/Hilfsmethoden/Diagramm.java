@@ -5,19 +5,19 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.TickUnitSource;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.SeriesRenderingOrder;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import com.opencsv.CSVReader;
 
@@ -33,7 +33,7 @@ public class Diagramm {
 	
 	public static void main(String[] args) {
 		try {
-			erzeuge(STRING_ARRAY_SAMPLE5);
+			erzeuge2(STRING_ARRAY_SAMPLE5);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -74,6 +74,7 @@ public class Diagramm {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
 	// Für Eco datenset Ausgabe
 	public static void erzeugeEco(String s) throws IOException {
 		Reader reader = Files.newBufferedReader(Paths.get(s));
@@ -102,40 +103,49 @@ public class Diagramm {
 		frame.setVisible(true);
 	}
 	
-//	public static void erzeuge2(String s) {
-//		JFreeChart xylineChart = ChartFactory.createXYLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", erstelleDataset(), PlotOrientation.VERTICAL, true, true, false);
-//		XYPlot plot = xylineChart.getXYPlot();
-//		plot.setBackgroundPaint(Color.black);
-//	    ChartPanel chartPanel = new ChartPanel( xylineChart );
-//	    chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
-//		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
-//		Für XYSeries: http://www.codejava.net/java-se/graphics/using-jfreechart-to-draw-xy-line-chart-with-xydataset
-//		Für die Ticks: https://sites.google.com/site/drjohnbmatthews/jfreechartdemo
-//	    renderer.setSeriesPaint( 0 , Color.RED );
-//	    renderer.setSeriesPaint( 1 , Color.GREEN );
-//	    renderer.setSeriesPaint( 2 , Color.YELLOW );
-//	    renderer.setSeriesStroke( 0 , new BasicStroke( 2.0f ) );
-//	    renderer.setSeriesStroke( 1 , new BasicStroke( 2.0f ) );
-//	    renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
-//	    plot.setRenderer( renderer ); 
-//	    setContentPane( chartPanel ); 
-//	}
-//	
-//	private static XYDataset erstelleDataset() {
-//		Reader reader = Files.newBufferedReader(Paths.get(s));
-//		CSVReader csvReader = new CSVReader(reader, ';');
-//		String[] header = csvReader.readNext();
-//		String [] nextLine;
-//		http://www.codejava.net/java-se/graphics/using-jfreechart-to-draw-xy-line-chart-with-xydataset
-//		XYSeriesCollection dataset = new XYSeriesCollection();
-//		for (int i = 0; i < header.length; i++){
-//			dataset.addSeries(erstelleSerie(i, header[i]));
-//		}
-//	}
-//	
-//	private static XYSeries erstelleSerie(int stelle, String name) {
-//		XYSeries series = new XYSeries(name);
-//		Wahrscheinlich müssen alle benötigten Dinge um die CSV auszulesen global für die Klasse werden
-//		Dann einfach eine While Schleife die die neue Reihe liest und dann nur die Stelle i der Reihe in die Serie einfügen mit dem Zähler von 1 bis 1440
-//	}
+	public static void erzeuge2(String s) throws IOException {
+		JFreeChart xylineChart = ChartFactory.createXYLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", erstelleDataset(s), PlotOrientation.VERTICAL, true, true, false);
+		XYPlot plot = xylineChart.getXYPlot();
+		plot.setBackgroundPaint(Color.black);
+		plot.setSeriesRenderingOrder(SeriesRenderingOrder.FORWARD);
+	    ChartPanel chartPanel = new ChartPanel( xylineChart );
+	    chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+		
+		// Erstellt das Frame zum abbilden des Graphen
+		ChartFrame frame = new ChartFrame("Diagramm", xylineChart);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	
+	private static XYDataset erstelleDataset(String s) throws IOException {
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		Reader reader = Files.newBufferedReader(Paths.get(s));
+		CSVReader csvReader = new CSVReader(reader, ';');
+		String[] header = csvReader.readNext();
+		String [] nextLine;
+		ArrayList <XYSeries> serien = new ArrayList <XYSeries>();
+		double c = 1.0;
+		
+		for (int i = 0; i < header.length; i++) {
+			XYSeries series = new XYSeries(header[i]);
+			serien.add(series);
+		}
+		
+		while ((nextLine = csvReader.readNext()) != null) {
+			for (int i = 0; i < header.length; i++){
+				double tmp = Double.valueOf(nextLine[i]);
+				if (i == 0) {								//Die Occupancy wird aus anschaulichen Gründen mal 10 genommen
+					serien.get(i).add(c, tmp*10);
+				}else {
+					serien.get(i).add(c, tmp);
+				}
+			}
+			c++;
+		}
+		
+		for (int i = 0; i < serien.size(); i++) {
+			dataset.addSeries(serien.get(i));
+		}
+		return dataset;
+	}
 }
