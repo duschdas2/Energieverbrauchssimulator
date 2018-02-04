@@ -44,9 +44,9 @@ public class Personentyp {
 		double schwankungWeg = 0, schwankungDaheim;
 		int lateness = 0;
 		if(typ.equals("Student"))
-			schwankungDaheim = 0.001;
+			schwankungDaheim = 0.00005;
 		else
-			schwankungDaheim = 0.004;
+			schwankungDaheim = 0.0001;
 		for(int i = 0; i< awayTime.length; i++){
 			awayTime[i] = 1;
 		}

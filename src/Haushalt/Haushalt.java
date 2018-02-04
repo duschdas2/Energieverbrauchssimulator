@@ -56,6 +56,10 @@ public class Haushalt {
 	@Override
 	public String toString(){
 		String ausgabe = "";
+		for(int i = 0; i < personen.size(); i++){
+			ausgabe += personen.get(i).getPersonentyp().getTyp();
+			ausgabe += "\n---------------\n";
+		}
 		for(int i = 0; i < 1440; i++){
 			ausgabe += "Minute: " + (i+1) + "\t" + occupancy[i] + "\t";
 			for(int j = 0; j < personen.size(); j++){

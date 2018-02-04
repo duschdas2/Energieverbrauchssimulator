@@ -158,13 +158,13 @@ public class Input extends Application {
 			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
 		if(choicePersTyp2.isDisabled() == false) {
-			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
+			list.add(new Person(new Personentyp(choicePersTyp2.getValue())));
 		}
 		if(choicePersTyp3.isDisabled() == false) {
-			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
+			list.add(new Person(new Personentyp(choicePersTyp3.getValue())));
 		}
 		if(choicePersTyp4.isDisabled() == false) {
-			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
+			list.add(new Person(new Personentyp(choicePersTyp4.getValue())));
 		}
 		if(checkDiagramm.isSelected() == true) {
 			diagramm = true;
