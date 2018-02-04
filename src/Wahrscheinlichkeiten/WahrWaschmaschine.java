@@ -40,7 +40,7 @@ public class WahrWaschmaschine {
 						wM.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]);
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Waschmaschine gerade nicht benutzt
-						if(timeSlot >= 360 && timeSlot <= 1200) { // Benutzung zwischen 11 und 13 Uhr höher
+						if(timeSlot >= 360 && timeSlot <= 1200 || timeSlot >= 900 && timeSlot <= 1140) { // Benutzung zwischen 11 und 13 Uhr und 15-19 Uhrhöher
 								wM.setOnWahrscheinlichkeit(0.0005*occupancy[timeSlot]);
 								wM.setOffWahrscheinlichkeit(0.9995*occupancy[timeSlot]);
 						}
@@ -67,12 +67,12 @@ public class WahrWaschmaschine {
 			}
 		}
 		
-		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
-			if(anzahlAn < tmp) {
-				wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.01);
-				wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.01);
-			}
-		}
+		//if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+		//	if(anzahlAn < tmp) {
+		//		wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.005);
+		//		wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.005);
+		//	}
+		//}
 		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm) {
 			gerätAn[timeSlot][aktGerät] = 1;

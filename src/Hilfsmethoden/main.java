@@ -57,19 +57,55 @@ public class main {
 		}
 		Ausgabe.erstelleArr(haushalt.getOccupancy(), gerätAn, geräte);
 		*/
-		double[] tmpData = new double[1440];
+		
+		double[] tmpDataLampe = new double[1440];
+		double[] tmpDataFern = new double[1440];
+		double[] tmpDataKaffee = new double[1440];
+		double[] tmpDataKühl = new double[1440];
+		double[] tmpDataMikro = new double[1440];
+		double[] tmpDataPc = new double[1440];
+		double[] tmpDataTrock = new double[1440];
+		double[] tmpDataWasch = new double[1440];
 		double[] tmpDataWass = new double[1440];
-		String[][] tmpData2 = new String[1440][1];
-		tmpData = Eco.GetAll(7, "kühlschrank");
-		//tmpDataWass = Eco.GetAll(1, "wasserkocher");
-		for(int i = 0; i<tmpData.length;i++)
+
+		double[][] tmpData2 = new double[1440][9];
+		ArrayList <String> geräte = new ArrayList<String>();
+		geräte.add("deckenlampe");
+		geräte.add("fernseher");
+		geräte.add("kaffeemaschine");
+		geräte.add("kühlschrank");
+		geräte.add("mikrowelle");
+		geräte.add("pc");
+		geräte.add("trockner");
+		geräte.add("waschmaschine");
+		geräte.add("wasserkocher");
+
+		tmpDataLampe = Eco.GetSpecific(5, "deckenlampe");
+		tmpDataFern = Eco.GetSpecific(5, "fernseher");
+		tmpDataKaffee = Eco.GetSpecific(5, "kaffeemaschine");
+		tmpDataKühl = Eco.GetSpecific(5, "kühlschrank");
+		tmpDataMikro = Eco.GetSpecific(5, "mikrowelle");
+		tmpDataPc = Eco.GetSpecific(5, "pc");
+		tmpDataTrock = Eco.GetSpecific(5, "trockner");
+		tmpDataWasch = Eco.GetSpecific(5, "waschmaschine");
+		tmpDataWass = Eco.GetSpecific(5, "wasserkocher");
+		for(int i = 0; i<tmpDataKühl.length;i++)
 		{
-			tmpData2[i][0] = String.valueOf(tmpData[i]);
-			//tmpData2[i][1] = String.valueOf(tmpDataWass[i]);
+			tmpData2[i][0] = tmpDataLampe[i];
+			tmpData2[i][1] = tmpDataFern[i];
+			tmpData2[i][2] = tmpDataKaffee[i];
+			tmpData2[i][3] = tmpDataKühl[i];
+			tmpData2[i][4] = tmpDataMikro[i];
+			tmpData2[i][5] = tmpDataPc[i];
+			tmpData2[i][6] = tmpDataTrock[i];
+			tmpData2[i][7] = tmpDataWasch[i];
+			tmpData2[i][8] = tmpDataWass[i];
 			//System.out.println(tmpData[i]);
 		}
-		String csv = Create_CSV.create(tmpData2);
-		Diagramm.erzeugeEco(csv);
+		int[] test = new int[1440];
+		Ausgabe.erstelleArr(test, tmpData2, geräte);
+		//String csv = Create_CSV.create(tmpData2);
+		//Diagramm.erzeugeEco(csv);
 	}
 	
 	public static void getStatData(double [][] statAnalysis,ArrayList <String> geräte) throws IOException {

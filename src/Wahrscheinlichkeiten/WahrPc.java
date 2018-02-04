@@ -51,8 +51,8 @@ public class WahrPc {
 		
 		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
 			if(anzahlAn < tmp) {
-				pC.setOnWahrscheinlichkeit(pC.getOnWahrscheinlichkeit()+0.02);
-				pC.setOffWahrscheinlichkeit(1-pC.getOffWahrscheinlichkeit()+0.02);
+				pC.setOnWahrscheinlichkeit(pC.getOnWahrscheinlichkeit()+0.002);
+				pC.setOffWahrscheinlichkeit(1-pC.getOffWahrscheinlichkeit()+0.002);
 			}
 		}
 		

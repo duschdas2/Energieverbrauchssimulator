@@ -271,10 +271,10 @@ public class Input extends Application {
 			if(geräte.get(i) == "trockner") { 
 				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			}
-			if(geräte.get(i) == "waschmaschine") { 
-				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
-			}
-			//if(geräte.get(i) == "fernseher") { //flasche Date ? immer nachts an ? 
+			//if(geräte.get(i) == "waschmaschine") {  //falsche Daten ? immer nachts an ? 
+			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			//}
+			//if(geräte.get(i) == "fernseher") { //falsche Daten ? immer nachts an ? 
 			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			//}
 			//if(geräte.get(i) == "mikrowelle") { //Falsche Daten immer an !!

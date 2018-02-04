@@ -11,7 +11,7 @@ public class WahrFernseher {
 	private int anzahlAn = 0;
 	private double tmp = Math.random()*3;
 	private int rndm = Math.random() < 0.5 ? -1 : 1;
-	private double maxZeit = Math.floor((Math.random() * 150) + 15);
+	private double maxZeit = Math.floor((Math.random() * 250) + 15);
 	private boolean hatKind = false;
 	private int anzKind = 0;
 	
@@ -43,8 +43,8 @@ public class WahrFernseher {
 							}
 						}
 						if(timeSlot >= 1020 && timeSlot <= 1440) { // Benutzung zwischen 17 und 24 Uhr höher
-								lF.setOnWahrscheinlichkeit(0.0005*occupancy[timeSlot]);
-								lF.setOffWahrscheinlichkeit(0.9995*occupancy[timeSlot]);
+								lF.setOnWahrscheinlichkeit(0.003*occupancy[timeSlot]);
+								lF.setOffWahrscheinlichkeit(0.995*occupancy[timeSlot]);
 						}
 						else if(timeSlot >= 1441 || timeSlot <= 420) { //Benutzung nach 24 Uhr unwarscheinlich
 							lF.setOnWahrscheinlichkeit(0.00005);
