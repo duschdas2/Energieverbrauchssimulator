@@ -65,7 +65,7 @@ public class WahrDeckenLampe {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer = 0;
 			anzahlAn++;
-			rndm = (int) (Math.random()*30+1);
+			rndm = (int) (Math.random()*15+1);
 			//System.out.println("TimeSlot2: " + timeSlot);
 		}		
 	}
