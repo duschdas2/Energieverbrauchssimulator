@@ -8,7 +8,7 @@ public class WahrPc {
 	private double tmp = Math.random()*3;
 	private double dauer = Math.floor((Math.random() * 100) + 10);
 	
-	public void getWahrPc(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public void getWahrPc(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot, boolean statData) {
 		PC pC = new PC();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -48,6 +48,14 @@ public class WahrPc {
 				pC.setOffWahrscheinlichkeit(0.0);
 			}
 		}
+		
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+			if(anzahlAn < tmp) {
+				pC.setOnWahrscheinlichkeit(pC.getOnWahrscheinlichkeit()+0.02);
+				pC.setOffWahrscheinlichkeit(1-pC.getOffWahrscheinlichkeit()+0.02);
+			}
+		}
+		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < dauer && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

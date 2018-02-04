@@ -5,10 +5,10 @@ import GerätePackage.DeckenLampe;
 public class WahrDeckenLampe {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
-	private double tmp = Math.random()*5+5;
-	private int rndm = (int) (Math.random()*10+5);
+	private double tmp = Math.random()*10+20;
+	private int rndm = (int) (Math.random()*5+1);
 	
-	public void getWahrDeckenLampe(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public void getWahrDeckenLampe(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,boolean statData) {
 		DeckenLampe dL = new DeckenLampe();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -48,6 +48,14 @@ public class WahrDeckenLampe {
 				dL.setOffWahrscheinlichkeit(0.0);
 			}
 		}
+		
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+			if(anzahlAn < tmp) {
+				dL.setOnWahrscheinlichkeit(dL.getOnWahrscheinlichkeit()+0.008);
+				dL.setOffWahrscheinlichkeit(1-dL.getOffWahrscheinlichkeit()+0.008);
+			}
+		}
+		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;
@@ -57,7 +65,7 @@ public class WahrDeckenLampe {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer = 0;
 			anzahlAn++;
-			rndm = (int) (Math.random()*15+8);
+			rndm = (int) (Math.random()*30+1);
 			//System.out.println("TimeSlot2: " + timeSlot);
 		}		
 	}

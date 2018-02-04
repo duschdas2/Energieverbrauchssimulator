@@ -9,7 +9,7 @@ public class WahrWasserKocher {
 
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
-	private double tmp = Math.random()*2;
+	private double tmp = Math.random()*3;
 	private int [] occupancy = new int[1440];
 
 	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {
@@ -25,7 +25,7 @@ public class WahrWasserKocher {
 		}
 	}
 	
-	public void getWahrWasserKocher(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public void getWahrWasserKocher(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,boolean statData) {
 		Wasserkocher wk = new Wasserkocher();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -62,12 +62,13 @@ public class WahrWasserKocher {
 			}
 		}
 		
-		//if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0) {	//Wert verändern
-		//	if(anzahlAn < tmp) {
-		//		wk.setOnWahrscheinlichkeit(wk.getOnWahrscheinlichkeit()+0.04);
-		//		wk.setOffWahrscheinlichkeit(wk.getOffWahrscheinlichkeit()+0.04);
-		//	}
-		//}
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+			if(anzahlAn < tmp) {
+				wk.setOnWahrscheinlichkeit(wk.getOnWahrscheinlichkeit()+0.01);
+				wk.setOffWahrscheinlichkeit(1-wk.getOffWahrscheinlichkeit()+0.01);
+			}
+		}
+		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < wk.getBetriebsdauer()-1 && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

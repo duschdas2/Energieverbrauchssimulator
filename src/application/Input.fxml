@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="anchorFenster" minHeight="385.0" minWidth="400.0" prefHeight="425.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="anchorFenster" minHeight="385.0" minWidth="400.0" prefHeight="440.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextArea editable="false" layoutX="20.0" layoutY="14.0" prefHeight="134.0" prefWidth="481.0" text="Willkomen!&#10;&#10;Bitte füllen Sie die Gewünschten Daten aus und drücken Sie auf Start. &#10;Es wird eine CSV Datei generiert und auf Wunsch direkt ein Diagramm mit den simulierten Daten erstellt.&#10;CSV Speicherort: /CSV/Test" wrapText="true" />
       <Label layoutX="208.0" layoutY="171.0" prefHeight="17.0" prefWidth="45.0" text="Geräte:" />
@@ -22,8 +22,8 @@
       <ChoiceBox fx:id="choicePersTyp2" layoutX="20.0" layoutY="255.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choicePersTyp3" layoutX="20.0" layoutY="290.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choicePersTyp4" layoutX="20.0" layoutY="325.0" prefWidth="150.0" />
-      <CheckBox fx:id="checkDiagramm" layoutX="349.0" layoutY="350.0" mnemonicParsing="false" text="Diagramm generieren" />
-      <Button fx:id="btnStart" layoutX="370.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Start" />
+      <CheckBox fx:id="checkDiagramm" layoutX="330.0" layoutY="374.0" mnemonicParsing="false" text="Diagramm generieren" />
+      <Button fx:id="btnStart" layoutX="384.0" layoutY="399.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Start" />
       <CheckBox fx:id="checkKühlschrank" layoutX="213.0" layoutY="264.0" mnemonicParsing="false" text="Kühlschrank" />
       <CheckBox fx:id="checkMikrowelle" layoutX="213.0" layoutY="288.0" mnemonicParsing="false" text="Mikrowelle" />
       <CheckBox fx:id="checkLCDFernseher" layoutX="350.0" layoutY="216.0" mnemonicParsing="false" text="LCDFernseher" />
@@ -35,5 +35,6 @@
       <CheckBox fx:id="checkDeckenLampe" layoutX="349.0" layoutY="312.0" mnemonicParsing="false" text="DeckenLampe" />
       <ChoiceBox fx:id="choicePersTyp41" layoutX="180.0" layoutY="374.0" prefWidth="150.0" visible="false" />
       <Label layoutX="180.0" layoutY="350.0" prefHeight="17.0" prefWidth="85.0" text="Jahreszeit:" visible="false" />
+      <CheckBox fx:id="checkStat" layoutX="330.0" layoutY="350.0" mnemonicParsing="false" text="Statistische Daten einbeziehen" />
    </children>
 </Pane>

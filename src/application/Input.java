@@ -51,6 +51,7 @@ public class Input extends Application {
 	@FXML private CheckBox checkTrockner;
 	@FXML private CheckBox checkPc;
 	@FXML private CheckBox checkDeckenLampe;
+	@FXML private CheckBox checkStat;
 	@FXML private Slider slider;
 	@FXML private Label lblCountSlider;
 	@FXML private ChoiceBox<String> choicePersTyp1;
@@ -62,6 +63,7 @@ public class Input extends Application {
 	private ArrayList <String> geräte = new ArrayList<String>();
 	private ArrayList<Person> list = new ArrayList<Person>();
 	private boolean diagramm = false;
+	private boolean statData = false;
 
 	@FXML public void initialize() {
 		ObservableList<String> personenTypen = FXCollections.observableArrayList("Arbeitslos","Arbeiter","Kind","Student");
@@ -149,6 +151,9 @@ public class Input extends Application {
 		if(checkPc.isSelected() == true) {
 			geräte.add("pc");
 		}
+		if(checkStat.isSelected() == true) {
+			statData = true;
+		}
 		if(choicePersTyp1.isDisabled() == false) {
 			list.add(new Person(new Personentyp(choicePersTyp1.getValue())));
 		}
@@ -196,11 +201,11 @@ public class Input extends Application {
 				}
 				if(geräte.get(aktGerät) == "wasserkocher") {
 					wahrWk.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
-					wahrWk.getWahrWasserKocher(statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrWk.getWahrWasserKocher(statAnalysis,gerätAn,aktGerät,tSlot,statData);
 				}
 				if(geräte.get(aktGerät) == "mikrowelle") {
 					wahrMw.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
-					wahrMw.getWahrMikrowelle(statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrMw.getWahrMikrowelle(statAnalysis,gerätAn,aktGerät,tSlot,statData);
 				}
 				if(geräte.get(aktGerät) == "staubsauger") {
 					wahrSs.getWahrStaubsauger(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
@@ -210,23 +215,23 @@ public class Input extends Application {
 				}
 				if(geräte.get(aktGerät) == "kaffeemaschine") {
 					wahrKm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
-					wahrKm.getWahrKaffeemaschine(statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrKm.getWahrKaffeemaschine(statAnalysis,gerätAn,aktGerät,tSlot,statData);
 				}
 				if(geräte.get(aktGerät) == "lcdFernseher") {
 					if(firstRun == true) {
 						wahrFs.sucheKind(haushalt.getPersonen());
 					}
-					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen());
+					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen(),statData);
 				}
 				if(geräte.get(aktGerät) == "plasmaFernseher") {
 					if(firstRun == true) {
 						wahrFs2.sucheKind(haushalt.getPersonen());
 					}
-					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen());
+					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen(),statData);
 				}
 				if(geräte.get(aktGerät) == "waschmaschine") {
 					wahrWm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());
-					waschMaAn = wahrWm.getWahrWaschmaschine(statAnalysis,gerätAn,aktGerät,tSlot);
+					waschMaAn = wahrWm.getWahrWaschmaschine(statAnalysis,gerätAn,aktGerät,tSlot,statData);
 				}
 				if(geräte.get(aktGerät) == "trockner") {
 					if(waschMaAn != 0) {
@@ -234,10 +239,10 @@ public class Input extends Application {
 					}
 				}
 				if(geräte.get(aktGerät) == "deckenlampe") {
-					wahrDl.getWahrDeckenLampe(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrDl.getWahrDeckenLampe(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,statData);
 				}
 				if(geräte.get(aktGerät) == "pc") {
-					wahrPc.getWahrPc(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot);
+					wahrPc.getWahrPc(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,statData);
 				}
 				firstRun = false;
 			}
@@ -254,9 +259,30 @@ public class Input extends Application {
 			if(geräte.get(i) == "wasserkocher") {
 				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			}
-			//if(geräte.get(i) == "kühlschrank") { //fehlt noch
+			if(geräte.get(i) == "kühlschrank") { 
+				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			}
+			if(geräte.get(i) == "kaffeemaschine") { 
+				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			}
+			if(geräte.get(i) == "pc") { 
+				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			}
+			if(geräte.get(i) == "trockner") { 
+				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			}
+			if(geräte.get(i) == "waschmaschine") { 
+				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			}
+			//if(geräte.get(i) == "fernseher") { //flasche Date ? immer nachts an ? 
 			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			//}
+			//if(geräte.get(i) == "mikrowelle") { //Falsche Daten immer an !!
+			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			//}
+			if(geräte.get(i) == "deckenlampe") { 
+				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
+			}
 			for(int j = 0; j<1440;j++) {
 				statAnalysis[j][i] = tmpData[j];
 			}

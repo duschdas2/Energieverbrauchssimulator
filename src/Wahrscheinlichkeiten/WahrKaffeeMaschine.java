@@ -24,7 +24,7 @@ public class WahrKaffeeMaschine {
 		}
 	}
 	
-	public void getWahrKaffeemaschine(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public void getWahrKaffeemaschine(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,boolean statData) {
 		Kaffeemaschine kM = new Kaffeemaschine();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -69,6 +69,14 @@ public class WahrKaffeeMaschine {
 				kM.setOffWahrscheinlichkeit(0.0);
 			}
 		}
+		
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0) {	//Wert verändern
+			if(anzahlAn < tmp) {
+				kM.setOnWahrscheinlichkeit(kM.getOnWahrscheinlichkeit()+0.02);
+				kM.setOffWahrscheinlichkeit(1-kM.getOffWahrscheinlichkeit()+0.02);
+			}
+		}
+		
 		if(timeSlot > 1 && gerätAn[timeSlot-1][aktGerät] == 1 && gerätAn[timeSlot-2][aktGerät] != 1 && betriebsDauer < 1 && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

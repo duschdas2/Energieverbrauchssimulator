@@ -26,7 +26,7 @@ public class WahrWaschmaschine {
 		}
 	}
 	
-	public int getWahrWaschmaschine(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot) {
+	public int getWahrWaschmaschine(double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,boolean statData) {
 		Waschmaschine wM = new Waschmaschine();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -66,6 +66,14 @@ public class WahrWaschmaschine {
 				wM.setOffWahrscheinlichkeit(0.0);
 			}
 		}
+		
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+			if(anzahlAn < tmp) {
+				wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.01);
+				wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.01);
+			}
+		}
+		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

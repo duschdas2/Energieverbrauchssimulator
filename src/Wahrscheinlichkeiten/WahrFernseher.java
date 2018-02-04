@@ -26,7 +26,7 @@ public class WahrFernseher {
 		}
 	}
 	//nicht 100% fertig
-	public void getWahrFernseher(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,ArrayList<Person> personen) {
+	public void getWahrFernseher(int [] occupancy, double [][] statAnalysis,double[][] gerätAn,int aktGerät, int timeSlot,ArrayList<Person> personen,boolean statData) {
 		LCDFernseher lF = new LCDFernseher();
 		if(occupancy[timeSlot] > 0) {	//Falls jemand Zuhause
 			if(timeSlot > 0) {	//Falls nicht erster Eintrag
@@ -79,6 +79,14 @@ public class WahrFernseher {
 			lF.setOnWahrscheinlichkeit(lF.getOnWahrscheinlichkeit()+0.01*anzKind);
 			lF.setOffWahrscheinlichkeit(1-lF.getOffWahrscheinlichkeit()+0.01*anzKind);
 		}
+		
+		//if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+		//	if(anzahlAn < tmp) {
+		//		lF.setOnWahrscheinlichkeit(lF.getOnWahrscheinlichkeit()+0.01);
+		//		lF.setOffWahrscheinlichkeit(1-lF.getOffWahrscheinlichkeit()+0.01);
+		//	}
+		//}
+		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < maxZeit && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

@@ -48,18 +48,7 @@ public class WahrStaubsauger {
 			sb.setOnWahrscheinlichkeit(0.0);
 			sb.setOffWahrscheinlichkeit(0.0);
 		}
-		/*if(timeSlot > 100 && betriebsDauer == 0 && anzahlAn == 0) {
-			for(int i = 100; i>0 ;i--)
-			{
-				if(gerätAn[timeSlot-i][aktGerät] == 1)
-				{
-					sb.setOnWahrscheinlichkeit(0.00001*occupancy[timeSlot]);
-					sb.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]);
-				}
-			}
-		}*/
-		//EVTL mit statistischen Daten draufrechnen um Genauigkeit zu erhöhen!! (Keine Daten für Staubsauger)!!
-		
+	
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer <= randomDauer && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;
@@ -69,14 +58,7 @@ public class WahrStaubsauger {
 			gerätAn[timeSlot][aktGerät] = 1;
 			anzahlAn++;
 			betriebsDauer = 0;
-			//if(gerätAn[timeSlot-1][aktGerät] == 1) {
-			//	//anzahlAn--;
-			//	betriebsDauer++;
-			//}
-			//else {
-			//	betriebsDauer = 0;
-				randomDauer = 5+Math.random()*40;
-			//}
+			randomDauer = 5+Math.random()*40;
 		}		
 	}
 }
