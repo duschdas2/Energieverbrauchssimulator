@@ -50,7 +50,7 @@ public class Create_CSV {
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter df;
 		df = DateTimeFormatter.ISO_DATE_TIME;
-		df = DateTimeFormatter.ofPattern("dd.MM.yyyy_kk.mm");
+		df = DateTimeFormatter.ofPattern("dd.MM.yyyy_kk.mm.ss");
 		String s = PATH;
 		s = s.concat(now.format(df).concat(".csv"));
 		return s;
