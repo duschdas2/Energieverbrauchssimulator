@@ -91,7 +91,7 @@ public class Personentyp {
 		case "Kind":	arbeitszeit = 492; //Schulzeit pro Woche laut Unicef Umfrage
 						startzeit = 450;
 						break;
-		case "Student":	arbeitszeit = 441; //Studienzeit pro woche laut spiegel
+		case "Student":	arbeitszeit = 401; //Studienzeit pro woche laut spiegel
 						startzeit = 510;
 						break;
 		case "Arbeitslos": break;
