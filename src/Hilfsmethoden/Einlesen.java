@@ -21,7 +21,7 @@ public class Einlesen {
 		return mean;	
 	}
 	
-	//List die Datei ein und speichert sie im Array data
+	//Liest die Datei ein und speichert sie im Array data
 	public static double [] GetData(String path) throws IOException {
 		double [] data = new double[86400];
 		CSVReader reader = new CSVReader(new FileReader(path));
@@ -37,13 +37,13 @@ public class Einlesen {
 	    return tmp;
 	}
 	
-	//Überprüft Minuten genau ob ein Gerät lief, wenn ja dann +1
+	//Überprüft Minuten genau ob ein Gerät lief, wenn ja dann +1 (>60 um fehlerhafte oder zu kleine Daten zu vermeiden)
 	public static double [] SortData(double [] data)
 	{
 		double [] real = new double[1440];
 		int pos = 0;
 		for(int i = 0; i < data.length;i++) {
-			if(i % 60 == 0 && i > 0) {
+			if(i % 60 == 0 && i > 60) {
 				for(int counter = 60; counter > 0;counter --) {
 					if(data[i-counter] != 0 && data[i-counter] != -1){
 						real[pos] = real[pos]+1;

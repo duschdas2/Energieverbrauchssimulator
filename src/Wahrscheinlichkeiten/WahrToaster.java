@@ -48,6 +48,14 @@ public class WahrToaster {
 				ts.setOffWahrscheinlichkeit(0.0);
 			}
 		}
+		
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0) {	//Wert verändern
+			if(anzahlAn < tmp) {
+				ts.setOnWahrscheinlichkeit(ts.getOnWahrscheinlichkeit()+0.01);
+				ts.setOffWahrscheinlichkeit(1-ts.getOffWahrscheinlichkeit()+0.01);
+			}
+		}
+		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < ts.getBetriebsdauer() && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

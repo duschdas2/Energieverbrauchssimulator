@@ -67,12 +67,12 @@ public class WahrWaschmaschine {
 			}
 		}
 		
-		//if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
-		//	if(anzahlAn < tmp) {
-		//		wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.005);
-		//		wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.005);
-		//	}
-		//}
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
+			if(anzahlAn < tmp) {
+				wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.01);
+				wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.01);
+			}
+		}
 		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm) {
 			gerätAn[timeSlot][aktGerät] = 1;

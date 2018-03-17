@@ -70,7 +70,7 @@ public class WahrKaffeeMaschine {
 			}
 		}
 		
-		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0) {	//Wert verändern
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0) {
 			if(anzahlAn < tmp) {
 				kM.setOnWahrscheinlichkeit(kM.getOnWahrscheinlichkeit()+0.01);
 				kM.setOffWahrscheinlichkeit(1-kM.getOffWahrscheinlichkeit()+0.01);

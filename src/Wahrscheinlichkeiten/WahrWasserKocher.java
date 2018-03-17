@@ -62,7 +62,7 @@ public class WahrWasserKocher {
 			}
 		}
 		
-		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
 			if(anzahlAn < tmp) {
 				wk.setOnWahrscheinlichkeit(wk.getOnWahrscheinlichkeit()+0.01);
 				wk.setOffWahrscheinlichkeit(1-wk.getOffWahrscheinlichkeit()+0.01);

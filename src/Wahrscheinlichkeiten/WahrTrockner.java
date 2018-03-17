@@ -25,7 +25,6 @@ public class WahrTrockner {
 				tO.setOffWahrscheinlichkeit(0.0);
 		}
 		
-		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;

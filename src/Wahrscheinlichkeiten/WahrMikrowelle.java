@@ -70,12 +70,12 @@ public class WahrMikrowelle {
 			}
 		}
 		
-		//if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
-		//	if(anzahlAn < tmp) {
-		//		mw.setOnWahrscheinlichkeit(mw.getOnWahrscheinlichkeit()+0.06);
-		//		mw.setOffWahrscheinlichkeit(1-mw.getOffWahrscheinlichkeit()+0.06);
-		//	}
-		//}
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
+			if(anzahlAn < tmp) {
+				mw.setOnWahrscheinlichkeit(mw.getOnWahrscheinlichkeit()+0.01);
+				mw.setOffWahrscheinlichkeit(1-mw.getOffWahrscheinlichkeit()+0.01);
+			}
+		}
 		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < mw.getBetriebsdauer()-1 && occupancy[timeSlot] != 0) {
 			gerätAn[timeSlot][aktGerät] = 1;

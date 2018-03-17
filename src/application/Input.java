@@ -221,13 +221,13 @@ public class Input extends Application {
 					if(firstRun == true) {
 						wahrFs.sucheKind(haushalt.getPersonen());
 					}
-					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen(),statData);
+					wahrFs.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen(),statData,"LCD");
 				}
 				if(geräte.get(aktGerät) == "plasmaFernseher") {
 					if(firstRun == true) {
 						wahrFs2.sucheKind(haushalt.getPersonen());
 					}
-					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen(),statData);
+					wahrFs2.getWahrFernseher(haushalt.getOccupancy(),statAnalysis,gerätAn,aktGerät,tSlot,haushalt.getPersonen(),statData,"Plasma");
 				}
 				if(geräte.get(aktGerät) == "waschmaschine") {
 					wahrWm.sucheKind(haushalt.getPersonen(), haushalt.getOccupancy());

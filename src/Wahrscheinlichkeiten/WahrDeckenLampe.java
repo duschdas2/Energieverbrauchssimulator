@@ -49,7 +49,7 @@ public class WahrDeckenLampe {
 			}
 		}
 		
-		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {	//Wert verändern
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
 			if(anzahlAn < tmp) {
 				dL.setOnWahrscheinlichkeit(dL.getOnWahrscheinlichkeit()+0.008);
 				dL.setOffWahrscheinlichkeit(1-dL.getOffWahrscheinlichkeit()+0.008);
