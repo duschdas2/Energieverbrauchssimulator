@@ -11,7 +11,8 @@ public class WahrWaschmaschine {
 	private double tmp = Math.random()*1;
 	private int temp = 0;
 	private double rndm = 32;
-	private int [] occupancy = new int[1440];;
+	private int [] occupancy = new int[1440];
+	private int anzKinder = 1;
 	
 	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {
 		for(int i = 0;i<occupancy.length;i++) {
@@ -22,6 +23,11 @@ public class WahrWaschmaschine {
 				if(personen.get(i).getPersonentyp().getTyp() == "Kind") {				
 					this.occupancy[a] --;
 				}
+			}
+		}
+		for(int i = 0; i<personen.size();i++) {
+			if(personen.get(i).getPersonentyp().getTyp() == "Kind") {				
+				anzKinder++;
 			}
 		}
 	}
@@ -36,28 +42,28 @@ public class WahrWaschmaschine {
 						wM.setOffWahrscheinlichkeit(0);
 					}
 					else if(betriebsDauer == rndm-1) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
-						wM.setOnWahrscheinlichkeit(0.00001*occupancy[timeSlot]);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind
-						wM.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]);
+						wM.setOnWahrscheinlichkeit(0.00001*occupancy[timeSlot]*anzKinder-1);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind * Kinder im Haushalt
+						wM.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]*anzKinder-1);
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Waschmaschine gerade nicht benutzt
 						if(timeSlot >= 360 && timeSlot <= 1200 || timeSlot >= 900 && timeSlot <= 1140) { // Benutzung zwischen 11 und 13 Uhr und 15-19 Uhrhöher
-								wM.setOnWahrscheinlichkeit(0.0005*occupancy[timeSlot]);
-								wM.setOffWahrscheinlichkeit(0.9995*occupancy[timeSlot]);
+								wM.setOnWahrscheinlichkeit(0.0005*occupancy[timeSlot]*anzKinder-1);
+								wM.setOffWahrscheinlichkeit(0.9995*occupancy[timeSlot]*anzKinder-1);
 						}
 						else if(timeSlot >= 1200 || timeSlot <= 330) { //Benutzung nach 20 Uhr unwarscheinlich
 							wM.setOnWahrscheinlichkeit(0.0001);
 							wM.setOffWahrscheinlichkeit(0.9999);
 						}
 						else {
-							wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
-							wM.setOffWahrscheinlichkeit(0.99998*occupancy[timeSlot]);
+							wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]*anzKinder-1);
+							wM.setOffWahrscheinlichkeit(0.99998*occupancy[timeSlot]*anzKinder-1);
 						}
 					}
 				}
 			}
 			else if(timeSlot == 0 && anzahlAn < tmp) {
-				wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
-				wM.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]);
+				wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]*anzKinder-1);
+				wM.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]*anzKinder-1);
 			}
 		}
 		else { //Keine Veränderung niemand zu Hause!
@@ -67,12 +73,12 @@ public class WahrWaschmaschine {
 			}
 		}
 		
-		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
-			if(anzahlAn < tmp) {
-				wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.01);
-				wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.01);
-			}
-		}
+		//if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
+		//	if(anzahlAn < tmp) {
+		//		wM.setOnWahrscheinlichkeit(wM.getOnWahrscheinlichkeit()+0.0005);
+		//		wM.setOffWahrscheinlichkeit(1-wM.getOffWahrscheinlichkeit()+0.0005);
+		//	}
+		//}
 		
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm) {
 			gerätAn[timeSlot][aktGerät] = 1;

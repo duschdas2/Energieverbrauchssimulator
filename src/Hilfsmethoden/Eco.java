@@ -18,7 +18,8 @@ public class Eco {
 	public static double[] GetSpecific(int zahl,String gerät) throws IOException{
 		double [] tmp = new double[1440];
 		double [] mean = new double[1440];
-		tmp = GetData("CSV\\01\\"+gerät+"\\"+zahl+".csv");
+		//tmp = GetData("CSV\\01\\"+gerät+"\\"+zahl+".csv");
+		tmp = GetData("CSV\\ECO\\"+gerät+"\\"+zahl+".csv");
 		return tmp;
 	}
 	public static double [] GetData(String path) throws IOException {

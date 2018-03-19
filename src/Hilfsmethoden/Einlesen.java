@@ -37,13 +37,13 @@ public class Einlesen {
 	    return tmp;
 	}
 	
-	//Überprüft Minuten genau ob ein Gerät lief, wenn ja dann +1 (>60 um fehlerhafte oder zu kleine Daten zu vermeiden)
+	//Überprüft Minuten genau ob ein Gerät lief, wenn ja dann +1 (>30 um fehlerhafte oder zu kleine Daten zu vermeiden)
 	public static double [] SortData(double [] data)
 	{
 		double [] real = new double[1440];
 		int pos = 0;
 		for(int i = 0; i < data.length;i++) {
-			if(i % 60 == 0 && i > 60) {
+			if(i % 60 == 0 && i > 30) {
 				for(int counter = 60; counter > 0;counter --) {
 					if(data[i-counter] != 0 && data[i-counter] != -1){
 						real[pos] = real[pos]+1;

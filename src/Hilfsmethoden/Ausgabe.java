@@ -26,7 +26,7 @@ public class Ausgabe {
 		for (int i = 0; i < gesamtLast.length; i++) {	//Initialisiert das Array mit 0
 			gesamtLast[i] = 0;
 		}
-		geraete();
+		geraete();									//muss bei Eco ausgabe auskommentiert werden
 		gesamt();
 		fuelle();
 		try {
