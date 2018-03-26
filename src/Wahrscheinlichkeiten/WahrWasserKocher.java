@@ -9,7 +9,7 @@ public class WahrWasserKocher {
 
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;
-	private double tmp = Math.random()*3;
+	private double tmp = Math.random()*4;
 	private int [] occupancy = new int[1440];
 
 	public void sucheKind(ArrayList<Person> personen,int [] occupancy) {
@@ -36,8 +36,8 @@ public class WahrWasserKocher {
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Wasserkocher gerade nicht benutzt
 						if(timeSlot >= 360 && timeSlot <= 540 || timeSlot >= 720 && timeSlot <= 840 || timeSlot >= 1080 && timeSlot <= 1200) { // Benutzung zwischen 8-9 Uhr,12 und 14 Uhr und 18-20 Uhr höher (evtl Random mit einbinden)
-								wk.setOnWahrscheinlichkeit(0.002*occupancy[timeSlot]);
-								wk.setOffWahrscheinlichkeit(0.998*occupancy[timeSlot]);
+								wk.setOnWahrscheinlichkeit(0.001*occupancy[timeSlot]);
+								wk.setOffWahrscheinlichkeit(0.999*occupancy[timeSlot]);
 						}
 						else if(timeSlot >= 1200 || timeSlot <= 330) { //Benutzung nach 20 Uhr unwarscheinlich
 							wk.setOnWahrscheinlichkeit(0.00005);
@@ -62,7 +62,7 @@ public class WahrWasserKocher {
 			}
 		}
 		
-		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] != 0 && statData == true) {
+		if(statAnalysis[timeSlot][aktGerät] >= 1 && occupancy[timeSlot] > 0 && statData == true) {
 			if(anzahlAn < tmp) {
 				wk.setOnWahrscheinlichkeit(wk.getOnWahrscheinlichkeit()+0.01);
 				wk.setOffWahrscheinlichkeit(1-wk.getOffWahrscheinlichkeit()+0.01);

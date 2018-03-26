@@ -17,7 +17,7 @@ public class WahrPc {
 						pC.setOnWahrscheinlichkeit(1);
 						pC.setOffWahrscheinlichkeit(0);
 					}
-					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Mikrowelle gerade nicht benutzt
+					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn PC gerade nicht benutzt
 						if(timeSlot >= 1080 && timeSlot <= 1440) { // Benutzung zwischen 18 und 24 Uhr am höchsten
 								pC.setOnWahrscheinlichkeit(0.003*occupancy[timeSlot]);
 								pC.setOffWahrscheinlichkeit(0.999*occupancy[timeSlot]);
@@ -27,8 +27,8 @@ public class WahrPc {
 							pC.setOffWahrscheinlichkeit(0.999*occupancy[timeSlot]);
 						}
 						else { //Benutzung über den Tag eher Unwarscheinlich
-							pC.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
-							pC.setOffWahrscheinlichkeit(0.99998*occupancy[timeSlot]);
+							pC.setOnWahrscheinlichkeit(0.0001*occupancy[timeSlot]);
+							pC.setOffWahrscheinlichkeit(0.9999*occupancy[timeSlot]);
 						}
 					}
 					else if(betriebsDauer == dauer) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
@@ -38,8 +38,8 @@ public class WahrPc {
 				}
 			}
 			else if(timeSlot == 0 && anzahlAn < tmp) {
-				pC.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]);
-				pC.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]);
+				pC.setOnWahrscheinlichkeit(0.0001*occupancy[timeSlot]);
+				pC.setOffWahrscheinlichkeit(0.9999*occupancy[timeSlot]);
 			}
 		}
 		else { //Keine Veränderung niemand zu Hause!

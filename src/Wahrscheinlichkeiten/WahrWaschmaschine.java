@@ -83,7 +83,6 @@ public class WahrWaschmaschine {
 		if(timeSlot > 0 && gerätAn[timeSlot-1][aktGerät] == 1 && betriebsDauer < rndm) {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer++;
-			//System.out.println("TimeSlot: " + timeSlot);
 			if(betriebsDauer >= rndm) {
 				double tmp = Math.random()*200+30;
 				temp = (int) (timeSlot+tmp);
@@ -93,7 +92,6 @@ public class WahrWaschmaschine {
 			gerätAn[timeSlot][aktGerät] = 1;
 			betriebsDauer = 0;
 			anzahlAn++;
-			//System.out.println("TimeSlot2: " + timeSlot);
 		}
 		return temp;
 	}
