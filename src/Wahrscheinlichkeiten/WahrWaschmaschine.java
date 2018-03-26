@@ -42,28 +42,28 @@ public class WahrWaschmaschine {
 						wM.setOffWahrscheinlichkeit(0);
 					}
 					else if(betriebsDauer == rndm-1) { //Gerät war bereits benutzt wahrscheinlichkeit sehr gering nochmal benutzt zu werden
-						wM.setOnWahrscheinlichkeit(0.00001*occupancy[timeSlot]*anzKinder-1);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind * Kinder im Haushalt
-						wM.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]*anzKinder-1);
+						wM.setOnWahrscheinlichkeit(0.00001*occupancy[timeSlot]*anzKinder);		//Wahrscheinlichkeit * Anzahl der Personen die anwesend sind * Kinder im Haushalt
+						wM.setOffWahrscheinlichkeit(0.99999*occupancy[timeSlot]*anzKinder);
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Waschmaschine gerade nicht benutzt
-						if(timeSlot >= 360 && timeSlot <= 1200 || timeSlot >= 900 && timeSlot <= 1140) { // Benutzung zwischen 11 und 13 Uhr und 15-19 Uhrhöher
-								wM.setOnWahrscheinlichkeit(0.0005*occupancy[timeSlot]*anzKinder-1);
-								wM.setOffWahrscheinlichkeit(0.9995*occupancy[timeSlot]*anzKinder-1);
+						if(timeSlot >= 360 && timeSlot <= 1200 || timeSlot >= 900 && timeSlot <= 1140) { // Benutzung zwischen 11 und 13 Uhr und 15-19 Uhr höher
+								wM.setOnWahrscheinlichkeit(0.0005*occupancy[timeSlot]*anzKinder);
+								wM.setOffWahrscheinlichkeit(0.9995*occupancy[timeSlot]*anzKinder);
 						}
-						else if(timeSlot >= 1200 || timeSlot <= 330) { //Benutzung nach 20 Uhr unwarscheinlich
-							wM.setOnWahrscheinlichkeit(0.0001);
-							wM.setOffWahrscheinlichkeit(0.9999);
+						else if(timeSlot >= 1200 || timeSlot <= 330) { //Benutzung nach 20 Uhr unwarscheinlicher
+							wM.setOnWahrscheinlichkeit(0.00001);
+							wM.setOffWahrscheinlichkeit(0.99999);
 						}
 						else {
-							wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]*anzKinder-1);
-							wM.setOffWahrscheinlichkeit(0.99998*occupancy[timeSlot]*anzKinder-1);
+							wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]*anzKinder);
+							wM.setOffWahrscheinlichkeit(0.99998*occupancy[timeSlot]*anzKinder);
 						}
 					}
 				}
 			}
 			else if(timeSlot == 0 && anzahlAn < tmp) {
-				wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]*anzKinder-1);
-				wM.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]*anzKinder-1);
+				wM.setOnWahrscheinlichkeit(0.0002*occupancy[timeSlot]*anzKinder);
+				wM.setOffWahrscheinlichkeit(0.9998*occupancy[timeSlot]*anzKinder);
 			}
 		}
 		else { //Keine Veränderung niemand zu Hause!

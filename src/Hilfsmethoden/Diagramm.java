@@ -28,12 +28,11 @@ public class Diagramm {
 	private static final String STRING_ARRAY_SAMPLE1 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\1.csv";
 	private static final String STRING_ARRAY_SAMPLE2 = "C:\\Users\\Julian\\Desktop\\jdemandmodel-master\\data\\output\\2.csv";
 	private static final String STRING_ARRAY_SAMPLE3 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\3.csv";
-	private static final String STRING_ARRAY_SAMPLE4 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\4.csv";
-	private static final String STRING_ARRAY_SAMPLE5 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\5.csv";
+	private static final String STRING_ARRAY_SAMPLE4 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\JDemand\\\\1.csv";
 	
 	public static void main(String[] args) {
 		try {
-			erzeuge2(STRING_ARRAY_SAMPLE5);
+			erzeuge2(STRING_ARRAY_SAMPLE4);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

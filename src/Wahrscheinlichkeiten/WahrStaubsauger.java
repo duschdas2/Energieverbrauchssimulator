@@ -20,7 +20,7 @@ public class WahrStaubsauger {
 						sb.setOffWahrscheinlichkeit(0.5*occupancy[timeSlot]);
 					}
 					else if (gerätAn[timeSlot-1][aktGerät] == 0) {	//Wenn Staubsauger gerade nicht benutzt
-						if(timeSlot >= 900 && timeSlot <= 1140 || timeSlot >= 540 && timeSlot <= 720) { // Benutzung zwischen 15-19 Uhr und 9-12 Uhr höher (evtl Random mit einbinden)
+						if(timeSlot >= 900 && timeSlot <= 1140 || timeSlot >= 540 && timeSlot <= 720) { // Benutzung zwischen 15-19 Uhr und 9-12 Uhr höher
 								sb.setOnWahrscheinlichkeit(0.002*occupancy[timeSlot]);
 								sb.setOffWahrscheinlichkeit(0.998*occupancy[timeSlot]);
 						}
