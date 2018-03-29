@@ -1,5 +1,4 @@
 package Hilfsmethoden;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.IOException;
 import java.io.Reader;
@@ -18,11 +17,14 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
+import org.jfree.data.category.DefaultCategoryDataset;
 import com.opencsv.CSVReader;
 
-import org.jfree.data.category.DefaultCategoryDataset;
-
+/**
+ * 
+ * @author Manuel Neis
+ *
+ */
 public class Diagramm {
 
 	private static final String STRING_ARRAY_SAMPLE1 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\1.csv";

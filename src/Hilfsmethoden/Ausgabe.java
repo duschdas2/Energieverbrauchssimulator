@@ -1,9 +1,13 @@
 package Hilfsmethoden;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import GerätePackage.*;
 
+/**
+ * 
+ * @author Manuel Neis
+ *
+ */
 public class Ausgabe {
 	
 	private static String [][] ausgabe;
