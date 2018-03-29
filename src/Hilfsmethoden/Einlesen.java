@@ -2,17 +2,10 @@ package Hilfsmethoden;
 import java.io.FileReader;
 import java.io.IOException;
 import com.opencsv.CSVReader;
-<<<<<<< HEAD
+
 /**
  * Diese Klasse regelt das einlesen von Daten.
  * @author Julian Grünker
-=======
-
-/**
- * 
- * @author Manuel Neis
- *
->>>>>>> branch 'master' of https://github.com/duschdas2/Energieverbrauchssimulator.git
  */
 public class Einlesen {
 	
