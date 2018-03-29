@@ -3,6 +3,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import com.opencsv.CSVReader;
 
+/**
+ * 
+ * @author Manuel Neis
+ *
+ */
 public class Einlesen {
 	
 	//Liest eine bestimmte Anzahl der Geräte ein und ermittelt die häufigkeit der Benutzungen pro Minute

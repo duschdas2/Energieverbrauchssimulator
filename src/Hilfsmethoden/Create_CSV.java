@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * Klasse die CSV-Dateien schreibt
- * @author Manuel
+ * @author Manuel Neis
  *
  */
 public class Create_CSV {
