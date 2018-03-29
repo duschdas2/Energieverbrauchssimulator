@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import GerätePackage.Kaffeemaschine;
 import Haushalt.Person;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit der Kaffeemaschine.
+ * @author Julian Grünker
+ */	
 public class WahrKaffeeMaschine {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;

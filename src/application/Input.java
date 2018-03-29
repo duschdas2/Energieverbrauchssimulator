@@ -1,5 +1,4 @@
 package application;
-	
 import java.io.IOException;
 import java.util.ArrayList;
 import GerätePackage.Kühlschrank;
@@ -34,7 +33,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
-
+/**
+ * Diese Klasse regelt das User Interface der Anwendung.
+ * @author Julian Grünker
+ */	
 public class Input extends Application {
 	
 	@FXML private Pane anchorFenster;
@@ -271,13 +273,14 @@ public class Input extends Application {
 			if(geräte.get(i) == "trockner") { 
 				tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			}
-			//if(geräte.get(i) == "waschmaschine") {  //falsche Daten ? immer nachts an ? 
+			//Nicht 100 Prozent funktionsfähig!
+			//if(geräte.get(i) == "waschmaschine") {  
 			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			//}
-			//if(geräte.get(i) == "fernseher") { //falsche Daten ? immer nachts an ? 
+			//if(geräte.get(i) == "fernseher") {  
 			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			//}
-			//if(geräte.get(i) == "mikrowelle") { //Falsche Daten immer an !!
+			//if(geräte.get(i) == "mikrowelle") { 
 			//	tmpData = Einlesen.GetAll(auswertDaten,geräte.get(i));
 			//}
 			if(geräte.get(i) == "deckenlampe") { 

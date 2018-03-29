@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import GerätePackage.Mikrowelle;
 import Haushalt.Person;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit der Mikrowelle.
+ * @author Julian Grünker
+ */	
 public class WahrMikrowelle {
 
 	private int betriebsDauer = 0;

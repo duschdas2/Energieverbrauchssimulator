@@ -1,7 +1,10 @@
 package Wahrscheinlichkeiten;
 
 import GerätePackage.DeckenLampe;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit der Deckenlampe.
+ * @author Julian Grünker
+ */
 public class WahrDeckenLampe {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;

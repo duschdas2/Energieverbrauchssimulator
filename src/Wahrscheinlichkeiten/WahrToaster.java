@@ -1,7 +1,10 @@
 package Wahrscheinlichkeiten;
 
 import GerätePackage.Toaster;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit des Toaster.
+ * @author Julian Grünker
+ */	
 public class WahrToaster {
 
 	private int betriebsDauer = 0;

@@ -1,7 +1,10 @@
 package Wahrscheinlichkeiten;
 
 import GerätePackage.Staubsauger;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit des Staubsauger.
+ * @author Julian Grünker
+ */	
 public class WahrStaubsauger {
 	
 	private int betriebsDauer = 0;

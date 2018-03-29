@@ -1,5 +1,8 @@
 package Hilfsmethoden;
-
+/**
+ * Diese Klasse regelt das einlesen der ECO-Daten.
+ * @author Julian Grünker
+ */
 import java.io.FileReader;
 import java.io.IOException;
 

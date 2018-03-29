@@ -6,7 +6,10 @@ import GerätePackage.LCDFernseher;
 import GerätePackage.Mikrowelle;
 import GerätePackage.Plasmafernseher;
 import Haushalt.Person;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit der Fernsehr.
+ * @author Julian Grünker
+ */	
 public class WahrFernseher {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;

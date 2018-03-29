@@ -1,7 +1,10 @@
 package Wahrscheinlichkeiten;
 
 import GerätePackage.PC;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit der PC.
+ * @author Julian Grünker
+ */	
 public class WahrPc {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;

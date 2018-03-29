@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import GerätePackage.Waschmaschine;
 import Haushalt.Person;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit der Waschmaschine.
+ * @author Julian Grünker
+ */	
 public class WahrWaschmaschine {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;

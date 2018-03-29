@@ -2,7 +2,10 @@ package Wahrscheinlichkeiten;
 
 import GerätePackage.Trockner;
 import GerätePackage.Waschmaschine;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit des Trockner.
+ * @author Julian Grünker
+ */	
 public class WahrTrockner {
 	private int betriebsDauer = 0;
 	private int anzahlAn = 0;

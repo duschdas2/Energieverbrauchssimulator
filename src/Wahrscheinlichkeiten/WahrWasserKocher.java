@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import GerätePackage.Wasserkocher;
 import Haushalt.Person;
-
+/**
+ * Diese Klasse regelt die Wahrscheinlichkeit des Wasserkocher.
+ * @author Julian Grünker
+ */	
 public class WahrWasserKocher {
 
 	private int betriebsDauer = 0;
