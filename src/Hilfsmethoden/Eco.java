@@ -8,6 +8,10 @@ import java.io.IOException;
 
 import com.opencsv.CSVReader;
 
+/**
+ * @author Julian Grünker
+ *
+ */
 public class Eco {
 	public static double[] GetAll(int size,String gerät) throws IOException{
 		double [] tmp = new double[1440];

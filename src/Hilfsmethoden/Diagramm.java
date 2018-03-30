@@ -27,10 +27,10 @@ import com.opencsv.CSVReader;
  */
 public class Diagramm {
 
-	private static final String STRING_ARRAY_SAMPLE1 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\1.csv";
-	private static final String STRING_ARRAY_SAMPLE2 = "C:\\Users\\Julian\\Desktop\\jdemandmodel-master\\data\\output\\2.csv";
-	private static final String STRING_ARRAY_SAMPLE3 = "C:\\\\Users\\\\Julian\\\\Desktop\\\\jdemandmodel-master\\\\data\\\\output\\\\3.csv";
-	private static final String STRING_ARRAY_SAMPLE4 = "C:\\Users\\Julian\\Documents\\JDemand\\1.csv.csv";
+	private static final String STRING_ARRAY_SAMPLE1 = "";
+	private static final String STRING_ARRAY_SAMPLE2 = "";
+	private static final String STRING_ARRAY_SAMPLE3 = "";
+	private static final String STRING_ARRAY_SAMPLE4 = "";
 	
 	public static void main(String[] args) {
 		try {
@@ -105,7 +105,7 @@ public class Diagramm {
 	}
 	
 	public static void erzeuge2(String s) throws IOException {
-		JFreeChart xylineChart = ChartFactory.createXYLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", erstelleDataset(s), PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart xylineChart = ChartFactory.createXYLineChart("Simulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", erstelleDataset(s), PlotOrientation.VERTICAL, true, true, false);
 		XYPlot plot = xylineChart.getXYPlot();
 		plot.setBackgroundPaint(Color.black);
 		plot.setSeriesRenderingOrder(SeriesRenderingOrder.FORWARD);

@@ -6,7 +6,7 @@ import Haushalt.Person;
 /**
  *
  */
-public class main {
+public class HilfsKlasse {
 
 	public static void main(String[] args) throws IOException {
 		//Dient zur Ausgabe von ECO Diagrammen und zusammenführung von Geräten
