@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Licht extends GeräteTyp1{
 
 	public Licht() {	// eine Glühbirne

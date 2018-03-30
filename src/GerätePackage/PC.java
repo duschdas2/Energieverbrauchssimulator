@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class PC extends GeräteTyp2{
 
 	public PC() {

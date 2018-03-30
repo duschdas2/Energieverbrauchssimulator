@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class GeräteTestMain {
 
 	public static void main(String[] args) {

@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class DeckenLampe extends GeräteTyp1{
 
 	public DeckenLampe() {

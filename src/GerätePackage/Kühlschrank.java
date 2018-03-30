@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Kühlschrank extends GeräteTyp4{
 
 	public Kühlschrank() {

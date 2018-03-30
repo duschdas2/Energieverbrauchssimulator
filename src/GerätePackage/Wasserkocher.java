@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Wasserkocher extends GeräteTyp1{
 
 	int betriebsdauer = 2;

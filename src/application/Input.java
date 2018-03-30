@@ -148,7 +148,7 @@ public class Input extends Application {
 			geräte.add("trockner");
 		}
 		if(checkDeckenLampe.isSelected() == true) {
-			geräte.add("deckenlampe");
+			geräte.add("deckenfluter");
 		}
 		if(checkPc.isSelected() == true) {
 			geräte.add("pc");

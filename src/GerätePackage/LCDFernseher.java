@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class LCDFernseher extends GeräteTyp3{
 
 	public LCDFernseher() {

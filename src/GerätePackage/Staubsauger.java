@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Staubsauger extends GeräteTyp3{
 	
 	public Staubsauger() {

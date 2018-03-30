@@ -3,6 +3,10 @@ package GerätePackage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public abstract class GeräteTyp2 
 {
 	protected double maxVerbrauch;

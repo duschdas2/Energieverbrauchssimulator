@@ -66,7 +66,7 @@ public class Diagramm {
 		}
 		
 		// Erstellt den Graphen
-		JFreeChart chart = ChartFactory.createLineChart("Simmulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", dataset, PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart chart = ChartFactory.createLineChart("Simulierter Haushalt", "Zeit in Minuten", "Verbrauch in Watt", dataset, PlotOrientation.VERTICAL, true, true, false);
 		Plot plot = chart.getPlot();
 		plot.setBackgroundPaint(Color.black);
 		

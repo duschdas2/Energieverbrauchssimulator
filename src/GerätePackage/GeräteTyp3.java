@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public abstract class GeräteTyp3 
 {
 	protected double maxVerbrauch;

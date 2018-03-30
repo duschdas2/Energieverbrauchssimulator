@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Waschmaschine extends GeräteTyp2{
 
 	public Waschmaschine() {

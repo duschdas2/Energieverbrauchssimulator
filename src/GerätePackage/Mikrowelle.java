@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Mikrowelle extends GeräteTyp1{
 
 	private int betriebsdauer = 3;

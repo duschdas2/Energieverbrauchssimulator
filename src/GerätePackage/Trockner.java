@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Trockner extends GeräteTyp2 {
 
 	public Trockner() {

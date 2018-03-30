@@ -1,5 +1,9 @@
 package GerätePackage;
 
+/**
+ * @author Kevin Rabe
+ *
+ */
 public class Plasmafernseher extends GeräteTyp3 {
 
 	public Plasmafernseher() {
