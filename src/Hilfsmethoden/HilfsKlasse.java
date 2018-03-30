@@ -1,8 +1,6 @@
 package Hilfsmethoden;
 import java.io.IOException;
 import java.util.ArrayList;
-import Haushalt.Haushalt;
-import Haushalt.Person;
 /**
  *
  */

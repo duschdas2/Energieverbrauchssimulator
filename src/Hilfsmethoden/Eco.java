@@ -1,16 +1,11 @@
 package Hilfsmethoden;
-/**
- * Diese Klasse regelt das einlesen der ECO-Daten.
- * @author Julian Grünker
- */
 import java.io.FileReader;
 import java.io.IOException;
-
 import com.opencsv.CSVReader;
 
 /**
  * @author Julian Grünker
- *
+ * Referenz: http://opencsv.sourceforge.net
  */
 public class Eco {
 	public static double[] GetAll(int size,String gerät) throws IOException{

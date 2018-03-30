@@ -6,6 +6,7 @@ import com.opencsv.CSVReader;
 /**
  * Diese Klasse regelt das einlesen von Daten.
  * @author Julian Grünker
+ * Referenz: http://opencsv.sourceforge.net
  */
 public class Einlesen {
 	
