@@ -1,5 +1,6 @@
 /**
- * Klasse mit den Typen der Pesonen
+ * Klasse für die Berechnung der Arbeitszeit einer Person am Tag
+ * @author Jannik Schulze
  */
 package Haushalt;
 

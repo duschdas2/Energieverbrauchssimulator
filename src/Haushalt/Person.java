@@ -1,5 +1,6 @@
 /** 
- * Personen Klasse 
+ * Klasse für die Erstellung der Personenzeiten/Anwesendheit im Haushalt im Bezug auf das Hobby.
+ * @author Jannik Schulze
  */
 package Haushalt;
 

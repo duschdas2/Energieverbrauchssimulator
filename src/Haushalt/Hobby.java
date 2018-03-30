@@ -1,3 +1,8 @@
+/**
+ * Klasse für die Wahrscheinlichkeit der "Hobbies".
+ * @author Jannik Schulze
+ */
+
 package Haushalt;
 
 import java.util.Random;

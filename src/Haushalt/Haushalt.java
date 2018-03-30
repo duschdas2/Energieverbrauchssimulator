@@ -1,5 +1,6 @@
 /**
- * Klasse für den Haushalt
+ * Klasse für die Berechnung der Occupancy
+ * @author Jannik Schulze
  */
 package Haushalt;
 
