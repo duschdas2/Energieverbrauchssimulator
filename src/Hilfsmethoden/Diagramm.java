@@ -23,7 +23,7 @@ import com.opencsv.CSVReader;
 /**
  * 
  * @author Manuel Neis
- *
+ * Referenz: http://www.jfree.org/jfreechart/
  */
 public class Diagramm {
 

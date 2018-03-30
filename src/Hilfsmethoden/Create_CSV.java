@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Klasse die CSV-Dateien schreibt
  * @author Manuel Neis
- *
+ * Referenz: http://opencsv.sourceforge.net
  */
 public class Create_CSV {
 	
